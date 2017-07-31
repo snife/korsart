@@ -62,7 +62,22 @@
 <body>
 	<div id="page-preloader"><span class="spinner"></span></div>
 
-	<?= showMenu() ?>
+	<?php
+		$categories = array();
+		$subcategories = array();
+
+		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
+		while($category = $categoryResult->fetch_assoc()) {
+			array_push($categories, $category);
+		}
+
+		$subcategoryResult = $mysqli->query("SELECT * FROM subcategories");
+		while($subcategory = $subcategoryResult->fetch_assoc()) {
+			array_push($subcategories, $subcategory);
+		}
+	?>
+
+	<?= showMenu(null, $categories, $subcategories) ?>
 
 	<br /><br />
 	<div id="slider">
