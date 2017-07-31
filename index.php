@@ -66,9 +66,13 @@
 
 	<br /><br />
 	<div id="slider">
-		<div class="slide showing"><img src="/img/photos/main_slider/1.jpg" /></div>
-		<div class="slide"><img src="/img/photos/main_slider/2.jpg" /></div>
-		<div class="slide"><img src="/img/photos/main_slider/3.jpg" /></div>
+		<?php
+			$i = 0;
+			$sliderResult = $mysqli->query("SELECT * FROM main_slider ORDER BY id ASC");
+			while($slider = $sliderResult->fetch_assoc()) {
+				echo "<div class='slide"; if($i == 0) {echo " showing";} echo "'><img src='/img/photos/main_slider/".$slider['photo']."' /></div>";
+			}
+		?>
 	</div>
 
 	<script src="/js/slider.js"></script>
