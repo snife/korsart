@@ -1,5 +1,7 @@
 *::-webkit-input-placeholder, *:-moz-placeholder, *::-moz-placeholder, *:-ms-input-placeholder {color: #666; opacity: 1;}
 
+html, body {margin: 0; padding: 0;}
+
 body input:focus:required:invalid, body textarea:focus:required:invalid {}
 body input:required:valid, body textarea:required:valid {}
 body {font-family: "RobotoRegular", sans-serif; font-size: 16px;}
@@ -9,8 +11,13 @@ a {text-decoration: none;}
 
 .menuFont:hover {color: #787878;}
 
+#slider {width: 100%; overflow: hidden; position: relative;}
+
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
 .menuFont {font-family: 'Didact Gothic', sans-serif; font-variant: small-caps; letter-spacing: 4px; color: #373737; font-size: 14px; cursor: pointer; transition: .3s;}
 .menuPoint {display: inline-block;}
 .menuDot {display: inline-block; padding-left: 25px; padding-right: 25px; position: relative; color: #373737; font-size: 4px; vertical-align: middle;}
+.slide {position: absolute; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 1; -webkit-transition: opacity 1s; -moz-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
+.slide img {width: 100%;}
+.showing {opacity: 1; z-index: 2;}

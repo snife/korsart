@@ -64,6 +64,15 @@
 
 	<?= showMenu() ?>
 
+	<br /><br />
+	<div id="slider">
+		<div class="slide showing"><img src="/img/photos/main_slider/1.jpg" /></div>
+		<div class="slide"><img src="/img/photos/main_slider/2.jpg" /></div>
+		<div class="slide"><img src="/img/photos/main_slider/3.jpg" /></div>
+	</div>
+
+	<script src="/js/slider.js"></script>
 
 </body>
+
 </html>
