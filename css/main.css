@@ -10,14 +10,15 @@ header {width: 100%; padding-top: 20px; text-align: center;}
 a {text-decoration: none;}
 ul.menu, ul.submenu {list-style-type: none; z-index: 3;}
 ul.menu > li > a {display: block; padding-top: 10px; padding-bottom: 10px; text-decoration: none;}
-ul.submenu {display: none; position: absolute; margin-left: -40px;}
-ul.submenu > li, ul.menu > li:hover > ul.submenu {display: block;}
-ul.submenu > li > a {display: block; padding: 10px;}
+ul.submenu {opacity: 0; position: absolute; margin-left: -40px; transition: .3s;}
+ul.submenu > li, ul.menu > li:hover > ul.submenu {opacity: 1;}
+ul.submenu > li > a {display: block; padding: 10px; font-size: 12px;}
 menu {width: 100%; text-align: center;}
+section {width: 65%; margin: 50px auto auto auto;}
 
 .menuFont:hover {color: #787878;}
 
-#slider {width: 100%; overflow: hidden; position: relative;}
+#slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3; border: 1px solid red;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
@@ -25,8 +26,9 @@ menu {width: 100%; text-align: center;}
 .menuFont {font-family: 'Didact Gothic', sans-serif; font-variant: small-caps; letter-spacing: 4px; color: #373737; font-size: 14px; cursor: pointer; transition: .3s;}
 .menuPoint {display: inline-block;}
 .menuDot {display: inline-block; padding-left: 25px; padding-right: 25px; position: relative; color: #373737; font-size: 4px; vertical-align: middle;}
-.slide {position: absolute; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 1; -webkit-transition: opacity 1s; -moz-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
-.slide img {width: 100%;}
+.slide, .gallery-slide {position: absolute; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 1; -webkit-transition: opacity 1s; -moz-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
+.slide img, .gallery-slide img {width: 100%;}
 .showing {opacity: 1; z-index: 2;}
 .subMenuLine {width: 100%; padding: 5px; margin-top: 1px; background-color: #fff;}
 .menu {margin: 0 auto; padding: 0;}
+.descriptionFont {font-size: 24px; color: #474747; font-family: 'Playfair Display', serif;}

@@ -19,6 +19,8 @@
 
 			if($i < count($categories)) {
 				$menu .= "<i class='fa fa-circle' aria-hidden='true' style='padding-left: 25px; padding-right: 25px; color: #373737; font-size: 4px;'></i></a>";
+			} else {
+				$menu .= "</a>";
 			}
 
 			if($category['subcategories'])
