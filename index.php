@@ -64,22 +64,26 @@
 
 	<?php
 		$categories = array();
-		$subcategories = array();
 
 		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
 		while($category = $categoryResult->fetch_assoc()) {
+			$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$category['id']."' ORDER BY priority");
+			if($subcategoryResult->num_rows > 0) {
+				$subcategories = array();
+
+				while($subcategory = $subcategoryResult->fetch_assoc()) {
+					array_push($subcategories, $subcategory);
+				}
+
+				$category['subcategories'] = $subcategories;
+			}
 			array_push($categories, $category);
 		}
 
-		$subcategoryResult = $mysqli->query("SELECT * FROM subcategories");
-		while($subcategory = $subcategoryResult->fetch_assoc()) {
-			array_push($subcategories, $subcategory);
-		}
 	?>
 
-	<?= showMenu(null, $categories, $subcategories) ?>
+	<?= showMenu(null, $categories) ?>
 
-	<br /><br />
 	<div id="slider">
 		<?php
 			$i = 0;
