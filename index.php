@@ -17,6 +17,9 @@
 	<?php
 		$pageResult = $mysqli->query("SELECT * FROM pages WHERE original_link = 'index.php'");
 		$page = $pageResult->fetch_assoc();
+
+		$settingsResult = $mysqli->query("SELECT * FROM SETTINGS WHERE id = '1'");
+		$settings = $settingsResult->fetch_assoc();
 	?>
 
 	<meta charset="utf-8" />
@@ -83,7 +86,7 @@
 
 	?>
 
-	<?= showMenu(null, $categories) ?>
+	<?= showMenu(null, $categories, $settings) ?>
 
 	<div id="slider">
 		<?php

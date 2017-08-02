@@ -1,9 +1,9 @@
 <?php
 
-	function showMenu($page = null, $categories) {
+	function showMenu($page = null, $categories, $settings) {
 		$menu = "
 			<header>
-				<a href='/' onmouseover='headerFontHover(\"left\", \"center\", \"right\", 1)' onmouseout='headerFontHover(\"left\", \"center\", \"right\", 0)'><span class='thinFont' id='left'>— </span><span class='headerFont' id='center'>Ваш Свадебный Фотограф</span><span class='thinFont' id='right'> —</span></a>
+				<a href='/' onmouseover='headerFontHover(\"left\", \"center\", \"right\", 1)' onmouseout='headerFontHover(\"left\", \"center\", \"right\", 0)'><span class='thinFont' id='left'>— </span><span class='headerFont' id='center'>".$settings['site_header']."</span><span class='thinFont' id='right'> —</span></a>
 			</header>
 			<menu>
 			<ul class='menu'>
