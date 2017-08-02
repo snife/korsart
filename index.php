@@ -191,6 +191,90 @@
 		</div>
 	</section>
 
+	<br /><br />
+	<section class="bigSection">
+		<div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName">Почему я?</div>
+			<div class="line"></div>
+		</div>
+		<br />
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<div class="quarterBlock">
+				<img src="/img/system/computer.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Качество</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Все фотографии обрабатываются в фоторедакторах, а при заказе фотокниг снимки проходят дополнительную допечатную ретушь.</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/clock.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Оперативность</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Время на подготовку и обработку электронной версии вашей свадьбы - не более двух месяцев.</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/car.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Мобильность</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Я работаю по всей стране и могу быстро добраться к вам на съёмку на автомобиле.</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/shield.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Гарантии</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>При работе заключается договор. Вы получаете полную информацию о сроках и условиях съёмки. Никаких "серых" схем работы.</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/hat.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Опыт</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Работа в области фотографии с 2006 года. Опыт съёмок в печатных и электронных СМИ, несколько лет работы в масс-медиа, стажировка за рубежом.</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/award.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Награды</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Победитель международной премии веб-журналистики Yousmi web-journalism awards в номинации "Лучший фоторепортаж". Участник международного фотопроекта "Дружба Народов".</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/handshake.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Ответственность</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Съёмка выполняется на современную технику в несколько камер и объективов. Архивное хранение снимков и бесплатное восстановление в течение 2 лет.</p>
+				</div>
+			</div>
+			<div class="quarterBlock">
+				<img src="/img/system/check.jpg" />
+				<br /><br />
+				<span class="mainReviewHeaderFont" style="text-transform: uppercase; font-size: 16px;"><strong>Полиграфия</strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>В любой момент вы можете заказать печать фотокниги своей свадьбы. Я помогу выбрать лучший дизайн и сориентирую в ценах типографии.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
 	<script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>
 

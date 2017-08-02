@@ -13,17 +13,20 @@
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px) {
-
+    .quarterBlock {width: 45%; display: inline-block; vertical-align: top; margin-left: 20px;}
+    .quarterBlock > img {width: 50%;}
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px) {
     #allReviewsButton {height: 50px; line-height: 50px; border: none; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; width: 90%; background-color: #457bdf; color: #fff; font-family: 'Lora', serif; font-size: 80%; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: .3s;}
+
+    .quarterBlock {width: 90%; display: inline-block; vertical-align: top; margin-left: 20px;}
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
-    .mainReview > img {width: 80%;}
+    .mainReview > img {width: 80%; margin-left: 0;}
 }
 
 
