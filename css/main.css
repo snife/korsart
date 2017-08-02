@@ -47,3 +47,8 @@ section {width: 65%; margin: 50px auto auto auto;}
 .mainReviewText {padding-top: 5px; padding-bottom: 5px; padding-left: 20px; padding-right: 20px; background-color: #fafafa; font-family: 'Arimo', sans-serif; font-size: 15px; color: #474747; text-align: justify; line-height: 1.5; width: 85% !important; margin: 0 auto;}
 .quarterBlock {width: 20%; display: inline-block; vertical-align: top; margin-left: 20px; margin-bottom: 20px;}
 .quarterBlock > img {width: 30%;}
+.serviceBlock {width: 90%; border-bottom: 1px dashed #474747; margin: 0 auto 40px auto; padding-bottom: 20px;}
+.servicePhotoBlock {width: 25%; float: left;}
+.serviceTextBlock {width: 70% !important; padding: 15px; background-color: #fafafa;  float: right; font-family: 'Arimo', sans-serif; font-size: 15px; color: #474747; text-align: justify; line-height: 1.5;}
+.serviceBlock img {width: 100%;}
+.serviceFont {font-family: "Didact Gothic", sans-serif; color: #262626; font-size: 20px; letter-spacing: 2px;}

@@ -15,6 +15,10 @@
 @media only screen and (max-width : 768px) {
     .quarterBlock {width: 45%; display: inline-block; vertical-align: top; margin-left: 20px;}
     .quarterBlock > img {width: 50%;}
+    .serviceTextBlock {width: 100%; float: none; margin: 20px auto auto auto;}
+    .servicePhotoBlock {width: 100%; text-align: center; float: none;}
+    .servicePhotoBlock img {width: 50%;}
+    .serviceBlock {width: 100%;}
 }
 
 /* Extra Small Devices, Phones */

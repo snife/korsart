@@ -275,6 +275,84 @@
 		</div>
 	</section>
 
+	<br /><br />
+	<section class="bigSection">
+		<div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName">Услуги свадебного фотографа</div>
+			<div class="line"></div>
+		</div>
+		<br />
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<div class="serviceBlock">
+				<div class="servicePhotoBlock">
+					<img src="/img/system/services1.jpg" />
+				</div>
+				<div class="serviceTextBlock">
+					<div class="sectionHeader">
+						<span class="serviceFont">Тариф &laquo;Бюджетный&raquo;</span>
+					</div>
+					<br /><br />
+					<p>Данный тариф подходит для тех, у кого свадьба отличается от классического варианта (сборы - регистрация - прогулка - ресторан). Либо для тех, кто хочет сделать только красивую фотоисторию без официальной части.</p>
+					<div class="sectionHeader">
+						<div class="line"></div>
+					</div>
+					<ul>
+						<li>Фотосъёмка прогулки (до 2 часов);</li>
+						<li>100 фотографий;</li>
+						<li>Авторская обработка всех снимков;</li>
+						<li>Запись всей съёмки на оформленный DVD диск.</li>
+					</ul>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="serviceBlock">
+				<div class="servicePhotoBlock">
+					<img src="/img/system/services2.jpg" />
+				</div>
+				<div class="serviceTextBlock">
+					<div class="sectionHeader">
+						<span class="serviceFont">Тариф &laquo;Стандарт&raquo;</span>
+					</div>
+					<br /><br />
+					<p>Годами проверенный тариф для большинства случаев. Он удачно подходит для целого дня съёмки (начиная от сборов невесты и до первого танца на банкете). Я делаю снимки самых важных моментов свадьбы, снимки с гостями и родителями. В то же время, молодожены не устают от внимания в свой праздник.</p>
+					<div class="sectionHeader">
+						<div class="line"></div>
+					</div>
+					<ul>
+						<li>Съёмка от сборов невесты до первого танца (банкет);</li>
+						<li>500 фотографий;</li>
+						<li>Авторская обработка всех снимков;</li>
+						<li>Запись всей съёмки на оформленный DVD диск.</li>
+					</ul>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="serviceBlock">
+				<div class="servicePhotoBlock">
+					<img src="/img/system/services3.jpg" />
+				</div>
+				<div class="serviceTextBlock">
+					<div class="sectionHeader">
+						<span class="serviceFont">Фотосессия &laquo;Love Story&raquo;</span>
+					</div>
+					<br /><br />
+					<p>Её можно сочетать со свадебной фотографией, либо снимать отдельным сюжетом. Главное для меня - передать на фотографии ваши чувства, эмоции, настроение.  Небольшая фотоистория в один день может надолго оставить в памяти приятные впечатления.</p>
+					<div class="sectionHeader">
+						<div class="line"></div>
+					</div>
+					<ul>
+						<li>Фотосъёмка (до 5 часов);</li>
+						<li>100 фотографий;</li>
+						<li>Авторская обработка всех снимков;</li>
+						<li>Запись всей съёмки на оформленный DVD диск.</li>
+					</ul>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+	</section>
+
 	<script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>
 
