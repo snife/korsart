@@ -36,3 +36,11 @@ section {width: 65%; margin: 50px auto auto auto;}
 .descriptionFont {font-size: 24px; color: #474747; font-family: 'Playfair Display', serif;}
 .sliderLinkSection {width: 50%; float: left; text-align: center; padding-top: 10%;}
 .sliderLinkFont {font-family: 'Playfair Display', serif; font-size: 46px; text-transform: uppercase; letter-spacing: 0.05em; color: #fff; transition: .3s;}
+.bigSection {width: 95%; margin: 50px auto auto auto;}
+.sectionHeader {width: 100%; text-align: center;}
+.line {width: 10%; height: 1px; display: inline-block; vertical-align: middle; background: url(/img/system/blackDot.png) repeat-x;}
+.sectionName {padding-left: 10px; padding-right: 10px; text-transform: uppercase; color: #262626; font-family: 'Didact Gothic', sans-serif; font-size: 24px; letter-spacing: 4px; display: inline-block;}
+.mainReview {width: 33%; display: inline-block; vertical-align: top;}
+.mainReview > img {width: 40%;}
+.mainReviewHeaderFont {font-family: 'Open Sans', sans-serif; color: #262626; font-size: 20px;}
+.mainReviewText {padding-top: 5px; padding-bottom: 5px; padding-left: 20px; padding-right: 20px; background-color: #fafafa; font-family: 'Arimo', sans-serif; font-size: 15px; color: #474747; text-align: center; line-height: 1.5; width: 85% !important; margin: 0 auto;}

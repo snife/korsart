@@ -34,6 +34,8 @@
 	<link rel="shortcut icon" href="/img/system/favicon.ico" />
 
 	<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
@@ -104,7 +106,7 @@
 		<div style="width: 50%; position: relative; float: left; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">Свадебный фотограф в Минске</div>
 		<div style="width: 50%; position: relative; float: right; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">ВДОХНОВЕНИЕ ДЛЯ СВАДЬБЫ</div>
 		<div style="clear: both;"></div>
-		<p>Легкость общения во время фотосессии, лаконичные фотографии: я помогу провести свадебный день в комфорте. Для меня главное - это передать атмосферу праздника и показать вашу естественную красоту, ваши чувства и эмоции.</p>
+		<p style="text-align: justify;">Легкость общения во время фотосессии, лаконичные фотографии: я помогу провести свадебный день в комфорте. Для меня главное - это передать атмосферу праздника и показать вашу естественную красоту, ваши чувства и эмоции.</p>
 	</section>
 
 	<br /><br />
@@ -117,16 +119,24 @@
 			}
 		?>
 
+		<?php
+			$weddingResult = $mysqli->query("SELECT * FROM categories WHERE id = '1'");
+			$wedding = $weddingResult->fetch_assoc();
+
+			$storyResult = $mysqli->query("SELECT * FROM categories WHERE id = '2'");
+			$story = $storyResult->fetch_assoc();
+		?>
+
 		<div id="sliderLinks">
 			<div class="sliderLinkSection">
-				<a href='/gallery'><span class="sliderLinkFont">Свадьба</span></a>
+				<a href='/<?= $wedding['sef_link'] ?>'><span class="sliderLinkFont">Свадьба</span></a>
 				<br /><br />
 				<span style="font-size: 12px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;">Фотогалерея</span>
 				<div style="width: 1px; background-color: #fff; height: 100%; position: absolute; top: 25%; left: 50%; z-index: 3; opacity: .8;"></div>
 				<div style="clear: both;"></div>
 			</div>
 			<div class="sliderLinkSection">
-				<a href="/love-story"><span class="sliderLinkFont">Love Story</span></a>
+				<a href="/<?= $story['sef_link'] ?>"><span class="sliderLinkFont">Love Story</span></a>
 				<br /><br />
 				<span style="font-size: 12px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;">Фотогалерея</span>
 			</div>
@@ -134,6 +144,50 @@
 		</div>
 	</div>
 
+	<br /><br />
+	<section class="descriptionFont">
+		<div style="width: 100%; color: #474747; font-size: 16px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 1px; text-align: right;">Давайте сделаем красивую историю о вас!</div>
+		<p style="text-align: justify;">Снимки "с настроением" уникальны. Они не выходят из моды, их всегда интересно смотреть. Спустя годы их не стыдно показать своим детям и внукам. Это творчество и документалистика в чистом виде. Всё это - ваша свадебная фотосессия.</p>
+	</section>
+
+	<br /><br />
+	<section class="bigSection">
+		<div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName">Отзывы</div>
+			<div class="line"></div>
+		</div>
+		<br />
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<div class="mainReview">
+				<img src="/img/system/review1.png" />
+				<br /><br />
+				<span class="mainReviewHeaderFont"><strong>Таня и Ваня<br /><span style=" font-size: 16px;">v</span></strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>С талантом и работой Саши мы знакомы не понаслышке, а лично. Поэтому у нас не возник вопрос, кто будет фотографом нашей свадьбы. Главный вопрос стоял в согласии Саши быть гостем и фотографом одновременно! Мы были рады услышать положительный ответ! Работать с Сашей одно удовольствие!!! Мы наслаждались процессом съемки: теплая дружественная атмосфера, ненавязчивость и отсутствие шаблонов, - впрочем, как и всегда. Результат не заставил себя долго ждать. Мы уже несколько дней пересматриваем свадебные фото, каждый раз снова и снова погружаясь в воспоминания и переживаем все те эмоции, которые испытывали в "Наш Свадебный День". Саша, мы хотим сказать тебе огромное спасибо за то, что ты был с нами в этот главный для нас день!</p>
+				</div>
+			</div>
+			<div class="mainReview">
+				<img src="/img/system/review2.png" />
+				<br /><br />
+				<span class="mainReviewHeaderFont"><strong>Наташа и Игорь<br /><span style=" font-size: 16px;">v</span></strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>Замечательный свадебный фотограф! Замечательные фотографии! Хочется пересматривать фотокнигу снова и снова и всегда с улыбкой, настолько она передает атмосферу свадебного дня! :) Спасибо тебе, Саша, большое! Нам повезло, что мы встретили тебя!</p>
+				</div>
+			</div>
+			<div class="mainReview">
+				<img src="/img/system/review3.png" />
+				<br /><br />
+				<span class="mainReviewHeaderFont"><strong>Настя и Дима<br /><span style=" font-size: 16px;">v</span></strong></span>
+				<br /><br />
+				<div class="mainReviewText">
+					<p>С творчеством Саши познакомился в ходе его лекции в БГУ. Сразу понравились его подход и отношение к коммерческой съемке. Так что когда возник вопрос с выбором фотографа на свадьбу - долго не думали, а быстро записались на нужную дату. И он в полной мере оправдал наши ожидания. На мой взгляд, Саша у других свадебных фотографов дополнительно выигрывает за счет большого опыта фотожурналиста, ни один интересный момент действа в праздничный день не был утерян. Его съемка - это не статичные, замыленные позы, а действительно живая и осмысленная передача действа. Пересматривая фотографии, ты каждый раз переживаешь этот день сполна. По итогу мы получили огромнейшее количество отличнейшего материала, обалденный альбом и оформленные диски. И самое главное, долгую и позитивную память о нашей свадьбе!</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>
