@@ -353,6 +353,44 @@
 		</div>
 	</section>
 
+	<br /><br />
+	<section class="bigSection">
+		<div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName">Давайте знакомиться</div>
+			<div class="line"></div>
+		</div>
+		<br />
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<div class="serviceBlock" style="border: none;">
+				<div class="servicePhotoBlock">
+					<img src="/img/system/me.jpg" />
+				</div>
+				<div class="serviceTextBlock">
+					<div class="sectionHeader">
+						<span class="serviceFont">Обо мне</span>
+					</div>
+					<br /><br />
+					<p>Меня зовут Александр, и мне нравится фотографировать. Нравится замечать интересные мгновения, общаться с людьми, путешествовать, делиться своими мыслями на снимках и не только.</p>
+				</div>
+				<br />
+				<div class="serviceTextBlock" style="margin-top: 20px;">
+					<div class="sectionHeader">
+						<span class="serviceFont">Контакты</span>
+					</div>
+					<br /><br />
+					<p>Я всегда открыт новым предложениям и неожиданным путешествиям.</p>
+					<ul>
+						<li>&nbsp;<i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;GSM +375 (29) 606 35 91</li>
+						<li>&nbsp;<i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;GSM +375 (29) 505 35 91</li>
+						<li><i class="fa fa-envelope-open-o" aria-hidden="true"></i> Viber +375 (29) 606 35 91</li>
+					</ul>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+	</section>
+
 	<script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>
 
