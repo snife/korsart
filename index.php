@@ -47,6 +47,7 @@
 	<link rel="stylesheet" href="/plugins/font-awesome-4.7.0/css/font-awesome.css" />
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/instafeed.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/index.js"></script>
 
@@ -389,6 +390,29 @@
 				</div>
 				<div style="clear: both;"></div>
 			</div>
+		</div>
+	</section>
+
+	<br /><br />
+	<section class="bigSection">
+		<div class="sectionHeader">
+			<div class="sectionName">Следите за моими работами в Instagram</div>
+			<br />
+			<a href="https://www.instagram.com/2korsart/"><span class="smallFont">@2korsart</span></a>
+		</div>
+		<br />
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<script type="text/javascript">
+				var userFeed = new Instafeed({
+					get: 'user',
+					userId: '198793556',
+					accessToken: '198793556.1677ed0.3957e27d04424a57b5dc86b58450ab52'
+				});
+
+				userFeed.run();
+			</script>
+
+			<div id="instafeed"></div>
 		</div>
 	</section>
 
