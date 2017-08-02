@@ -8,7 +8,7 @@ $(window).on("load", function() {
 
 var g_slides = document.querySelectorAll('#gallery-slider .gallery-slide');
 var g_currentSlide = 0;
-var g_slideInterval = setInterval(galleryNextSlide, 6000);
+var g_slideInterval = setInterval(galleryNextSlide, 5000);
 
 function galleryNextSlide() {
 	if(g_slides[g_currentSlide].firstChild.height < $('#gallery-slider').height()) {

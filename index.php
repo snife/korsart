@@ -45,6 +45,7 @@
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/index.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -100,8 +101,8 @@
 
 	<br /><br />
 	<section class="descriptionFont">
-		<div style="width: 50%; position: relative; float: left; color: #bfbfbf; font-size: 18px; font-family: 'Didact Gothic', sans-serif; font-weight: bold;">Свадебный фотограф в Минске</div>
-		<div style="width: 50%; position: relative; float: right; color: #bfbfbf; font-size: 18px; font-family: 'Didact Gothic', sans-serif; font-weight: bold;">ВДОХНОВЕНИЕ ДЛЯ СВАДЬБЫ</div>
+		<div style="width: 50%; position: relative; float: left; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">Свадебный фотограф в Минске</div>
+		<div style="width: 50%; position: relative; float: right; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">ВДОХНОВЕНИЕ ДЛЯ СВАДЬБЫ</div>
 		<div style="clear: both;"></div>
 		<p>Легкость общения во время фотосессии, лаконичные фотографии: я помогу провести свадебный день в комфорте. Для меня главное - это передать атмосферу праздника и показать вашу естественную красоту, ваши чувства и эмоции.</p>
 	</section>
@@ -115,7 +116,24 @@
 				echo "<div class='gallery-slide"; if($i == 0) {echo " showing";} echo "'><img src='/img/photos/gallery_slider/".$gallerySlider['photo']."' /></div>";
 			}
 		?>
+
+		<div id="sliderLinks">
+			<div class="sliderLinkSection">
+				<a href='/gallery'><span class="sliderLinkFont">Свадьба</span></a>
+				<br /><br />
+				<span style="font-size: 12px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;">Фотогалерея</span>
+				<div style="width: 1px; background-color: #fff; height: 100%; position: absolute; top: 25%; left: 50%; z-index: 3; opacity: .8;"></div>
+				<div style="clear: both;"></div>
+			</div>
+			<div class="sliderLinkSection">
+				<a href="/love-story"><span class="sliderLinkFont">Love Story</span></a>
+				<br /><br />
+				<span style="font-size: 12px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;">Фотогалерея</span>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
 	</div>
+
 
 	<script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>

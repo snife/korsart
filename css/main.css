@@ -17,9 +17,11 @@ menu {width: 100%; text-align: center;}
 section {width: 65%; margin: 50px auto auto auto;}
 
 .menuFont:hover {color: #787878;}
+.sliderLinkFont:hover {color: #e0c1ac;}
 
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3; border: 1px solid red;}
+#sliderLinks {position: absolute; top: 0; left: 0; width: 100%; z-index: 3;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
@@ -32,3 +34,5 @@ section {width: 65%; margin: 50px auto auto auto;}
 .subMenuLine {width: 100%; padding: 5px; margin-top: 1px; background-color: #fff;}
 .menu {margin: 0 auto; padding: 0;}
 .descriptionFont {font-size: 24px; color: #474747; font-family: 'Playfair Display', serif;}
+.sliderLinkSection {width: 50%; float: left; text-align: center; padding-top: 10%;}
+.sliderLinkFont {font-family: 'Playfair Display', serif; font-size: 46px; text-transform: uppercase; letter-spacing: 0.05em; color: #fff; transition: .3s;}
