@@ -15,9 +15,11 @@ ul.submenu > li, ul.menu > li:hover > ul.submenu {opacity: 1;}
 ul.submenu > li > a {display: block; padding: 10px; font-size: 12px;}
 menu {width: 100%; text-align: center;}
 section {width: 65%; margin: 50px auto auto auto;}
+footer {width: 100%; text-align: center; margin: 40px auto; font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 14px;}
+footer a {color: #474747; text-decoration: none; transition: .3s;}
 
 .menuFont:hover {color: #787878;}
-.sliderLinkFont:hover {color: #e0c1ac;}
+.sliderLinkFont:hover, footer a:hover {color: #e0c1ac;}
 
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3; border: 1px solid red;}

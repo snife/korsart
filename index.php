@@ -1,6 +1,7 @@
 <?php
 	include("scripts/connect.php");
 	include("layouts/menu.php");
+	include("layouts/footer.php");
 ?>
 
 <!DOCTYPE html>
@@ -390,6 +391,8 @@
 			</div>
 		</div>
 	</section>
+
+	<?= showFooter() ?>
 
 	<script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>
