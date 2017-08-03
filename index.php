@@ -416,6 +416,8 @@
 		</div>
 	</section>
 
+	<div onclick="scrollToTop()" id="scroll"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+
 	<?= showFooter() ?>
 
 	<script type="text/javascript" src="/js/main-slider.js"></script>

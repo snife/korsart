@@ -1,4 +1,16 @@
-var category = "";
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scroll").style.display = "block";
+    } else {
+        document.getElementById("scroll").style.display = "none";
+    }
+}
+
+function scrollToTop() {
+    $('html, body').animate({scrollTop: 0}, 500);
+}
 
 function headerFontHover(left, center, right, action) {
 	if(action === 1) {
