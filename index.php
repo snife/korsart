@@ -405,8 +405,8 @@
 			<script type="text/javascript">
 				var userFeed = new Instafeed({
 					get: 'user',
-					userId: '198793556',
-					accessToken: '198793556.1677ed0.3957e27d04424a57b5dc86b58450ab52'
+					userId: '43983667',
+					accessToken: '43983667.1677ed0.cec95463957d46abb616e422d10b38be'
 				});
 
 				userFeed.run();

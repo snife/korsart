@@ -26,7 +26,7 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3; border: 1px solid red;}
 #sliderLinks {position: absolute; top: 0; left: 0; width: 100%; z-index: 3;}
 #allReviewsButton {height: 50px; line-height: 50px; border: none; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; width: 480px; background-color: #457bdf; color: #fff; font-family: 'Lora', serif; font-size: 22px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: .3s;}
-#instafeed a img {transition: .3s; opacity: 1;}
+#instafeed a img {transition: .3s; opacity: 1; width: 16%; margin-left: 1%;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
