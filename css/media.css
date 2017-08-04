@@ -5,6 +5,13 @@
 
 }
 
+/* For menu */
+@media only screen and (max-width : 1099px) {
+    menu {display: none;}
+    header {margin-bottom: 30px;}
+    #mobileMenu {display: block;}
+}
+
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
     .mainReview > img {width: 300px;}

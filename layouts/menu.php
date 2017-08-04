@@ -4,9 +4,30 @@
 		$menu = "
 			<header>
 				<a href='/' onmouseover='headerFontHover(\"left\", \"center\", \"right\", 1)' onmouseout='headerFontHover(\"left\", \"center\", \"right\", 0)'><span class='thinFont' id='left'>— </span><span class='headerFont' id='center'>".$settings['site_header']."</span><span class='thinFont' id='right'> —</span></a>
+				<div id='mobileMenu' class='mobile' onclick='showMobileMenu()'><i class='fa fa-bars' aria-hidden='true'></i></div>
+				<div id='sideMenu'>
+					<div id='mobileMenu' class='mobile' onclick='hideMobileMenu()'><i class='fa fa-times' aria-hidden='true'></i></div>
+					<div id='menuContent'>
+		";
+
+		foreach ($categories as $category) {
+			if($category['subcategories']) {
+				$menu .= "
+					<div class='sideMenuPoint' onclick='showMobileSubmenu(\"".$category['id']."\")'>".mb_strtolower($category['name'])."<div class='sideSubmenu' id='sideSubmenu".$category['id']."'></div></div>
+				";
+			} else {
+				$menu .= "
+					<a href='/".$category['sef_link']."'><div class='sideMenuPoint'>".mb_strtolower($category['name'])."</div></a>
+				";
+			}
+		}
+
+		$menu .= "
+					</div>
+				</div>
 			</header>
 			<menu>
-			<ul class='menu'>
+				<ul class='menu'>
 		";
 
 		$i = 1;
@@ -41,7 +62,10 @@
 			$i++;
 		}
 
-		$menu .= "</ul></menu>";
+		$menu .= "
+				</ul>
+			</menu>
+		";
 
 		return $menu;
 	}

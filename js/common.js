@@ -1,3 +1,7 @@
+$(window).on("load", function () {
+	$('#sideMenu').height($(window).height());
+});
+
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
@@ -57,4 +61,36 @@ function hideSubmenu() {
 		setTimeout(function () {
 			$('#subMenu').html("");
 		}, 300);
+}
+
+function showMobileMenu() {
+	$('#sideMenu').fadeIn(300);
+}
+
+function hideMobileMenu() {
+	$('#sideMenu').fadeOut(300);
+}
+
+function showMobileSubmenu(id) {
+	var block = "sideSubmenu" + id;
+
+	if($('#' + block).attr('visible') === 'yes') {
+		$('#' + block).attr('visible', 'no');
+		$('#' + block).hide('300');
+
+		setTimeout(function () {
+			$('#' + block).html();
+		}, 300);
+	} else {
+		$.ajax({
+			type: 'POST',
+			data: {"id": id},
+			url: "/scripts/menu/ajaxMobileSubmenu.php",
+			success: function (response) {
+				$('#' + block).attr('visible', 'yes');
+				$('#' + block).html(response);
+				$('#' + block).show('300');
+			}
+		});
+	}
 }
