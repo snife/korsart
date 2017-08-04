@@ -157,7 +157,7 @@
 		<div class="sectionHeader">
 			<div class="line"></div>
 			<div class="sectionName">Отзывы</div>
-			<div class="line"></div>korsart@localhost
+			<div class="line"></div>
 		</div>
 		<br />
 		<div class="sectionHeader" style="margin-top: 40px;">
