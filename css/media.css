@@ -9,11 +9,16 @@
 @media only screen and (max-width : 1099px) {
     menu {display: none;}
     header {margin-bottom: 30px;}
+
     #mobileMenu {display: block;}
 }
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
+    #slogan, #about {display: block; width: 100%;}
+    #about {margin-top: 40px;}
+    #slogan, #slogan > div {text-align: center !important;}
+
     .mainReview > img {width: 300px;}
     .mainReview {width: 90%; margin-bottom: 40px;}
 }
