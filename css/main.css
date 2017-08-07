@@ -1,4 +1,4 @@
-*::-webkit-input-placeholder, *:-moz-placeholder, *::-moz-placeholder, *:-ms-input-placeholder {color: #666; opacity: 1;}
+*::-webkit-input-placeholder, *:-moz-placeholder, *::-moz-placeholder, *:-ms-input-placeholder {color: #666; opacity: 1; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
 
 html, body {margin: 0; padding: 0; overflow-x: hidden;}
 
@@ -17,6 +17,10 @@ menu {width: 100%; text-align: center; display: block;}
 section {width: 65%; margin: 50px auto auto auto;}
 footer {width: 100%; text-align: center; margin: 70px auto 40px auto; font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 14px;}
 footer a {color: #474747; text-decoration: none; transition: .3s;}
+input.formInvalid::-webkit-input-placeholder {color: red;}
+input.formInvalid:-ms-input-placeholder {color: red;}
+input.formInvalid::-moz-placeholder {color: red;}
+input.formInvalid:-moz-placeholder {color: red;}
 
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
 .sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover {color: #e0c1ac;}
@@ -30,6 +34,10 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 #scroll {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; cursor: pointer; color: #474747; transition: .3s;}
 #sideMenu {background-color: #fff; width: 300px; z-index: 3; position: absolute; right: 0; top: 0; display: none;}
 #menuContent {width: 100%; text-align: center; margin-top: 90px;}
+#newReviewButtonContainer {position: absolute; right: 100px; margin-top: 40px;}
+#newReviewButton {width: 300px; height: 50px; border: 1px solid #e6e6e6; background-color: #fff; transition: .3s; color: #000; text-transform: uppercase; font-size: 12px; font-family: "Didact Gothic", sans-serif; cursor: pointer;}
+#photoInput {width: 80%; height: 30px; padding: 15px 10px 5px 10px; border: 1px solid #a9a9a9; cursor: pointer; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
+#modalForm input {transition: .3s;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
@@ -65,3 +73,8 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .sideMenuPoint {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; margin-top: 10px; cursor: pointer;}
 .mobileSubmenuPoint {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; margin-top: 10px; cursor: pointer;}
 .sideSubmenu {display: none;}
+.remodal input {width: 80%; padding: 5px 10px; height: 30px; border: 1px solid #a9a9a9; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
+.remodal textarea {width: 80%; padding: 5px 10px; min-height: 150px; resize: none; border: 1px solid #a9a9a9; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
+.remodal h1 {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; letter-spacing: 2px;}
+.remodal {font-family: "Didact Gothic", sans-serif;}
+.notifyjs-corner, .notifyjs-wrapper {z-index: 9999999 !important;}

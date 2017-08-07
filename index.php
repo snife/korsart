@@ -19,7 +19,7 @@
 		$pageResult = $mysqli->query("SELECT * FROM pages WHERE original_link = 'index.php'");
 		$page = $pageResult->fetch_assoc();
 
-		$settingsResult = $mysqli->query("SELECT * FROM SETTINGS WHERE id = '1'");
+		$settingsResult = $mysqli->query("SELECT * FROM settings WHERE id = '1'");
 		$settings = $settingsResult->fetch_assoc();
 	?>
 
