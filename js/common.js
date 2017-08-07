@@ -1,5 +1,9 @@
 $(window).on("load", function () {
 	$('#sideMenu').height($(window).height());
+
+	if($('#slider img')) {
+		$('#slider img').width($('#slider').width());
+	}
 });
 
 window.onscroll = function() {scrollFunction()};

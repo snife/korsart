@@ -24,7 +24,7 @@ include("../layouts/footer.php");
 <head>
 
 	<?php
-		$pageResult = $mysqli->query("SELECT * FROM pages WHERE original_link = 'reviews/'");
+		$pageResult = $mysqli->query("SELECT * FROM pages WHERE original_link = 'contacts/'");
 		$page = $pageResult->fetch_assoc();
 
 		$settingsResult = $mysqli->query("SELECT * FROM settings WHERE id = '1'");
