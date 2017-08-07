@@ -25,6 +25,11 @@ if ($linkCheck[0] > 0) {
 if ($validity == 1) {
 	$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE sef_link = '" . $address . "'");
 	$gallery = $galleryResult->fetch_assoc();
+
+	if(empty($galery['title'])) {
+		$galleryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE sef_link = '" . $address . "'");
+		$gallery = $galleryResult->fetch_assoc();
+	}
 } else {
 	header("Location: /");
 }
@@ -43,19 +48,16 @@ if ($validity == 1) {
 <head>
 
 	<?php
-		$pageResult = $mysqli->query("SELECT * FROM pages WHERE original_link = 'index.php'");
-		$page = $pageResult->fetch_assoc();
-
 		$settingsResult = $mysqli->query("SELECT * FROM settings WHERE id = '1'");
 		$settings = $settingsResult->fetch_assoc();
 	?>
 
 	<meta charset="utf-8" />
 
-	<title><?= $page['title'] ?></title>
+	<title><?= $gallery['title'] ?></title>
 
-	<meta name="description" content="<?= $page['description'] ?>" />
-	<meta name="keywords" content="<?= $page['keywords'] ?>" />
+	<meta name="description" content="<?= $gallery['description'] ?>" />
+	<meta name="keywords" content="<?= $gallery['keywords'] ?>" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -118,13 +120,21 @@ if ($validity == 1) {
 
 	<?= showMenu(null, $categories, $settings) ?>
 
-	<div id="slider">
-		<img src="/img/photos/gallery/main/<?= $gallery['photo'] ?>" />
-	</div>
-
-	<br /><br />
-
-	<?= $gallery['text'] ?>
+	<?php
+		/* Правило отображения контента для галереи */
+		if(!empty($gallery['category_id'])) {
+			echo "
+				<div id='slider'>
+					<img src='/img/photos/gallery/main/".$gallery['photo']."' />
+				</div>
+				<br /><br />
+				".$gallery['text']."
+			";
+		} else {
+			/* Правило отображения контента для блога */
+			echo "as";
+		}
+	?>
 
 	<div onclick="scrollToTop()" id="scroll"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 
