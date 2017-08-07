@@ -113,6 +113,43 @@ include("../layouts/footer.php");
 		<a data-remodal-target="modal"><input type="button" id="newReviewButton" value="Оставить отзыв" onmouseover="changeNewReviewButton(1)" onmouseout="changeNewReviewButton(0)" /></a>
 	</div>
 
+	<br /><br />
+	<section class="bigSection" style="margin-top: 120px;">
+		<?php
+			$i = 1;
+			$reviewResult = $mysqli->query("SELECT * FROM reviews WHERE showing = '1' ORDER BY id DESC");
+			while($review = $reviewResult->fetch_assoc()) {
+				echo "
+					<div class='reviewContainer'>
+				";
+
+				if($i % 2 == 0) {
+					echo "
+						<div class='reviewPhoto'>"; if(!empty($review['photo'])) {echo "<img src='/img/photos/reviews/".$review['photo']."' />";} echo "</div>
+						<div class='review'>
+							<div class='reviewHeader'><h1>".$review['name']."</h1></div>
+							<p>".$review['text']."</p>
+						</div>
+					";
+				} else {
+					echo "
+						<div class='review'>
+							<div class='reviewHeader'><h1>".$review['name']."</h1></div>
+							<p>".$review['text']."</p>
+						</div>
+						<div class='reviewPhoto'>"; if(!empty($review['photo'])) {echo "<img src='/img/photos/reviews/".$review['photo']."' />";} echo "</div>
+					";
+				}
+
+				echo "
+					</div>
+				";
+
+				$i++;
+			}
+		?>
+	</section>
+
 	<div class="remodal" data-remodal-id="modal" data-remodal-options="closeOnConfirm: false">
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<div style='width: 80%; margin: 0 auto;'><h1>Пожалуйста, оставьте свой отзыв.<br />Для меня это очень важно!</h1></div>
