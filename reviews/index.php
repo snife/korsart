@@ -103,7 +103,7 @@ include("../layouts/footer.php");
 
 	?>
 
-	<?= showMenu(null, $categories, $settings) ?>
+	<?= showMenu_2ndLevel(null, $categories, $settings) ?>
 
 	<div id="slider">
 		<img src="/img/system/reviews.jpg" />
