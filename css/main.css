@@ -21,6 +21,7 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
 .sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover {color: #e0c1ac;}
 #instafeed a img:hover {opacity: .7;}
+#reviewSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
 
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3;}
@@ -33,7 +34,10 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 #newReviewButtonContainer {position: absolute; right: 100px; margin-top: 40px;}
 #newReviewButton {width: 300px; height: 50px; border: 1px solid #e6e6e6; background-color: #fff; transition: .3s; color: #000; text-transform: uppercase; font-size: 12px; font-family: "Didact Gothic", sans-serif; cursor: pointer;}
 #photoInput {width: 80%; height: 30px; padding: 15px 10px 5px 10px; border: 1px solid #a9a9a9; cursor: pointer; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
-#modalForm input {transition: .3s;}
+#reviewForm input, #reviewForm textarea {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 12px; width: 100%; border: none; border-bottom: 1px solid #a9a9a9; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;}
+#reviewForm textarea {resize: none; padding-bottom: 0;}
+#reviewPhotoInput {border: none !important;}
+#reviewSubmit {border: 1px solid #a9a9a9 !important; cursor: pointer; background-color: #fff; color: #474747; transition: .3s; padding-top: 20px !important; padding-bottom: 20px !important;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}

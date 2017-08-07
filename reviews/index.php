@@ -150,6 +150,28 @@ include("../layouts/footer.php");
 		?>
 	</section>
 
+	<br /><br />
+	<section>
+		<div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName">Оставьте свой отзыв</div>
+			<div class="line"></div>
+		</div>
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<form method="post" id="reviewForm">
+				<input id="reviewNameInput" name="reviewName" placeholder="Имя" />
+				<br /><br />
+				<input id="reviewEmailInput" name="reviewEmail" placeholder="Ваш email" />
+				<br /><br />
+				<textarea id="reviewTextInput" name="reviewText" placeholder="Ваш отзыв"></textarea>
+				<br /><br />
+				<input type="file" id="reviewPhotoInput" name="reviewPhoto" />
+				<br /><br />
+				<input type="button" id="reviewSubmit" value="Оставить отзыв" onclick="sendReviewFromPage()" />
+			</form>
+		</div>
+	</section>
+
 	<div class="remodal" data-remodal-id="modal" data-remodal-options="closeOnConfirm: false">
 		<button data-remodal-action="close" class="remodal-close"></button>
 		<div style='width: 80%; margin: 0 auto;'><h1>Пожалуйста, оставьте свой отзыв.<br />Для меня это очень важно!</h1></div>

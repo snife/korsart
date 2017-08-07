@@ -76,3 +76,70 @@ function changeNewReviewButton(action) {
 		$('#newReviewButton').css('color', '#000');
 	}
 }
+
+function sendReviewFromPage() {
+	var name = $('#reviewNameInput').val();
+	var email = $('#reviewEmailInput').val();
+	var text = $('#reviewTextInput').val();
+
+	var formData = new FormData($('#reviewForm').get(0));
+
+	if(name !== '') {
+		if(email !== '') {
+			$.ajax({
+				type: "POST",
+				data: {"email": email},
+				url: "/scripts/reviews/ajaxValidateEmail.php",
+				success: function (validity) {
+					if(validity === "valid") {
+						if(text !== '') {
+							$.ajax({
+								type: "POST",
+								dataType: "json",
+								processData: false,
+								contentType: false,
+								data: formData,
+								url: "/scripts/reviews/ajaxAddReviewFromPage.php",
+								beforeSend: function () {
+									$.notify("Ваш отзыв отправляется...", "info");
+								},
+								success: function (response) {
+									switch(response) {
+										case "ok":
+											$.notify("Спасибо! Отзыв был успешно отправлен.", "success");
+
+											$('#reviewNameInput').val('');
+											$('#reviewEmailInput').val('');
+											$('#reviewTextInput').val('');
+											$('#reviewPhotoInput').val('');
+											break;
+										case "failed":
+											$.notify("Во время отправления отзыва произошла ошибка. Попробуйте снова.", "error");
+											break;
+										case "no photo":
+											$.notify("Вы не добавили фотографию", "error");
+											break;
+										case "file type":
+											$.notify("Выбранный файл не является фотографией.", "error");
+											break;
+										default:
+											$.notify(response, "warn");
+											break;
+									}
+								}
+							});
+						} else {
+							$.notify("Вы не ввели текст отзыва", "error");
+						}
+					} else {
+						$.notify("Вы ввели email неверного формата", "error");
+					}
+				}
+			});
+		} else {
+			$.notify("Вы не ввели email", "error");
+		}
+	} else {
+		$.notify("Вы не ввели имя", "error");
+	}
+}
