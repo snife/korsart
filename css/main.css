@@ -19,9 +19,9 @@ footer {width: 100%; text-align: center; margin: 70px auto 40px auto; font-famil
 footer a {color: #474747; text-decoration: none; transition: .3s;}
 
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
-.sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover {color: #e0c1ac;}
+.sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover {color: #e0c1ac;}
 #instafeed a img:hover {opacity: .7;}
-#reviewSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
+#reviewSubmit:hover, #messageSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
 
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3;}
@@ -34,10 +34,10 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 #newReviewButtonContainer {position: absolute; right: 100px; margin-top: 40px;}
 #newReviewButton {width: 300px; height: 50px; border: 1px solid #e6e6e6; background-color: #fff; transition: .3s; color: #000; text-transform: uppercase; font-size: 12px; font-family: "Didact Gothic", sans-serif; cursor: pointer;}
 #photoInput {width: 80%; height: 30px; padding: 15px 10px 5px 10px; border: 1px solid #a9a9a9; cursor: pointer; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
-#reviewForm input, #reviewForm textarea {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 12px; width: 100%; border: none; border-bottom: 1px solid #a9a9a9; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;}
-#reviewForm textarea {resize: none; padding-bottom: 0;}
+#reviewForm input, #reviewForm textarea, #messageForm input, #messageForm textarea {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 12px; width: 100%; border: none; border-bottom: 1px solid #a9a9a9; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;}
+#reviewForm textarea, #messageForm textarea {resize: none; padding-bottom: 0;}
 #reviewPhotoInput {border: none !important;}
-#reviewSubmit {border: 1px solid #a9a9a9 !important; cursor: pointer; background-color: #fff; color: #474747; transition: .3s; padding-top: 20px !important; padding-bottom: 20px !important;}
+#reviewSubmit, #messageSubmit {border: 1px solid #a9a9a9 !important; cursor: pointer; background-color: #fff; color: #474747; transition: .3s; padding-top: 20px !important; padding-bottom: 20px !important;}
 #slogan {font-family: "Playfair Display", serif; font-size: 3em; color: #464553; float: left; display: inline-block; width: 48%; vertical-align: top; text-align: left;}
 #about {float: right; display: inline-block; width: 45%; vertical-align: top; text-align: left;}
 #aboutHeader {width: 100%; text-align: center;}
@@ -91,3 +91,6 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .reviewHeader h1 {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 20px; letter-spacing: 2px;}
 .reviewHeader {width: 100%; text-align: center;}
 .review p {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 14px; letter-spacing: 1px; line-height: 2;}
+.third {display: inline-block; width: 30%; vertical-align: top; text-align: center; font-family: "Didact Gothic", sans-serif; font-size: 14px; letter-spacing: 2px; color: #474747;}
+.third strong {font-size: 16px;}
+.third a {transition: .3s; color: #474747;}

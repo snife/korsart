@@ -55,6 +55,7 @@ include("../layouts/footer.php");
 	<link rel="stylesheet" href="/plugins/font-awesome-4.7.0/css/font-awesome.css" />
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/notify.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/contacts.js"></script>
 
@@ -106,8 +107,52 @@ include("../layouts/footer.php");
 	</div>
 
 	<br /><br />
-	<section style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
-		<p style="">Я всегда открыт новым предложениям и неожиданным путешествиям. Если у вас есть идея по фотосъемке — свадебной, love story, портретной — пишите мне. Я буду рад воплотить самую сумасшедшую фотоидею.</p>
+	<section style="border-left: 1px solid #ddd; border-right: 1px solid #ddd; text-align: justify; padding: 10px;">
+		<p style="font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 18px; letter-spacing: 2px;">Я всегда открыт новым предложениям и неожиданным путешествиям. Если у вас есть идея по фотосъемке — свадебной, love story, портретной — пишите мне. Я буду рад воплотить самую сумасшедшую фотоидею.</p>
+	</section>
+
+	<br /><br />
+	<section class="bigSection" style="text-align: center;">
+		<div class="third">
+			<span>Email</span>
+			<br />
+			<strong><?= ADMIN_EMAIL ?></strong>
+		</div>
+		<div class="third">
+			<span>Телефон</span>
+			<br />
+			<strong>+375 (29) 606 35 91</strong>
+		</div>
+		<div class="third">
+			<span>Соц. сети</span>
+			<br />
+			<a href="https://www.instagram.com/2korsart/" target="_blank"><strong>instagram</strong></a>
+		</div>
+	</section>
+
+	<br /><br />
+	<section>
+		<div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName">Напишите мне</div>
+			<div class="line"></div>
+		</div>
+		<br />
+		<div class="sectionHeader" style="margin-top: 40px;">
+			<form method="post" id="messageForm">
+				<input id="nameInput" placeholder="Имя *" />
+				<br /><br />
+				<input id="emailInput" placeholder="Ваш email *" />
+				<br /><br />
+				<input id="phoneInput" placeholder="Телефон" />
+				<br /><br />
+				<input id="dateInput" placeholder="Дата события" />
+				<br /><br />
+				<textarea id="messageInput" placeholder="Сообщение *"></textarea>
+				<br /><br />
+				<input type="button" id="messageSubmit" value="Отправить" onclick="sendMessage()" />
+			</form>
+		</div>
 	</section>
 
 	<div onclick="scrollToTop()" id="scroll"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
