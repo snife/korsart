@@ -74,7 +74,7 @@ if($_SESSION['userID'] != 1) {
 
 	<div id="topLine">
 		<div id="logo">
-			<a href="../"><span>korsart.by</span></a>
+			<a href="../"><span><i class="fa fa-home" aria-hidden="true"></i> korsart.by</span></a>
 		</div>
 		<a href="admin.php"><span class="headerText">Панель администрирвания</span></a>
 		<div id="exit" onclick="exit()">
@@ -82,27 +82,27 @@ if($_SESSION['userID'] != 1) {
 		</div>
 	</div>
 	<div id="leftMenu">
-		<a href="pages.php">
+		<a href="/admin/pages/">
 			<div class="menuPoint">
 				<i class="fa fa-file-text-o" aria-hidden="true"></i><span> Страницы</span>
 			</div>
 		</a>
-		<a href="sliders.php">
+		<a href="/admin/sliders/">
 			<div class="menuPoint">
 				<i class="fa fa-picture-o" aria-hidden="true"></i><span> Слайдеры</span>
 			</div>
 		</a>
-		<a href="reviews.php">
+		<a href="/admin/reviews/">
 			<div class="menuPoint">
 				<i class="fa fa-commenting" aria-hidden="true"></i><span> Отзывы</span>
 			</div>
 		</a>
-		<a href="galleries.php">
+		<a href="/admin/galleries/">
 			<div class="menuPoint">
 				<i class="fa fa-camera" aria-hidden="true"></i><span> Галереи</span>
 			</div>
 		</a>
-		<a href="blog.php">
+		<a href="/admin/blog/">
 			<div class="menuPoint">
 				<i class="fa fa-bullhorn" aria-hidden="true"></i><span> Блог</span>
 			</div>
