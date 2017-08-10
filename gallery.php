@@ -26,7 +26,7 @@ if ($validity == 1) {
 	$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE sef_link = '" . $address . "'");
 	$gallery = $galleryResult->fetch_assoc();
 
-	if(empty($galery['title'])) {
+	if(empty($gallery['title'])) {
 		$galleryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE sef_link = '" . $address . "'");
 		$gallery = $galleryResult->fetch_assoc();
 	}
