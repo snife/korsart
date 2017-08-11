@@ -2,6 +2,15 @@
  * Created by jeyfost on 10.08.2017.
  */
 
+document.onkeyup = function (e) {
+	e = e || window.event;
+	if (e.keyCode === 13) {
+		login();
+	}
+
+	return false;
+};
+
 function login() {
 	var login = $('#loginInput').val();
 	var password = $('#passwordInput').val();
