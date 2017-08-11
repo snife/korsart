@@ -158,9 +158,16 @@ if(!empty($_REQUEST['id'])) {
 					}
 
 					echo "
-						</div>
+							</div>
+						</form>
 						<br /><br />
-						<input type='button' class='button' id='pageSubmit' value='Редактировать' onmouseover='buttonHover(\"pageSubmit\", 1)' onmouseout='buttonHover(\"pageSubmit\", 0)' onclick='edit()' />
+						<h3>Добавление фотографий</h3>
+						<form method='post' id='addForm' enctype='multipart/form-data'>
+						<label for='photosInput'>Выберите фотграфии:</label>
+						<br />
+						<input type='file' class='file' id='sliderPhotosInput' name='sliderPhotos[]' multiple />
+						<br /><br />
+						<input type='button' class='button' id='sliderPhotosSubmit' value='Добавить' onmouseover='buttonHover(\"sliderPhotosSubmit\", 1)' onmouseout='buttonHover(\"sliderPhotosSubmit\", 0)' onclick='add(\"".$tableName."\")' />
 					";
 				}
 			?>

@@ -28,3 +28,4 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .sliderPhotoPreview {display: inline-block; margin-right: 10px; margin-bottom: 10px; vertical-align: top; width: 100px; padding: 5px; background-color: #fff; text-align: center;}
 .sliderPhotoPreview img {width: 100%;}
 .sliderPhotoPreview span {cursor: pointer;}
+.file {padding-top: 10px;}
