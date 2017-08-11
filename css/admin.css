@@ -7,6 +7,8 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 
 #exit:hover, #logo a:hover, .headerText:hover {color: #000;}
 .menuPoint:hover {background-color: #d6d6d6; color: #000;}
+.sliderPhotoPreview:hover {background-color: #dbdbdb;}
+.sliderPhotoPreview span:hover {text-decoration: underline;}
 
 #loginContainer {margin: 200px auto auto auto; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); width: 320px; padding: 20px;}
 #loginSubmit {width: 100%;}
@@ -16,9 +18,13 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 #topLine {background-color: #fff; width: 100%; height: 60px; text-align: center; line-height: 60px;}
 #leftMenu {background-color: #fff; width: 220px; display: inline-block; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4);}
 #content {display: inline-block; background-color: #fff; padding: 20px; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); vertical-align: top; margin: 40px auto auto 40px;}
+#sliderPhotosContainer {width: 100%; transition: .3s;}
 
 .button {height: 30px; width: auto; border: none; background-color: #dedede; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; cursor: pointer; padding: auto 5px; transition: .3s; margin: 0 auto;}
 .menuPoint {width: 200px; text-align: center; height: 40px; line-height: 40px; transition: .3s; padding: 10px;}
 .headerText {font-size: 24px; transition: .3s;}
 .headerFont {font-size: 24px;}
 .active {background-color: #d6d6d6; color: #000;}
+.sliderPhotoPreview {display: inline-block; margin-right: 10px; margin-bottom: 10px; vertical-align: top; width: 100px; padding: 5px; background-color: #fff; text-align: center;}
+.sliderPhotoPreview img {width: 100%;}
+.sliderPhotoPreview span {cursor: pointer;}
