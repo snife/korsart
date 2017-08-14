@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: jeyfost
  * Date: 14.08.2017
- * Time: 11:08
+ * Time: 11:47
  */
 
 session_start();
@@ -20,6 +20,8 @@ if(!empty($_REQUEST['c'])) {
 	if($categoryCheck[0] == 0) {
 		header("Location: index.php");
 	}
+} else {
+	header("Location: index.php");
 }
 
 ?>
@@ -37,7 +39,7 @@ if(!empty($_REQUEST['c'])) {
 
 	<meta charset="utf-8" />
 
-	<title>Панель администрирования | Галереи</title>
+	<title>Панель администрирования | Добавление галереи</title>
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -60,9 +62,10 @@ if(!empty($_REQUEST['c'])) {
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
+	<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
-	<script type="text/javascript" src="/js/admin/galleries/index.js"></script>
+	<script type="text/javascript" src="/js/admin/galleries/add.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -122,56 +125,61 @@ if(!empty($_REQUEST['c'])) {
 	</div>
 
 	<div id="content">
-		<span class="headerFont">Галереи</span>
+		<?php
+			$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+			$category = $categoryResult->fetch_assoc();
+
+			$subcategoriesCountResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE category_id = '".$category['id']."'");
+			$subcategoriesCount = $subcategoriesCountResult->fetch_array(MYSQLI_NUM);
+		?>
+		<span class="headerFont">Добавление галереи в раздел &laquo;<span style="color: #e0c1ac;"><?= $category['name'] ?></span>&raquo;</span>
 		<br /><br />
-		<form method="post">
-			<label for="categorySelect">Выберите раздел:</label>
+		<form method="post" enctype="multipart/form-data">
+			<label for="nameInput">Название:</label>
 			<br />
-			<select id="categorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
-			<option value="">- Выберите раздел -</option>
+			<input id="nameInput" name="name" />
+			<br /><br />
+			<label for="sefLinkInput">Адрес ссылки:</label>
+			<br />
+			<input id="sefLinkInput" name="sefLink" />
+			<br /><br />
+			<label for="prioritySelect">Порядок следования:</label>
+			<br />
+			<select id="prioritySelect" name="priority">
 				<?php
-					$categoryResult = $mysqli->query("SELECT * FROM categories WHERE for_gallery = '1'");
-					while ($category = $categoryResult->fetch_assoc()) {
-						echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
+					for($i = 0; $i <= $subcategoriesCount[0]; $i++) {
+						echo "<option value='".($i + 1)."'"; if($i == $subcategoriesCount[0]) {echo " selected;";} echo ">".($i + 1)."</option>";
 					}
 				?>
 			</select>
-			<?php
-				if(!empty($_REQUEST['c'])) {
-					echo "
-						<br /><br />
-						<input type='button' id='gallerySubmit' value='Новая галерея' onmouseover='buttonHover(\"gallerySubmit\", 1)' onmouseout='buttonHover(\"gallerySubmit\", 0)' onclick='window.location.href = \"/admin/galleries/add.php?c=".$_REQUEST['c']."\"' class='button' />
-					";
-				}
-			?>
+			<br /><br />
+			<label for="titleInput">Заголовок:</label>
+			<br />
+			<input id="titleInput" name="title" />
+			<br /><br />
+			<label for="keywordsInput">Ключевые слова:</label>
+			<br />
+			<input id="keywordsInput" name="keywords" />
+			<br /><br />
+			<label for="descriptionInput">Описание:</label>
+			<br />
+			<textarea id="descriptionInput" name="description" onkeydown="textAreaHeight(this)"></textarea>
+			<br /><br />
+			<label for="photoInput">Заглавное фото:</label>
+			<br />
+			<input type="file" id="photoInput" name="photo" style="padding-top: 10px;" />
+			<br /><br />
+			<label for="textInput">Текст:</label>
+			<br />
+			<textarea id="textInput" name="text"></textarea>
+			<br /><br />
+			<input type="button" id="gallerySubmit" value="Добавить" onmouseover="buttonHover('gallerySubmit', 1)" onmouseout="buttonHover('gallerySubmit', 0)" class="button" onclick="addGallery('<?= $_REQUEST['c'] ?>')" />
 		</form>
-		<?php
-			if(!empty($_REQUEST['c'])) {
-				$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
-				$category = $categoryResult->fetch_assoc();
-
-				echo "
-					<br /><br />
-					<h3>Список галерей в разделе &laquo;<span style='color: #e0c1ac;'>".$category['name']."</span>&raquo;</h3>
-					<div class='subcategory'></div>
-				";
-
-				$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
-				while($gallery = $galleryResult->fetch_assoc()) {
-					echo "
-						<div class='subcategory'>
-							<div class='subcategoryName'>".$gallery['name']."</div>
-							<div class='subcategoryButtons'>
-								<a href='index.php?c=".$_REQUEST['c']."&id=".$gallery['id']."'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
-								<br />
-								<span onclick='deleteGallery(\"".$gallery['id']."\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
-							</div>
-						</div>
-					";
-				}
-			}
-		?>
 	</div>
+
+	<script type="text/javascript">
+		CKEDITOR.replace("text");
+	</script>
 
 </body>
 
