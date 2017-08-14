@@ -35,7 +35,7 @@ function showReview(id, button) {
 	});
 }
 
-function editReveiw(id) {
+function editReview(id) {
 	var name = $('#nameInput').val();
 	var text = $('#textInput').val();
 	var formData = new FormData($('#reviewEditForm').get(0));

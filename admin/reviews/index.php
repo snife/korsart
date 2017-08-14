@@ -174,7 +174,7 @@ if(!empty($_REQUEST['id'])) {
 							<br />
 							<textarea id='textInput' name='text' onkeydown='textAreaHeight(this)'>".str_replace("<br />", "", $review['text'])."</textarea>
 							<br /><br />
-							<input type='button' id='reviewSubmit' value='Редактировать' onmouseover='buttonHover(\"reviewSubmit\", 1)' onmouseout='buttonHover(\"reviewSubmit\", 0)' class='button' onclick='editReveiw(\"".$review['id']."\")' />
+							<input type='button' id='reviewSubmit' value='Редактировать' onmouseover='buttonHover(\"reviewSubmit\", 1)' onmouseout='buttonHover(\"reviewSubmit\", 0)' class='button' onclick='editReview(\"".$review['id']."\")' />
 						</form> 
 					";
 				}

@@ -134,7 +134,7 @@ if(!empty($_REQUEST['c'])) {
 		?>
 		<span class="headerFont">Добавление галереи в раздел &laquo;<span style="color: #e0c1ac;"><?= $category['name'] ?></span>&raquo;</span>
 		<br /><br />
-		<form method="post" enctype="multipart/form-data">
+		<form method="post" enctype="multipart/form-data" id="addForm">
 			<label for="nameInput">Название:</label>
 			<br />
 			<input id="nameInput" name="name" />
@@ -148,7 +148,7 @@ if(!empty($_REQUEST['c'])) {
 			<select id="prioritySelect" name="priority">
 				<?php
 					for($i = 0; $i <= $subcategoriesCount[0]; $i++) {
-						echo "<option value='".($i + 1)."'"; if($i == $subcategoriesCount[0]) {echo " selected;";} echo ">".($i + 1)."</option>";
+						echo "<option value='".($i + 1)."'"; if($i == $subcategoriesCount[0]) {echo " selected";} echo ">".($i + 1)."</option>";
 					}
 				?>
 			</select>
@@ -157,11 +157,11 @@ if(!empty($_REQUEST['c'])) {
 			<br />
 			<input id="titleInput" name="title" />
 			<br /><br />
-			<label for="keywordsInput">Ключевые слова:</label>
+			<label for="keywordsInput">Ключевые слова (не обязательно):</label>
 			<br />
 			<input id="keywordsInput" name="keywords" />
 			<br /><br />
-			<label for="descriptionInput">Описание:</label>
+			<label for="descriptionInput">Описание (не обязательно):</label>
 			<br />
 			<textarea id="descriptionInput" name="description" onkeydown="textAreaHeight(this)"></textarea>
 			<br /><br />
@@ -172,6 +172,10 @@ if(!empty($_REQUEST['c'])) {
 			<label for="textInput">Текст:</label>
 			<br />
 			<textarea id="textInput" name="text"></textarea>
+			<br /><br />
+			<label for="photosInput">Фотографии галереи:</label>
+			<br />
+			<input type="file" id="photoInput" name="photos[]" style="padding-top: 10px;" multiple />
 			<br /><br />
 			<input type="button" id="gallerySubmit" value="Добавить" onmouseover="buttonHover('gallerySubmit', 1)" onmouseout="buttonHover('gallerySubmit', 0)" class="button" onclick="addGallery('<?= $_REQUEST['c'] ?>')" />
 		</form>
