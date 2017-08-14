@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: jeyfost
  * Date: 11.08.2017
- * Time: 19:40
+ * Time: 21:46
  */
 
 session_start();
@@ -14,7 +14,10 @@ if($_SESSION['userID'] != 1) {
 }
 
 if(!empty($_REQUEST['id'])) {
-	if($_REQUEST['id'] != 1 and $_REQUEST['id'] != 2) {
+	$reviewCheckResult = $mysqli->query("SELECT COUNT(id) FROM reviews WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+	$reviewCheck = $reviewCheckResult->fetch_array(MYSQLI_NUM);
+
+	if($reviewCheck[0] == 0) {
 		header("Location: index.php");
 	}
 }
@@ -34,7 +37,7 @@ if(!empty($_REQUEST['id'])) {
 
 	<meta charset="utf-8" />
 
-	<title>Панель администрирования | Слайдеры</title>
+	<title>Панель администрирования | Отзывы</title>
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -59,7 +62,7 @@ if(!empty($_REQUEST['id'])) {
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
-	<script type="text/javascript" src="/js/admin/sliders/index.js"></script>
+	<script type="text/javascript" src="/js/admin/reviews/index.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -97,12 +100,12 @@ if(!empty($_REQUEST['id'])) {
 			</div>
 		</a>
 		<a href="/admin/sliders/">
-			<div class="menuPoint active">
+			<div class="menuPoint">
 				<i class="fa fa-picture-o" aria-hidden="true"></i><span> Слайдеры</span>
 			</div>
 		</a>
 		<a href="/admin/reviews/">
-			<div class="menuPoint">
+			<div class="menuPoint active">
 				<i class="fa fa-commenting" aria-hidden="true"></i><span> Отзывы</span>
 			</div>
 		</a>
@@ -119,59 +122,64 @@ if(!empty($_REQUEST['id'])) {
 	</div>
 
 	<div id="content">
-		<span class="headerFont">Работа с фотографиями в слайдерах</span>
+		<span class="headerFont">Отзывы клиентов</span>
 		<br /><br />
-		<form method="post" id="sliderForm">
-			<label for="sliderSelect"></label>
-			<select id="sliderSelect" name="page" onchange="window.location = '?id=' + this.options[this.selectedIndex].value">
-				<option value="">- Выберите страницу -</option>
-				<option value="1" <?php if($_REQUEST['id'] == 1) {echo "selected";} ?>>Первый слайдер</option>
-				<option value="2" <?php if($_REQUEST['id'] == 2) {echo "selected";} ?>>Второй слайдер</option>
-			</select>
+		<div id="reviews">
 			<?php
-				if(!empty($_REQUEST['id'])) {
-					switch ($_REQUEST['id']) {
-						case 1:
-							$tableName = "main_slider";
-							break;
-						case 2:
-							$tableName = "gallery_slider";
-							break;
-						default:
-							break;
-					}
-
-					echo "
-						<br /><br />
-						<div id='sliderPhotosContainer'>
-					";
-
-					$sliderResult = $mysqli->query("SELECT * FROM ".$tableName." ORDER BY id");
-					while($slider = $sliderResult->fetch_assoc()) {
+				if(empty($_REQUEST['id'])) {
+					$reviewResult = $mysqli->query("SELECT * FROM reviews ORDER BY id DESC");
+					while($review = $reviewResult->fetch_assoc()) {
 						echo "
-							<div class='sliderPhotoPreview'>
-								<a href='/img/photos/".$tableName."/".$slider['photo']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='slider'><img src='/img/photos/".$tableName."/".$slider['photo']."' /></a>
-								<br />
-								<span onclick='deletePhoto(\"".$slider['id']."\", \"".$tableName."\")'>Удалить</span>
+							<div class='reviewContainer'>
+								<div class='reviewPhoto'>
+									<img src='/img/photos/reviews/".$review['photo']."' />
+								</div>
+								<div class='review'>
+									<div class='reviewHeader'><h3>".$review['name']."</h3></div>
+									<p>".$review['text']."</p>
+									<p class='email'><a href='mailto: ".$review['email']."'>".$review['email']."</a></p>
+								</div>
+								<div class='reviewButtons'>
+									<form method='post'>
+										<label for='showButton'>Отображать? </label>
+										<input type='checkbox' id='showButton".$review['id']."' name='show' onclick='showReview(\"".$review['id']."\", \"showButton".$review['id']."\")' "; if($review['showing'] == 1) {echo "checked";} echo ">
+									</form>
+									<br />
+									<a href='index.php?id=".$review['id']."'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
+									<br /><br />
+									<span onclick='deleteReview(\"".$review['id']."\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
+								</div>
 							</div>
 						";
 					}
+				} else {
+					$reviewResult = $mysqli->query("SELECT * FROM reviews WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+					$review = $reviewResult->fetch_assoc();
 
 					echo "
-							</div>
-						</form>
+						<a href='index.php' class='adminLink'><i class='fa fa-backward' aria-hidden='true'></i> Вернуться к списку отзывов</a>
 						<br /><br />
-						<h3>Добавление фотографий</h3>
-						<form method='post' id='addForm' enctype='multipart/form-data'>
-						<label for='photosInput'>Выберите фотграфии:</label>
-						<br />
-						<input type='file' class='file' id='sliderPhotosInput' name='sliderPhotos[]' multiple />
-						<br /><br />
-						<input type='button' class='button' id='sliderPhotosSubmit' value='Добавить' onmouseover='buttonHover(\"sliderPhotosSubmit\", 1)' onmouseout='buttonHover(\"sliderPhotosSubmit\", 0)' onclick='add(\"".$tableName."\")' />
+						<form method='post' id='reviewEditForm'>
+							<label for='nameInput'>Имя:</label>
+							<br />
+							<input id='nameInput' name='name' value='".$review['name']."' />
+							<br /><br />
+							<label for='photoInput'>Фотография:</label>
+							<br />
+							<a href='/img/photos/reviews/".$review['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><span>Посмотреть текущую фотографию</span></a>
+							<br /><br />
+							<input type='file' id='photoInput' name='photo' style='padding-top: 10px;' />
+							<br /><br />
+							<label for='textInput'>Текст отзыва:</label>
+							<br />
+							<textarea id='textInput' name='text' onkeydown='textAreaHeight(this)'>".str_replace("<br />", "", $review['text'])."</textarea>
+							<br /><br />
+							<input type='button' id='reviewSubmit' value='Редактировать' onmouseover='buttonHover(\"reviewSubmit\", 1)' onmouseout='buttonHover(\"reviewSubmit\", 0)' class='button' onclick='editReveiw(\"".$review['id']."\")' />
+						</form> 
 					";
 				}
 			?>
-		</form>
+		</div>
 	</div>
 
 </body>

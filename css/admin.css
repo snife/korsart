@@ -1,14 +1,16 @@
 html, body {padding: 0; margin: 0; background-color: #e4e4e4; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal;}
 label {color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px;}
 input {width: 300px; height: 30px; padding: 0 10px; font-style: italic; border: 1px solid #9e9e9e;}
-a {text-decoration: none; color: #4c4c4c;}
+a {text-decoration: none; color: #4c4c4c; transition: .3s;}
 select {height: 40px; line-height: 40px; margin-top: 5px; padding: 5px;}
 textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; border: 1px solid #9e9e9e; transition: .3s; resize: none;}
 
 #exit:hover, #logo a:hover, .headerText:hover {color: #000;}
+#reviewEditForm span:hover {border: none; color: #e0c1ac;}
 .menuPoint:hover {background-color: #d6d6d6; color: #000;}
 .sliderPhotoPreview:hover {background-color: #dbdbdb;}
 .sliderPhotoPreview span:hover {text-decoration: underline;}
+.email a:hover, .reviewButtons span:hover, .adminLink:hover {color: #e0c1ac;}
 
 #loginContainer {margin: 200px auto auto auto; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); width: 320px; padding: 20px;}
 #loginSubmit {width: 100%;}
@@ -19,6 +21,8 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 #leftMenu {background-color: #fff; width: 220px; display: inline-block; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4);}
 #content {display: inline-block; background-color: #fff; padding: 20px; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); vertical-align: top; margin: 40px auto auto 40px;}
 #sliderPhotosContainer {width: 100%; transition: .3s;}
+#reviewEditForm span {font-size: 14px; transition: .3s; font-style: italic; border-bottom: 1px dashed #4c4c4c;}
+#reviews {width: 100%; transition: .3s;}
 
 .button {height: 30px; width: auto; border: none; background-color: #dedede; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; cursor: pointer; padding: auto 5px; transition: .3s; margin: 0 auto;}
 .menuPoint {width: 200px; text-align: center; height: 40px; line-height: 40px; transition: .3s; padding: 10px;}
@@ -29,3 +33,14 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .sliderPhotoPreview img {width: 100%;}
 .sliderPhotoPreview span {cursor: pointer;}
 .file {padding-top: 10px;}
+.reviewContainer {width: 100%; margin-bottom: 70px; padding-bottom: 50px; border-bottom: 1px dashed #5d5d5d;}
+.reviewPhoto {display: inline-block; width: 30%; text-align: center; vertical-align: top;}
+.review {display: inline-block; width: 68%;}
+.reviewPhoto img {width: 100%; max-width: 300px !important;}
+.reviewHeader h1 {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 20px; letter-spacing: 2px;}
+.reviewHeader {width: 100%; text-align: center;}
+.review p {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 14px; letter-spacing: 1px; line-height: 2;}
+.reviewButtons {width: 90%; margin: 20px auto auto auto;}
+.reviewButtons input {width: 20px; position: absolute; margin-top: -5px; margin-left: 10px;}
+.reviewButtons span {transition: .3s; cursor: pointer;}
+.adminLink {transition: .3s;}

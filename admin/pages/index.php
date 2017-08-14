@@ -84,9 +84,9 @@ if(!empty($_REQUEST['id'])) {
 
 	<div id="topLine">
 		<div id="logo">
-			<a href="../"><span><i class="fa fa-home" aria-hidden="true"></i> korsart.by</span></a>
+			<a href="/"><span><i class="fa fa-home" aria-hidden="true"></i> korsart.by</span></a>
 		</div>
-		<a href="admin.php"><span class="headerText">Панель администрирвания</span></a>
+		<a href="/admin/admin.php"><span class="headerText">Панель администрирвания</span></a>
 		<div id="exit" onclick="exit()">
 			<span>Выйти <i class="fa fa-sign-out" aria-hidden="true"></i></span>
 		</div>
