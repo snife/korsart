@@ -156,11 +156,11 @@ if(!empty($_REQUEST['c'])) {
 					<div class='subcategory'></div>
 				";
 
-				$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+				$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY priority");
 				while($gallery = $galleryResult->fetch_assoc()) {
 					echo "
 						<div class='subcategory'>
-							<div class='subcategoryName'>".$gallery['name']."</div>
+							<a href='/".$gallery['sef_link']."' target='_blank'><div class='subcategoryName'>".$gallery['name']."</div></a>
 							<div class='subcategoryButtons'>
 								<a href='index.php?c=".$_REQUEST['c']."&id=".$gallery['id']."'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
 								<br />
