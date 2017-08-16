@@ -17,7 +17,7 @@ $link = $mysqli->real_escape_string($_POST['sefLink']);
 $priority = $mysqli->real_escape_string($_POST['priority']);
 $title = $mysqli->real_escape_string($_POST['title']);
 $keywords = $mysqli->real_escape_string($_POST['keywords']);
-$description = $mysqli->real_escape_string($_POST['description']);
+$description = $mysqli->real_escape_string(nl2br($_POST['description']));
 $text = $mysqli->real_escape_string(nl2br($_POST['text']));
 $categoryID = $mysqli->real_escape_string($_POST['category_id']);
 

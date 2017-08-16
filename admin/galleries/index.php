@@ -22,6 +22,19 @@ if(!empty($_REQUEST['c'])) {
 	}
 }
 
+if(!empty($_REQUEST['id'])) {
+	$galleryCheckResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+	$galleryCheck = $galleryCheckResult->fetch_array(MYSQLI_NUM);
+
+	if($galleryCheck[0] == 0) {
+		if(empty($_REQUEST['c'])) {
+			header("Location: index.php");
+		} else {
+			header("Location: index.php?c=".$_REQUEST['c']);
+		}
+	}
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -59,6 +72,7 @@ if(!empty($_REQUEST['c'])) {
 	<link rel="stylesheet" type="text/css" href="/plugins/lightview/css/lightview/lightview.css" />
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
@@ -81,7 +95,7 @@ if(!empty($_REQUEST['c'])) {
 	<!-- Google Analytics counter --><!-- /Google Analytics counter -->
 </head>
 
-<body>
+<body <?php if(!empty($_REQUEST['id'])) {echo "onload='loadGalleryText(\"".$_REQUEST['id']."\")'";} ?>>
 	<div id="page-preloader"><span class="spinner"></span></div>
 
 	<div id="topLine">
@@ -124,54 +138,126 @@ if(!empty($_REQUEST['c'])) {
 	<div id="content">
 		<span class="headerFont">Галереи</span>
 		<br /><br />
-		<form method="post">
-			<label for="categorySelect">Выберите раздел:</label>
-			<br />
-			<select id="categorySelect" name="category" onchange="window.location = '?c=' + this.options[this.selectedIndex].value">
-			<option value="">- Выберите раздел -</option>
-				<?php
-					$categoryResult = $mysqli->query("SELECT * FROM categories WHERE for_gallery = '1'");
-					while ($category = $categoryResult->fetch_assoc()) {
-						echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
-					}
-				?>
-			</select>
-			<?php
-				if(!empty($_REQUEST['c'])) {
-					echo "
+		<?php
+			if(empty($_REQUEST['id'])) {
+				echo "
+					<form method='post'>
+						<label for='categorySelect'>Выберите раздел:</label>
+						<br />
+						<select id='categorySelect' name='category' onchange=\"window.location = '?c=' + this.options[this.selectedIndex].value\">
+							<option value=''>- Выберите раздел -</option>
+				";
+
+				$categoryResult = $mysqli->query("SELECT * FROM categories WHERE for_gallery = '1'");
+
+				while ($category = $categoryResult->fetch_assoc()) {
+					echo "<option value='".$category['id']."'"; if($_REQUEST['c'] == $category['id']) {echo " selected";} echo ">".$category['name']."</option>";
+				}
+
+				echo "</select>";
+			}
+
+			if(!empty($_REQUEST['c'] and empty($_REQUEST['id']))) {
+				echo "
 						<br /><br />
 						<input type='button' id='gallerySubmit' value='Новая галерея' onmouseover='buttonHover(\"gallerySubmit\", 1)' onmouseout='buttonHover(\"gallerySubmit\", 0)' onclick='window.location.href = \"/admin/galleries/add.php?c=".$_REQUEST['c']."\"' class='button' />
 					";
-				}
-			?>
-		</form>
-		<?php
+			}
+
+			echo "</form>";
+
 			if(!empty($_REQUEST['c'])) {
-				$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
-				$category = $categoryResult->fetch_assoc();
+				if(empty($_REQUEST['id'])) {
+					$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+					$category = $categoryResult->fetch_assoc();
 
-				echo "
-					<br /><br />
-					<h3>Список галерей в разделе &laquo;<span style='color: #e0c1ac;'>".$category['name']."</span>&raquo;</h3>
-					<div class='subcategory'></div>
-				";
-
-				$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY priority");
-				while($gallery = $galleryResult->fetch_assoc()) {
 					echo "
-						<div class='subcategory'>
-							<a href='/".$gallery['sef_link']."' target='_blank'><div class='subcategoryName'>".$gallery['name']."</div></a>
-							<div class='subcategoryButtons'>
-								<a href='index.php?c=".$_REQUEST['c']."&id=".$gallery['id']."'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
-								<br />
-								<span onclick='deleteGallery(\"".$gallery['id']."\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
+						<br /><br />
+						<h3>Список галерей в разделе &laquo;<span style='color: #e0c1ac;'>".$category['name']."</span>&raquo;</h3>
+						<div class='subcategory'></div>
+					";
+
+					$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY priority");
+					while($gallery = $galleryResult->fetch_assoc()) {
+						echo "
+							<div class='subcategory'>
+								<a href='/".$gallery['sef_link']."' target='_blank'><div class='subcategoryName'>".$gallery['name']."</div></a>
+								<div class='subcategoryButtons'>
+									<a href='index.php?c=".$_REQUEST['c']."&id=".$gallery['id']."'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
+									<br />
+									<span onclick='deleteGallery(\"".$gallery['id']."\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
+								</div>
 							</div>
-						</div>
+						";
+					}
+				} else {
+					//Редактирование галереи
+
+					$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+					$gallery = $galleryResult->fetch_assoc();
+
+					$priorityResult = $mysqli->query("SELECT MAX(priority) FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+					$priority = $priorityResult->fetch_array(MYSQLI_NUM);
+
+					echo "
+						<form method='post' enctype='multipart/form-data' id='editForm' name='editForm'>
+							<label for='nameInput'>Название:</label>
+							<br />
+							<input id='nameInput' name='name' value='".$gallery['name']."' />
+							<br /><br />
+							<label for='linkInput'>Адрес ссылки:</label>
+							<br />
+							<input id='linkInput' name='link' value='".$gallery['sef_link']."' />
+							<br /><br />
+							<label for='prioritySelect'>Порядок следлвания:</label>
+							<br />
+							<select id='prioritySelect' name='priority'>
+					";
+
+					for($i = 1; $i <= $priority[0]; $i++) {
+						echo "<option value='".$i."'"; if($i == $gallery['priority']) {echo " selectd";} echo ">".$i."</option>";
+					}
+
+					echo "
+							</select>
+							<br /><br />
+							<label for='titleInput'>Заголовок:</label>
+							<br />
+							<input id='titleInput' name='title' value='".$gallery['title']."' />
+							<br /><br />
+							<label for='keywordsInput'>Ключевые слова (не обязательно):</label>
+							<br />
+							<input id='keywordsInput' name='keywords' value='".$gallery['keywords']."'>
+							<br /><br />
+							<label for='descriptionInput'>Описание (не обязательно):</label>
+							<br />
+							<input id='descriptionInput' name='description' value='".$gallery['description']."' onkeydown='textAreaHeight(this)' />
+							<br /><br />
+							<label for='photoInput'>Заглавное фото:</label>
+							<br />
+							<input type='file' id='photoInput' name='photo' class='file' />
+							<br /><br />
+							<a href='/img/photos/gallery/main/".$gallery['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><span class='adminLinkDashed'>Посмотреть фотографию</span></a>						
+							<br /><br />
+							<label for='textInput'>Текст:</label>
+							<br />
+							<textarea id='textInput' name='text'></textarea>
+							<br /><br />
+							<label for='photosInput'>Добавить фотографии в галерею:</label>
+							<br />
+							<input type='file' id='photosInput' name='photos[]' class='file' multiple />
+							<br /><br />
+							<input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"ecitSubmit\", 0)' onclick='editGallery(\"".$_REQUEST['id']."\")' class='button' />
+						</form>
 					";
 				}
 			}
 		?>
 	</div>
+
+	<script type="text/javascript">
+		CKEDITOR.replace("text");
+	</script>
 
 </body>
 

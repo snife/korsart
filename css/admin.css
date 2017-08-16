@@ -11,6 +11,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .sliderPhotoPreview:hover {background-color: #dbdbdb;}
 .sliderPhotoPreview span:hover {text-decoration: underline;}
 .email a:hover, .reviewButtons span:hover, .subcategoryButtons span:hover, .adminLink:hover, .subcategory a:hover {color: #e0c1ac;}
+.adminLinkDashed:hover {color: #e0c1ac;; border-bottom: 1px dashed #e0c1ac;}
 
 #loginContainer {margin: 200px auto auto auto; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); width: 320px; padding: 20px;}
 #loginSubmit {width: 100%;}
@@ -44,6 +45,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .reviewButtons input {width: 20px; position: absolute; margin-top: -5px; margin-left: 10px;}
 .reviewButtons span, .subcategoryButtons span {transition: .3s; cursor: pointer;}
 .adminLink {transition: .3s;}
+.adminLinkDashed {transition: .3s; border-bottom: 1px dashed #4c4c4c;}
 .subcategory {width: 100%; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px dashed #4c4c4c;}
 .subcategoryName {display: inline-block; width: 15%; text-align: center; font-weight: bold; vertical-align: top;}
 .subcategoryButtons {width: 80%; display: inline-block; vertical-align: top; margin-left: 3%;}

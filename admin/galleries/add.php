@@ -175,7 +175,7 @@ if(!empty($_REQUEST['c'])) {
 			<br /><br />
 			<label for="photosInput">Фотографии галереи:</label>
 			<br />
-			<input type="file" id="photoInput" name="photos[]" style="padding-top: 10px;" multiple />
+			<input type="file" id="photoInput" name="photos[]" class="file" multiple />
 			<br /><br />
 			<input type="button" id="gallerySubmit" value="Добавить" onmouseover="buttonHover('gallerySubmit', 1)" onmouseout="buttonHover('gallerySubmit', 0)" class="button" onclick="addGallery('<?= $_REQUEST['c'] ?>')" />
 		</form>
