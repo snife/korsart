@@ -74,13 +74,14 @@ if($linkCheck[0] == 0) {
 						$photoTmpName = $_FILES['photos']['tmp_name'][$i];
 						$photoUpload = $photoUploadDir.$photoDBName;
 
-						if($mysqli->query("INSERT INTO photos (file, post_id) VALUES ('".$photoDBName."', '".$id."')"))
-						move_uploaded_file($photoTmpName, $photoUpload);
+						if($mysqli->query("INSERT INTO photos (file, post_id) VALUES ('".$photoDBName."', '".$id."')")) {
+							move_uploaded_file($photoTmpName, $photoUpload);
+						}
 
 						$text .= "<br /><br /><div class=\"galleryPhotoContainer\"><a href=\"/img/photos/gallery/content/".$photoDBName."\" class=\"lightview\" data-lightview-options=\"skin: \'light\'\" data-lightview-group=\"gallery\"><img src=\"/img/photos/gallery/content/".$photoDBName."\" class=\"galleryPhoto\" /></a></div>";
 					}
 
-					if($mysqli->query("INSERT INTO subcategories (id, category_id, name, sef_link, priority, title, keywords, description, photo, text) VALUES ('".$id."', ''".$categoryID."', '".$name."', '".$link."', '".$priority."', '".$title."', '".$keywords."', '".$description."', '".$mainPhotoDBName."', '".$text."')")) {
+					if($mysqli->query("INSERT INTO subcategories (id, category_id, name, sef_link, priority, title, keywords, description, photo, text) VALUES ('".$id."', '".$categoryID."', '".$name."', '".$link."', '".$priority."', '".$title."', '".$keywords."', '".$description."', '".$mainPhotoDBName."', '".$text."')")) {
 						move_uploaded_file($mainPhotoTmpName, $mainPhotoUpload);
 						echo "ok";
 					} else {
