@@ -13,4 +13,7 @@ $id = $mysqli->real_escape_string($_POST['id']);
 $textResult = $mysqli->query("SELECT text FROM subcategories WHERE id = '".$id."'");
 $text = $textResult->fetch_array(MYSQLI_NUM);
 
-echo $text[0];
+$text = explode("</div>", $text[0]);
+$text = $text[0]."</div>";
+
+echo $text;

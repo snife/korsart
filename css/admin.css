@@ -12,6 +12,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .sliderPhotoPreview span:hover {text-decoration: underline;}
 .email a:hover, .reviewButtons span:hover, .subcategoryButtons span:hover, .adminLink:hover, .subcategory a:hover {color: #e0c1ac;}
 .adminLinkDashed:hover {color: #e0c1ac;; border-bottom: 1px dashed #e0c1ac;}
+.galleryPhoto img:hover {opacity: .7;}
 
 #loginContainer {margin: 200px auto auto auto; background-color: #fff; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); width: 320px; padding: 20px;}
 #loginSubmit {width: 100%;}
@@ -23,7 +24,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 #content {display: inline-block; background-color: #fff; padding: 20px; box-shadow: 0 5px 15px -4px rgba(0, 0, 0, 0.4); vertical-align: top; margin: 40px auto auto 40px;}
 #sliderPhotosContainer {width: 100%; transition: .3s;}
 #reviewEditForm span {font-size: 14px; transition: .3s; font-style: italic; border-bottom: 1px dashed #4c4c4c;}
-#reviews {width: 100%; transition: .3s;}
+#reviews, #galleryPhotos {width: 100%; transition: .3s;}
 
 .button {height: 30px; width: auto; border: none; background-color: #dedede; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; cursor: pointer; padding: auto 5px; transition: .3s; margin: 0 auto;}
 .menuPoint {width: 200px; text-align: center; height: 40px; line-height: 40px; transition: .3s; padding: 10px;}
@@ -50,3 +51,6 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .subcategoryName {display: inline-block; width: 15%; text-align: center; font-weight: bold; vertical-align: top;}
 .subcategoryButtons {width: 80%; display: inline-block; vertical-align: top; margin-left: 3%;}
 .subcategory a {transition: .3s;}
+.galleryPhoto {display: inline-block; width: 100px; vertical-align: top; margin: 10px auto auto 10px; text-align: center;}
+.galleryPhoto img {width: 100px; transition: .3s;}
+.adminLink {cursor: pointer;}

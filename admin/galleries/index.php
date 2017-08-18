@@ -215,7 +215,7 @@ if(!empty($_REQUEST['id'])) {
 					";
 
 					for($i = 1; $i <= $priority[0]; $i++) {
-						echo "<option value='".$i."'"; if($i == $gallery['priority']) {echo " selectd";} echo ">".$i."</option>";
+						echo "<option value='".$i."'"; if($i == $gallery['priority']) {echo " selected";} echo ">".$i."</option>";
 					}
 
 					echo "
@@ -246,8 +246,37 @@ if(!empty($_REQUEST['id'])) {
 							<label for='photosInput'>Добавить фотографии в галерею:</label>
 							<br />
 							<input type='file' id='photosInput' name='photos[]' class='file' multiple />
+					";
+
+					$photosCountResult = $mysqli->query("SELECT COUNT(id) FROM photos WHERE post_id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+					$photosCount = $photosCountResult->fetch_array(MYSQLI_NUM);
+
+					if($photosCount[0] > 0) {
+						echo "
 							<br /><br />
-							<input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"ecitSubmit\", 0)' onclick='editGallery(\"".$_REQUEST['id']."\")' class='button' />
+							<label>Фотографии:</label>
+							<br />
+							<div id='galleryPhotos'>
+						";
+
+						$photoResult = $mysqli->query("SELECT * FROM photos WHERE post_id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+						while($photo = $photoResult->fetch_assoc())
+						{
+							echo "
+								<div class='galleryPhoto'>
+									<a href='/img/photos/gallery/content/".$photo['file']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/gallery/content/".$photo['file']."' /></a>
+									<br />
+									<span onclick='deleteGalleryPhoto(\"".$photo['id']."\", \"".$_REQUEST['id']."\")' class='adminLink'>Удалить</span>
+								</div>
+							";
+						}
+
+						echo "</div>";
+					}
+
+					echo "
+							<br /><br />
+							<input type='button' id='editSubmit' value='Редактировать' onmouseover='buttonHover(\"editSubmit\", 1)' onmouseout='buttonHover(\"editSubmit\", 0)' onclick='editGallery(\"".$_REQUEST['id']."\")' class='button' />
 						</form>
 					";
 				}
