@@ -175,6 +175,7 @@ if(!empty($_REQUEST['id'])) {
 						<br /><br />
 						<h3>Список галерей в разделе &laquo;<span style='color: #e0c1ac;'>".$category['name']."</span>&raquo;</h3>
 						<div class='subcategory'></div>
+						<div id='galleryTable'>
 					";
 
 					$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$mysqli->real_escape_string($_REQUEST['c'])."' ORDER BY priority");
@@ -185,11 +186,13 @@ if(!empty($_REQUEST['id'])) {
 								<div class='subcategoryButtons'>
 									<a href='index.php?c=".$_REQUEST['c']."&id=".$gallery['id']."'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
 									<br />
-									<span onclick='deleteGallery(\"".$gallery['id']."\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
+									<span onclick='deleteGallery(\"".$gallery['id']."\", \"".$gallery['category_id']."\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
 								</div>
 							</div>
 						";
 					}
+
+					echo "</div>";
 				} else {
 					//Редактирование галереи
 

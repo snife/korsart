@@ -129,3 +129,43 @@ function deleteGalleryPhoto(id, post_id) {
 		})
 	}
 }
+
+function deleteGallery(id, category_id) {
+	if(confirm("Вы действительно хотите удалить галерею?")) {
+		$.ajax({
+			type: "POST",
+			data: {"id": id},
+			url: "/scripts/admin/galleries/ajaxDeleteGallery.php",
+			success: function (response) {
+				switch(response) {
+					case "ok":
+						$.notify("Галерея успешно удалена.", "success");
+
+						$.ajax({
+							type: "POST",
+							data: {"category_id": category_id},
+							url: "/scripts/admin/galleries/ajaxRebuildGalleryTable.php",
+							success: function (table) {
+								$('#galleryTable').css('opacity', '0');
+
+								setTimeout(function () {
+									$('#galleryTable').html(table);
+									$('#galleryTable').css('opacity', 1);
+								}, 300);
+							}
+						});
+						break;
+					case "failed":
+						$.notify("Во время удаления галереи произошла ошибка. Попробуйте снова.", "error");
+						break;
+					case "id":
+						$.notify("Галереи с таким ID не существует.", "error");
+						break;
+					default:
+						$.notify(response, "warn");
+						break;
+				}
+			}
+		});
+	}
+}

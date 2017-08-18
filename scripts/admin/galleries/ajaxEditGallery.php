@@ -122,6 +122,10 @@ if($linkCheck[0] == 0) {
 		}
 	}
 
+	if(substr($text, 0, 4) != "<div") {
+		$text = "<div class=\"galleryTextContainer\">".$text."</div>";
+	}
+
 	if($mysqli->query("UPDATE subcategories SET name = '".$name."', sef_link = '".$link."', title = '".$title."', keywords = '".$keywords."', description = '".$description."', text = '".$text."' WHERE id = '".$id."'")) {
 		echo "ok";
 	} else {
