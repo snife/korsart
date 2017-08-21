@@ -37,7 +37,15 @@ if(!empty($_REQUEST['id'])) {
 
 	<meta charset="utf-8" />
 
-	<title>Панель администрирования | Добавление раздела в блог</title>
+	<title>
+		<?php
+			if(empty($_REQUEST['id'])) {
+				echo "Панель администрирования | Добавление раздела в блог";
+			} else {
+				echo "Панель администрирования | Редактирование раздела";
+			}
+		?>
+	</title>
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -123,13 +131,21 @@ if(!empty($_REQUEST['id'])) {
 	</div>
 
 	<div id="content">
-		<span class="headerFont">Добавление раздела в блоге</span>
+		<span class="headerFont">
+			<?php
+				if(empty($_REQUEST['id'])) {
+					echo "Добавление раздела в блоге";
+				} else {
+					echo "Редактирование раздела в блоге";
+				}
+			?>
+		</span>
 		<br /><br />
 		<?php
-			if(empty($_REQUEST['id'])) {
-				$priorityResult = $mysqli->query("SELECT COUNT(id) FROM blog_subcategories");
-				$priority = $priorityResult->fetch_array(MYSQLI_NUM);
+			$priorityResult = $mysqli->query("SELECT COUNT(id) FROM blog_subcategories");
+			$priority = $priorityResult->fetch_array(MYSQLI_NUM);
 
+			if(empty($_REQUEST['id'])) {
 				echo "
 					<form method='post'>
 						<label for='nameInput'>Название:</label>
@@ -168,7 +184,46 @@ if(!empty($_REQUEST['id'])) {
 					</form>
 				";
 			} else {
+				$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+				$subcategory = $subcategoryResult->fetch_assoc();
 
+				echo "
+					<form method='post'>
+						<label for='nameInput'>Название:</label>
+						<br />
+						<input id='nameInput' name='name' value='".$subcategory['name']."' />
+						<br /><br />
+						<label for='linkInput'>Адрес ссылки:</label>
+						<br />
+						<input id='linkInput' name='link' value='".$subcategory['sef_link']."' />
+						<br /><br />
+						<label for='prioritySelect'>Порядок следования:</label>
+						<br />
+						<select id='prioritySelect' name='priority'>
+				";
+
+				for($i = 1; $i <= $priority[0]; $i++) {
+					echo "<option value='".$i."'"; if($i == $subcategory['priority']) {echo " selected";} echo ">".$i."</option>";
+				}
+
+				echo "
+						</select>
+						<br /><br />
+						<label for='titleInput'>Заголовок:</label>
+						<br />
+						<input id='titleInput' name='title' value='".$subcategory['title']."' />
+						<br /><br />
+						<label for='keywordsInput'>Ключевые слова (не обязательно):</label>
+						<br />
+						<input id='keywordsInput' name='keywords' value = '".$subcategory['keywords']."'>
+						<br /><br />
+						<label for='descriptionInput'>Описание (не обязательно):</label>
+						<br />
+						<textarea id='descriptionInput' name='description' onkeypress='textAreaHeight(this)'>".$subcategory['description']."</textarea>
+						<br /><br />
+						<input type='button' id='subcategorySubmit' value='Редактировать' onmouseover='buttonHover(\"subcategorySubmit\", 1)' onmouseout='buttonHover(\"subcategorySubmit\", 0)' class='button' onclick='editSubcategory(\"".$_REQUEST['id']."\")' />
+					</form>
+				";
 			}
 		?>
 	</div>

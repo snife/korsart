@@ -159,6 +159,12 @@ if(!empty($_REQUEST['id'])) {
 					<br /><br />
 					<input type='button' id='gallerySubmit' value='Новый раздел' onmouseover='buttonHover(\"gallerySubmit\", 1)' onmouseout='buttonHover(\"gallerySubmit\", 0)' onclick='window.location.href = \"/admin/blog/subcategory.php\"' class='button' />
 				";
+
+				if(!empty($_REQUEST['c'])) {
+					echo "
+						<input type='button' id='blogSubmit' value='Редактировать выбранный раздел' onmouseover='buttonHover(\"blogSubmit\", 1)' onmouseout='buttonHover(\"blogSubmit\", 0)' onclick='window.location.href = \"/admin/blog/subcategory.php?id=".$_REQUEST['c']."\"' class='button' style='margin-left: 10px;' />
+					";
+				}
 			}
 
 			/*

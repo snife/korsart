@@ -12,7 +12,7 @@ $name = $mysqli->real_escape_string($_POST['name']);
 $priority = $mysqli->real_escape_string($_POST['priority']);
 $link = $mysqli->real_escape_string($_POST['link']);
 $title = $mysqli->real_escape_string($_POST['title']);
-$description = $mysqli->real_escape_string($_POST['description']);
+$description = $mysqli->real_escape_string(nl2br($_POST['description']));
 
 $maxPriorityResult = $mysqli->query("SELECT MAX(priority) FROM blog_subcategories");
 $maxPriority = $maxPriorityResult->fetch_array(MYSQLI_NUM);
