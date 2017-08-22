@@ -71,9 +71,9 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 					if($mysqli->query("INSERT INTO posts (subcategory_id, name, sef_link, description, photo, text, date) VALUES ('".$id."', '".$name."', '".$link."', '".$description."', '".$mainPhotoDBName."', '".$text."', '".date('Y-m-d H:i:s')."')")) {
 						move_uploaded_file($mainPhotoTmpName, $mainPhotoUpload);
 
-						$newIDResult = $mysqli->query("SELECT MAX(id) FROM posts");
+						$newIDResult = $mysqli->query("SELECT id FROM posts ORDER BY id DESC LIMIT 1");
 						$newID = $newIDResult->fetch_array(MYSQLI_NUM);
-						$newID = $newID[0] + 1;
+						$newID = $newID[0];
 
 						for($i = 0; $i < count($tagsList); $i++) {
 							$tagResult = $mysqli->query("SELECT * FROM tags WHERE name = '".$tagsList[$i]."'");
