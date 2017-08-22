@@ -21,7 +21,10 @@ $galleryLinkCheck = $galleryLinkCheckResult->fetch_array(MYSQLI_NUM);
 $blogLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM blog_subcategories WHERE sef_link = '".$link."' AND id <> '".$id."'");
 $blogLinkCheck = $blogLinkCheckResult->fetch_array(MYSQLI_NUM);
 
-if($blogLinkCheck[0] == 0 and $galleryLinkCheck[0] == 0) {
+$postLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE sef_link = '".$link."'");
+$postLinkCheck = $postLinkCheckResult->fetch_array(MYSQLI_NUM);
+
+if($blogLinkCheck[0] == 0 and $galleryLinkCheck[0] == 0 and $postLinkCheck[0] == 0) {
 	$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE id = '".$id."'");
 	$subcategory = $subcategoryResult->fetch_assoc();
 

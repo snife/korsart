@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: jeyfost
- * Date: 18.08.2017
- * Time: 13:55
+ * Date: 21.08.2017
+ * Time: 10:38
  */
 
 session_start();
@@ -20,18 +20,16 @@ if(!empty($_REQUEST['c'])) {
 	if($categoryCheck[0] == 0) {
 		header("Location: index.php");
 	}
+} else {
+	header("Location: index.php");
 }
 
 if(!empty($_REQUEST['id'])) {
-	$galleryCheckResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
-	$galleryCheck = $galleryCheckResult->fetch_array(MYSQLI_NUM);
+	$idCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."' AND subcategory_id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
+	$idCheck = $idCheckResult->fetch_array(MYSQLI_NUM);
 
-	if($galleryCheck[0] == 0) {
-		if(empty($_REQUEST['c'])) {
-			header("Location: index.php");
-		} else {
-			header("Location: index.php?c=".$_REQUEST['c']);
-		}
+	if($idCheck[0] == 0) {
+		header("Location: post.php?c=".$_REQUEST['c']);
 	}
 }
 
@@ -50,7 +48,7 @@ if(!empty($_REQUEST['id'])) {
 
 	<meta charset="utf-8" />
 
-	<title>Панель администрирования | Блог</title>
+	<title>Панель администрирования | <?php if(empty($_REQUEST['id'])) {echo "Добавление записи в блог";} else {echo "Редактирование записи в блоге";} ?></title>
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -76,7 +74,7 @@ if(!empty($_REQUEST['id'])) {
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
-	<script type="text/javascript" src="/js/admin/blog/index.js"></script>
+	<script type="text/javascript" src="/js/admin/blog/post.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -136,67 +134,47 @@ if(!empty($_REQUEST['id'])) {
 	</div>
 
 	<div id="content">
-		<span class="headerFont">Блог</span>
+		<span class="headerFont"><?php if(empty($_REQUEST['id'])) {echo "Добавление записи в блог";} else {echo "Редактирование записи в блоге";} ?></span>
 		<br /><br />
 		<?php
 			if(empty($_REQUEST['id'])) {
+				//Добавление записи
+
 				echo "
-					<form method='post'>
-						<label for='categorySelect'>Выберите раздел:</label>
+					<form method='post' id='addForm' enctype='multipart/form-data'>
+						<label for='nameInput'>Название:</label>
 						<br />
-						<select id='categorySelect' name='category' onchange=\"window.location = '?c=' + this.options[this.selectedIndex].value\">
-							<option value=''>- Выберите раздел -</option>
-				";
-
-				$categoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
-
-				while ($category = $categoryResult->fetch_assoc()) {
-					echo "<option value='" . $category['id'] . "'";
-					if ($_REQUEST['c'] == $category['id']) {
-						echo " selected";
-					}
-					echo ">" . $category['name'] . "</option>";
-				}
-
-				echo "
-					</select>
-					<br /><br />
-					<input type='button' id='gallerySubmit' value='Новый раздел' onmouseover='buttonHover(\"gallerySubmit\", 1)' onmouseout='buttonHover(\"gallerySubmit\", 0)' onclick='window.location.href = \"/admin/blog/subcategory.php\"' class='button' />
-				";
-
-				if (!empty($_REQUEST['c'])) {
-					echo "
-						<input type='button' id='blogSubmit' value='Редактировать выбранный раздел' onmouseover='buttonHover(\"blogSubmit\", 1)' onmouseout='buttonHover(\"blogSubmit\", 0)' onclick='window.location.href = \"/admin/blog/subcategory.php?id=" . $_REQUEST['c'] . "\"' class='button' style='margin-left: 10px;' />
+						<input id='nameInput' name='name' />
 						<br /><br />
-						<input type='button' id='newSubmit' value='Новая запись' onmouseover='buttonHover(\"newSubmit\", 1)' onmouseout='buttonHover(\"newSubmit\", 0)' onclick='window.location.href = \"/admin/blog/post.php?c=".$_REQUEST['c']."\"' class='button' />
-					";
-
-					$categoryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE id = '" . $mysqli->real_escape_string($_REQUEST['c']) . "'");
-					$category = $categoryResult->fetch_assoc();
-
-					echo "
+						<label for='linkInput'>Адрес ссылки:</label>
+						<br />
+						<input id='linkInput' name='link' />
 						<br /><br />
-						<h3>Список записей в разделе &laquo;<span style='color: #e0c1ac;'>" . $category['name'] . "</span>&raquo;</h3>
-						<div class='subcategory'></div>
-						<div id='galleryTable'>
-					";
-
-					$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '" . $mysqli->real_escape_string($_REQUEST['c']) . "' ORDER BY date DESC");
-					while ($post = $postResult->fetch_assoc()) {
-						echo "
-							<div class='subcategory'>
-								<a href='/" . $post['sef_link'] . "' target='_blank'><div class='subcategoryName'>" . $post['name'] . "</div></a>
-								<div class='subcategoryButtons'>
-									<a href='post.php?c=".$_REQUEST['c']."&id=" . $post['id'] . "'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
-									<br />
-									<span onclick='deletePost(\"" . $post['id'] . "\", \"" . $post['subcategory_id'] . "\")'><i class='fa fa-trash' aria-hidden='true'></i> Удалить</span>
-								</div>
-							</div>
-						";
-					}
-
-					echo "</div>";
-				}
+						<label for='descriptionInput'>Краткое описание:</label>
+						<br />
+						<textarea id='descriptionInput' name='description' onkeypress='textAreaHeight(this)'></textarea>
+						<br /><br />
+						<label for='photoInput'>Заглавная фотография:</label>
+						<br />
+						<input type='file' class='file' id='photoInput' name='photo'>
+						<br /><br />
+						<label for='textInput'>Текст:</label>
+						<br />
+						<textarea id='textInput' name='text'></textarea>
+						<br /><br />
+						<label for='photosInput'>Дополнительные отографии:</label>
+						<br />
+						<input type='file' id='photosInput' name='photos[]' class='file' multiple />
+						<br /><br />
+						<label for='tagsInput'>Теги:</label>
+						<br />
+						<input id='tagsInput' name='tags' />
+						<br /><br />
+						<input type='button' class='button' id='addSubmit' value='Добавить' onmouseover='buttonHover(\"addSubmit\", 1)' onmouseout='buttonHover(\"addSubmit\", 0)' onclick='addPost(\"".$_REQUEST['c']."\")' />
+					</form>
+				";
+			} else {
+				//Редактирование записи
 			}
 		?>
 	</div>

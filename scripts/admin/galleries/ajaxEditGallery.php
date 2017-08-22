@@ -24,10 +24,16 @@ $id = $mysqli->real_escape_string($_POST['subcategory_id']);
 $linkCheckResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE sef_link = '".$link."' AND id <> '".$id."'");
 $linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
 
+$blogLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM blog_subcategories WHERE sef_link = '".$link."'");
+$blogLinkCheck = $blogLinkCheckResult->fetch_array(MYSQLI_NUM);
+
+$postLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE sef_link = '".$link."'");
+$postLinkCheck = $postLinkCheckResult->fetch_array(MYSQLI_NUM);
+
 $galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE id = '".$id."'");
 $gallery = $galleryResult->fetch_assoc();
 
-if($linkCheck[0] == 0) {
+if($linkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] == 0) {
 	//Проверка приоритета
 	if($gallery['priority'] != $priority) {
 		$gResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$gallery['category_id']."'");

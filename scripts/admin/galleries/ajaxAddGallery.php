@@ -27,12 +27,15 @@ $linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
 $blogLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM blog_subcategories WHERE sef_link = '".$link."'");
 $blogLinkCheck = $blogLinkCheckResult->fetch_array(MYSQLI_NUM);
 
+$postLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE sef_link = '".$link."'");
+$postLinkCheck = $postLinkCheckResult->fetch_array(MYSQLI_NUM);
+
 $subcategoryIDResult = $mysqli->query("SELECT MAX(id) FROM subcategories");
 $subcategoryID = $subcategoryIDResult->fetch_array(MYSQLI_NUM);
 
 $id = $subcategoryID[0] + 1;
 
-if($linkCheck[0] == 0 and $blogLinkCheck[0] == 0) {
+if($linkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] == 0) {
 	$countResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE category_id = '".$categoryID."'");
 	$count = $countResult->fetch_array(MYSQLI_NUM);
 
