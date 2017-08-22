@@ -15,7 +15,7 @@ ob_start();
 $name = $mysqli->real_escape_string($_POST['name']);
 $link = $mysqli->real_escape_string($_POST['link']);
 $description = $mysqli->real_escape_string(nl2br($_POST['description']));
-$text = $mysqli->real_escape_string(nl2br($_POST['description']));
+$text = $mysqli->real_escape_string(nl2br($_POST['text']));
 $tags = $mysqli->real_escape_string($_POST['tags']);
 $id = $mysqli->real_escape_string($_POST['subcategory_id']);
 

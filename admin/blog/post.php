@@ -93,7 +93,7 @@ if(!empty($_REQUEST['id'])) {
 	<!-- Google Analytics counter --><!-- /Google Analytics counter -->
 </head>
 
-<body>
+<body <?php if(!empty($_REQUEST['id'])) {echo "onload='loadText(\"".$_REQUEST['id']."\")'";} ?>>
 	<div id="page-preloader"><span class="spinner"></span></div>
 
 	<div id="topLine">
@@ -156,13 +156,13 @@ if(!empty($_REQUEST['id'])) {
 						<br /><br />
 						<label for='photoInput'>Заглавная фотография:</label>
 						<br />
-						<input type='file' class='file' id='photoInput' name='photo'>
+						<input type='file' class='file' id='photoInput' name='photo' />
 						<br /><br />
 						<label for='textInput'>Текст:</label>
 						<br />
 						<textarea id='textInput' name='text'></textarea>
 						<br /><br />
-						<label for='photosInput'>Дополнительные отографии:</label>
+						<label for='photosInput'>Дополнительные фотографии:</label>
 						<br />
 						<input type='file' id='photosInput' name='photos[]' class='file' multiple />
 						<br /><br />
@@ -175,6 +175,92 @@ if(!empty($_REQUEST['id'])) {
 				";
 			} else {
 				//Редактирование записи
+
+				$postResult = $mysqli->query("SELECT * FROM posts WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+				$post = $postResult->fetch_assoc();
+
+				echo "
+					<form method='post' id='editForm' enctype='multipart/form-data'>
+						<label for='nameInput'>Название:</label>
+						<br />
+						<input id='nameInput' name='name' value='".$post['name']."' />
+						<br /><br />
+						<label for='linkInput'>Адрес ссылки:</label>
+						<br />
+						<input id='linkInput' name='link' value='".$post['sef_link']."' />
+						<br /><br />
+						<label for='descriptionInput'>Краткое описание:</label>
+						<br />
+						<textarea id='descriptionInput' name='description' onkeypress='textAreaHeight(this)'>".str_replace('<br />', '', $post['description'])."</textarea>
+						<br /><br />
+						<label for='photoInput'>Заглавная фотография:</label>
+						<br />
+						<input type='file' class='file' id='photoInput' name='photo' />
+						<br /><br />
+						<a href='/img/photos/blog/main/".$post['photo']."' class='lightview' data-lightview-options='skin: \"light\"'><span class='adminLinkDashed'>Посмортеть фотографию</span></a>
+						<br /><br />
+						<label for='textInput'>Текст:</label>
+						<br />
+						<textarea id='textInput' name='text'></textarea>
+						<br /><br />
+						<label for='photosInput'>Дополнительные фотографии:</label>
+						<br />
+						<input type='file' id='photosInput' name='photos[]' class='file' multiple />
+					";
+
+					$photosCountResult = $mysqli->query("SELECT COUNT(id) FROM blog_photos WHERE post_id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+					$photosCount = $photosCountResult->fetch_array(MYSQLI_NUM);
+
+					if($photosCount[0] > 0) {
+						echo "
+							<br /><br />
+							<label>Фотографии:</label>
+							<br />
+							<div id='galleryPhotos'>
+						";
+
+						$photoResult = $mysqli->query("SELECT * FROM blog_photos WHERE post_id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+						while($photo = $photoResult->fetch_assoc()) {
+							echo "
+								<div class='galleryPhoto'>
+									<a href='/img/photos/blog/content/".$photo['file']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/blog/content/".$photo['file']."' /></a>
+									<br />
+									<span onclick='deleteBlogPhoto(\"".$photo['id']."\", \"".$_REQUEST['id']."\")' class='adminLink'>Удалить</span>
+								</div>
+							";
+						}
+
+						echo "</div>";
+					}
+
+					$tagResult = $mysqli->query("SELECT * FROM posts_tags WHERE post_id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
+
+					$tags = "";
+					$i = 1;
+					$count = $tagResult->num_rows;
+
+					while($tag = $tagResult->fetch_assoc()) {
+						$tResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$tag['tag_id']."'");
+						$t = $tResult->fetch_assoc();
+
+						$tags .= $t['name'];
+
+						if($i < $count) {
+							$tags .= ",";
+						}
+
+						$i++;
+					}
+
+					echo "
+						<br /><br />
+						<label for='tagsInput'>Теги:</label>
+						<br />
+						<input id='tagsInput' name='tags' value='".$tags."' />
+						<br /><br />
+						<input type='button' class='button' id='addSubmit' value='Редактировать' onmouseover='buttonHover(\"addSubmit\", 1)' onmouseout='buttonHover(\"addSubmit\", 0)' onclick='editPost(\"".$_REQUEST['id']."\")' />
+					</form>
+				";
 			}
 		?>
 	</div>
