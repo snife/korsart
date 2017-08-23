@@ -19,7 +19,8 @@ footer {width: 100%; text-align: center; margin: 70px auto 40px auto; font-famil
 footer a {color: #474747; text-decoration: none; transition: .3s;}
 
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
-.sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover {color: #e0c1ac;}
+.sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover, .tagFont:hover, .openFont:hover, .blogButton:hover, .postTagFont:hover {color: #e0c1ac;}
+.like:hover {color: #b21c1c;}
 #instafeed a img:hover {opacity: .7;}
 #reviewSubmit:hover, #messageSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
 
@@ -62,6 +63,7 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .bigSection {width: 95%; margin: 50px auto auto auto;}
 .sectionHeader {width: 100%; text-align: center;}
 .line {width: 10%; height: 1px; display: inline-block; vertical-align: middle; background: url(/img/system/blackDot.png) repeat-x;}
+.blogLine {width: 5%; height: 1px; display: inline-block; vertical-align: middle; background: url(/img/system/greyDot.png) repeat-x;}
 .sectionName {padding-left: 10px; padding-right: 10px; text-transform: uppercase; color: #262626; font-family: 'Didact Gothic', sans-serif; font-size: 24px; letter-spacing: 4px; display: inline-block;}
 .mainReview {width: 33%; display: inline-block; vertical-align: top;}
 .mainReview > img {width: 40%;}
@@ -97,3 +99,15 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .galleryPhoto {width: 90%;}
 .galleryPhotoContainer {width: 100%; text-align: center;}
 .galleryTextContainer {width: 80%; margin: 0 auto;}
+.tagFont{font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif; color: #000; font-size: 14px; transition: .3s;}
+.postHeader {width: 100%; text-align: center; font-family: "Didact Gothic", sans-serif; font-size: 24px;}
+.blogDate {padding-left: 10px; padding-right: 10px; color: #4c4c4c; font-family: 'Didact Gothic', sans-serif; font-size: 14px; letter-spacing: 1px; display: inline-block;}
+.blogDescription {font-family: "Open Sans", sans-serif; font-size: 14px; text-align: justify; width: 100%; margin-bottom: 40px;}
+.blogMainPhoto {width: 100%; text-align: center; padding-bottom: 40px;}
+.openFont {font-family: 'Didact Gothic', sans-serif; font-size: 14px; text-transform: uppercase; color: #4c4c4c; transition: .3s;}
+.separator {width: 100%; height: 1px; background: url(/img/system/greyDot.png) repeat-x;}
+.blogButtons {display: inline-block; width: 28%; text-align: left; color: #4c4c4c; font-family: 'Didact Gothic', sans-serif; font-size: 14px; margin-bottom: 40px;}
+.blogTags {display: inline-block; width: 69%; text-align: right; color: #4c4c4c; font-family: 'Didact Gothic', sans-serif; font-size: 14px;}
+.like, .blogButton {transition: .3s; cursor: pointer;}
+.blogButtons a {color: #4c4c4c; transition: .3s;}
+.postTagFont {color: #4c4c4c; font-family: "Didact Gothic", sans-serif; font-size: 14px; transition: .3s;}

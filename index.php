@@ -76,7 +76,12 @@
 
 		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
 		while($category = $categoryResult->fetch_assoc()) {
-			$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$category['id']."' ORDER BY priority");
+			if($category['id'] == BLOG_ID) {
+				$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
+			} else {
+				$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$category['id']."' ORDER BY priority");
+			}
+
 			if($subcategoryResult->num_rows > 0) {
 				$subcategories = array();
 

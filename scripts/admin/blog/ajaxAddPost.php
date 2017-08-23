@@ -84,11 +84,11 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 								$tagIDResult = $mysqli->query("SELECT id FROM tags WHERE name = '".$tagsList[$i]."'");
 								$tagID = $tagIDResult->fetch_array(MYSQLI_NUM);
 
-								$mysqli->query("INSERT INTO posts_tags (post_id, tag_id) VALUES ('".$newID."', '".$tagID[0]."')");
+								$mysqli->query("INSERT INTO posts_tags (post_id, tag_id, subcategory_id) VALUES ('".$newID."', '".$tagID[0]."', '".$id."')");
 							} else {
 								$tag = $tagResult->fetch_assoc();
 								$mysqli->query("UPDATE tags SET quantity = '".($tag['quantity'] + 1)."' WHERE id = '".$tag['id']."'");
-								$mysqli->query("INSERT INTO posts_tags (post_id, tag_id) VALUES ('".$newID."', '".$tag['id']."')");
+								$mysqli->query("INSERT INTO posts_tags (post_id, tag_id, subcategory_id) VALUES ('".$newID."', '".$tag['id']."', '".$id."')");
 							}
 						}
 

@@ -7,31 +7,44 @@
  */
 
 include("scripts/connect.php");
+include("scripts/helpers.php");
 include("layouts/menu.php");
 include("layouts/footer.php");
 
 /* SEF-Links Processor */
 
 $address = substr($_SERVER['REQUEST_URI'], 1);
-$validity = 0;
 
 $linkCheckResult = $mysqli->query("SELECT * FROM subcategories WHERE sef_link = '" . $address . "'");
 $linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
 
 if ($linkCheck[0] > 0) {
-	$validity = 1;
-}
-
-if ($validity == 1) {
 	$galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE sef_link = '" . $address . "'");
 	$gallery = $galleryResult->fetch_assoc();
 
-	if(empty($gallery['title'])) {
+	$type = "gallery";
+} else {
+	$linkCheckResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE sef_link = '" . $address . "'");
+	$linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
+
+	if($linkCheck[0] > 0) {
 		$galleryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE sef_link = '" . $address . "'");
 		$gallery = $galleryResult->fetch_assoc();
+
+		$type = "blog";
+	} else {
+		$linkCheckResult = $mysqli->query("SELECT * FROM posts WHERE sef_link = '" . $address . "'");
+		$linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
+
+		if($linkCheck[0] > 0) {
+			$galleryResult = $mysqli->query("SELECT * FROM posts WHERE sef_link = '" . $address . "'");
+			$gallery = $galleryResult->fetch_assoc();
+
+			$type = "post";
+		} else {
+			header("Location: /");
+		}
 	}
-} else {
-	header("Location: /");
 }
 
 ?>
@@ -105,7 +118,12 @@ if ($validity == 1) {
 
 		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
 		while($category = $categoryResult->fetch_assoc()) {
-			$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$category['id']."' ORDER BY priority");
+			if($category['id'] == BLOG_ID) {
+				$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
+			} else {
+				$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$category['id']."' ORDER BY priority");
+			}
+
 			if($subcategoryResult->num_rows > 0) {
 				$subcategories = array();
 
@@ -124,7 +142,7 @@ if ($validity == 1) {
 
 	<?php
 		/* Правило отображения контента для галереи */
-		if(!empty($gallery['category_id'])) {
+		if($type == "gallery") {
 			echo "
 				<div id='slider'>
 					<img src='/img/photos/gallery/main/".$gallery['photo']."' />
@@ -132,9 +150,110 @@ if ($validity == 1) {
 				<br /><br />
 				".$gallery['text']."
 			";
-		} else {
+		}
+
+		if($type == "blog") {
 			/* Правило отображения контента для блога */
-			echo "as";
+			echo "
+				<br /><br />
+				<section style='text-align: center;'>
+			";
+
+			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags WHERE subcategory_id = '".$gallery['id']."'");
+			$i = 1;
+
+			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
+				$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
+				$tag = $tagResult->fetch_assoc();
+
+				echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+
+				if($i < $tResult->num_rows) {
+					echo "&nbsp;&nbsp;&nbsp;";
+				}
+
+				$i++;
+			}
+
+			echo "<br /><br /><br /><br />";
+
+			$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['id']."' ORDER BY date DESC");
+			while ($post = $postResult->fetch_assoc()) {
+				$likesCountResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$post['id']."'");
+				$likesCount = $likesCountResult->fetch_array(MYSQLI_NUM);
+
+				if($likesCount[0] == 0) {
+					$likes = "";
+				} else {
+					$likes = $likesCount[0];
+				}
+
+				$likedResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$post['id']."' AND ip = '".$_SERVER['REMOTE_ADDR']."'");
+				$liked = $likedResult->fetch_array(MYSQLI_NUM);
+
+				$commentsCountResult = $mysqli->query("SELECT COUNT(id) FROM comments WHERE post_id = '".$post['id']."'");
+				$commentsCount = $commentsCountResult->fetch_array(MYSQLI_NUM);
+
+				if($commentsCount[0] == 0) {
+					$comments = "";
+				} else {
+					$comments = $commentsCount[0];
+				}
+
+				echo "
+					<div class='sectionHeader'>
+						<div class='blogLine'></div>
+						<div class='blogDate'>".formatDate($post['date'])."</div>
+						<div class='blogLine'></div>
+					</div>
+					<br />
+					<div class='postHeader'>".$post['name']."</div>
+					<br /><br />
+					<div class='blogDescription'><p>".$post['description']."</p></div>
+					<img src='/img/photos/blog/main/".$post['photo']."' class='blogMainPhoto' />
+					<div class='sectionHeader'><a href='/".$post['sef_link']."'><span class='openFont'>Смотреть далее <i class='fa fa-angle-double-right' aria-hidden='true'></i></span></a></div>
+					<br /><br />
+					<div class='separator'></div>
+					<br />
+					<div class='sectionHeader'>
+						<div class='blogButtons'>
+							<span class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='like(\"".$post['id']."\")'";} echo "></i> ".$likes."</span>
+							&nbsp;&nbsp;
+							<a href='/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a>
+							&nbsp;&nbsp;
+							<i class='fa fa-share-square-o' aria-hidden='true'></i>
+						</div>
+						<div class='blogTags'>
+				";
+
+				$i = 0;
+				$tResult = $mysqli->query("SELECT * FROM posts_tags WHERE post_id = '".$post['id']."'");
+				while($t = $tResult->fetch_assoc()) {
+					$i++;
+
+					$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t['tag_id']."'");
+					$tag = $tagResult->fetch_assoc();
+
+					echo "<a href='/tag/".$tag['name']."'><span class='postTagFont'>".$tag['name']."</span></a>";
+
+					if($i < $tResult->num_rows) {
+						echo ",&nbsp;&nbsp;";
+					}
+				}
+
+				echo "
+						</div>
+					</div>
+				";
+			}
+
+			echo "</section>";
+		}
+
+		if($type == "post") {
+			/* Правило отображеня контента для записи */
+
+			echo "pp";
 		}
 	?>
 

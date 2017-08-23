@@ -40,7 +40,7 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 			$mainPhotoTmpName = $_FILES['photo']['tmp_name'];
 			$mainPhotoUpload = $mainPhotoUploadDir.$mainPhotoDBName;
 
-			if($mysqli->query("UPDATE posts SET photo = '".$mainPhotoDBName."'")) {
+			if($mysqli->query("UPDATE posts SET photo = '".$mainPhotoDBName."' WHERE id = '".$id."'")) {
 				unlink("../../../img/photos/blog/main/".$post['photo']);
 				move_uploaded_file($mainPhotoTmpName, $mainPhotoUpload);
 			} else {
@@ -119,7 +119,7 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 			$tagIDResult = $mysqli->query("SELECT id FROM tags WHERE name = '".$tagsList[$i]."'");
 			$tagID = $tagIDResult->fetch_array(MYSQLI_NUM);
 
-			$mysqli->query("INSERT INTO posts_tags (post_id, tag_id) VALUES ('".$id."', '".$tagID[0]."')");
+			$mysqli->query("INSERT INTO posts_tags (post_id, tag_id, subcategory_id) VALUES ('".$id."', '".$tagID[0]."', '".$post['subcategory_id']."')");
 		} else {
 			$tag = $tagResult->fetch_assoc();
 
@@ -128,7 +128,7 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 
 			if($tagCheck[0] == 0) {
 				$mysqli->query("UPDATE tags SET quantity = '".($tag['quantity'] + 1)."' WHERE id = '".$tag['id']."'");
-				$mysqli->query("INSERT INTO posts_tags (post_id, tag_id) VALUES ('".$id."', '".$tag['id']."')");
+				$mysqli->query("INSERT INTO posts_tags (post_id, tag_id, subcategory_id) VALUES ('".$id."', '".$tag['id']."', '".$post['subcategory_id']."')");
 			}
 		}
 	}
