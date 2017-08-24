@@ -92,6 +92,8 @@ if ($linkCheck[0] > 0) {
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/notify.js"></script>
+	<script type="text/javascript" src="/js/gallery.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -217,7 +219,7 @@ if ($linkCheck[0] > 0) {
 					<br />
 					<div class='sectionHeader'>
 						<div class='blogButtons'>
-							<span class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='like(\"".$post['id']."\")'";} echo "></i> ".$likes."</span>
+							<span id='like".$post['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$post['id']."\")'";} echo "></i> <span id='likesCount".$post['id']."' class='likesCount'>".$likes."</span></span>
 							&nbsp;&nbsp;
 							<a href='/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a>
 							&nbsp;&nbsp;

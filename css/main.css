@@ -111,3 +111,4 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .like, .blogButton {transition: .3s; cursor: pointer;}
 .blogButtons a {color: #4c4c4c; transition: .3s;}
 .postTagFont {color: #4c4c4c; font-family: "Didact Gothic", sans-serif; font-size: 14px; transition: .3s;}
+.likesCount {transition: .1s;}
