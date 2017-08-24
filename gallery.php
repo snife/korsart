@@ -291,7 +291,59 @@ if ($linkCheck[0] > 0) {
 		if($type == "post") {
 			/* Правило отображеня контента для записи */
 
-			echo "pp";
+			echo "
+				<br /><br />
+				<section style='text-align: center;'>
+			";
+
+			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags");
+			$i = 1;
+
+			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
+				$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
+				$tag = $tagResult->fetch_assoc();
+
+				echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+
+				if($i < $tResult->num_rows) {
+					echo "&nbsp;&nbsp;&nbsp;";
+				}
+
+				$i++;
+			}
+
+			echo "
+					<br /><br /><br /><br />
+				</section>
+				
+				<section class='bigSection'>
+					<div class='sectionHeader'>
+						<div class='blogLine'></div>
+						<div class='blogDate'>".formatDate($gallery['date'])."</div>
+						<div class='blogLine'></div>
+					</div>
+					<br />
+					<div class='postHeader'><a href='/".$gallery['sef_link']."'>".$gallery['name']."</a></div>
+					<br /><br />
+					<div class='blogDescription'><p>".$gallery['description']."</p></div>
+					<img src='/img/photos/blog/main/".$gallery['photo']."' class='blogMainPhoto' />
+					<br />
+					<span class='blogFont'>".$gallery['text']."</span>
+					<br /><br />
+				</section>
+				<section class='bigSection' style='text-align: center;'>
+					";
+
+			$photoResult = $mysqli->query("SELECT * FROM blog_photos WHERE post_id = '".$gallery['id']."'");
+			while($photo = $photoResult->fetch_assoc()) {
+				echo "<a href='/img/photos/blog/content/".$photo['file']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='blog'><img src='/img/photos/blog/content/".$photo['file']."' class='blogSmallPhoto' /></a>";
+			}
+
+			echo "
+				</section>
+			";
+
+
 		}
 
 		if($type == "tag") {
