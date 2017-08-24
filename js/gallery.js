@@ -38,3 +38,11 @@ function likePost(id) {
 		}
 	});
 }
+
+function showShareBlock(id, action) {
+	if(action === 1) {
+		$('#shareBlock' + id).css("opacity", 1);
+	} else {
+		$('#shareBlock' + id).css("opacity", 0);
+	}
+}

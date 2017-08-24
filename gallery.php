@@ -93,6 +93,7 @@ if ($linkCheck[0] > 0) {
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
+	<script type="text/javascript" src="/js/share.js"></script>
 	<script type="text/javascript" src="/js/gallery.js"></script>
 
 	<style>
@@ -219,11 +220,21 @@ if ($linkCheck[0] > 0) {
 					<br />
 					<div class='sectionHeader'>
 						<div class='blogButtons'>
-							<span id='like".$post['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$post['id']."\")'";} echo "></i> <span id='likesCount".$post['id']."' class='likesCount'>".$likes."</span></span>
-							&nbsp;&nbsp;
-							<a href='/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a>
-							&nbsp;&nbsp;
-							<i class='fa fa-share-square-o' aria-hidden='true'></i>
+							<div class='shareButtonBlock'><span id='like".$post['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$post['id']."\")'";} echo "></i> <span id='likesCount".$post['id']."' class='likesCount'>".$likes."</span></span></div>
+							<div class='shareButtonBlock'><a href='/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a></div>
+							<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
+								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'><i class='fa fa-share-square-o' aria-hidden='true'></i></div>
+								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
+									<div class='shareBlock' id='shareBlock".$post['id']."'>
+										<div class='shareLine'><a href='https://vk.com/share.php?url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&title=".$post['name']."&description=".$post['description']."&image=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."&noparse=true' target='_blank' onclick='return Share.me(this);'><i class='fa fa-vk' aria-hidden='true' title='Поделиться в VK'></i></a></div>
+										<div class='shareLine'><a href='https://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=".$post['name']."&p%5Bsummary%5D=".$post['description']."&p%5Burl%5D=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&p%5Bimages%5D%5B0%5D=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-facebook' aria-hidden='true' title='Поделиться в Facebook'></i></a></div>
+										<div class='shareLine'><a href='https://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=".$post['name']."&st._surl=".$_SERVER['HTTP_HOST']."/".$post['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-odnoklassniki' aria-hidden='true' title='Поделиться в Одноклассниках'></i></a></div>
+										<div class='shareLine'><a href='https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fkorsart.by%2F_display%2F&text=".$post['name']."&url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."' target='_blank' onclick='return Share.me(this)'><i class='fa fa-twitter' aria-hidden='true' title='Поделиться в Twitter'></i></a></div>
+										<div class='shareLine'><a href='https://connect.mail.ru/share?url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&title=".$post['name']."&description=".$post['description']."&imageurl=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-at' aria-hidden='true' title='Поделиться в Mail.ru'></i></a></div>
+									</div>
+								</div>
+							</div>
+							<div style='clear: both;'></div>
 						</div>
 						<div class='blogTags'>
 				";
