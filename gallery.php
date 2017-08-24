@@ -230,7 +230,7 @@ if ($linkCheck[0] > 0) {
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'>".$post['name']."</div>
+					<div class='postHeader'><a href='/".$post['sef_link']."'>".$post['name']."</a></div>
 					<br /><br />
 					<div class='blogDescription'><p>".$post['description']."</p></div>
 					<img src='/img/photos/blog/main/".$post['photo']."' class='blogMainPhoto' />
@@ -352,7 +352,7 @@ if ($linkCheck[0] > 0) {
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'>".$post['name']."</div>
+					<div class='postHeader'><a href='/".$post['sef_link']."'>".$post['name']."</a></div>
 					<br /><br />
 					<div class='blogDescription'><p>".$post['description']."</p></div>
 					<img src='/img/photos/blog/main/".$post['photo']."' class='blogMainPhoto' />
