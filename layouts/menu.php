@@ -17,7 +17,7 @@
 				";
 			} else {
 				$menu .= "
-					<a href='/".$category['sef_link']."'><div class='sideMenuPoint'>".mb_strtolower($category['name'])."</div></a>
+					<a href='z/".$category['sef_link']."'><div class='sideMenuPoint'>".mb_strtolower($category['name'])."</div></a>
 				";
 			}
 		}
