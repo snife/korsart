@@ -22,7 +22,7 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover, .tagFont:hover, .openFont:hover, .blogButton:hover, .postTagFont:hover, .shareLine:hover, .shareLine a:hover, .postHeader a:hover, .lightFont a:hover, .directionButton:hover, .directionButtonFont:hover {color: #e0c1ac;}
 .like:hover, .lightFont .like:hover {color: #b21c1c;}
 #instafeed a img:hover {opacity: .7;}
-#reviewSubmit:hover, #messageSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
+#reviewSubmit:hover, #messageSubmit:hover, #commentSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
 
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3;}
@@ -35,10 +35,10 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 #newReviewButtonContainer {position: absolute; right: 100px; margin-top: 40px;}
 #newReviewButton {width: 300px; height: 50px; border: 1px solid #e6e6e6; background-color: #fff; transition: .3s; color: #000; text-transform: uppercase; font-size: 12px; font-family: "Didact Gothic", sans-serif; cursor: pointer;}
 #photoInput {width: 80%; height: 30px; padding: 15px 10px 5px 10px; border: 1px solid #a9a9a9; cursor: pointer; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
-#reviewForm input, #reviewForm textarea, #messageForm input, #messageForm textarea {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 12px; width: 100%; border: none; border-bottom: 1px solid #a9a9a9; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;}
+#reviewForm input, #reviewForm textarea, #messageForm input, #messageForm textarea, #commentForm input, #commentForm textarea {font-family: "Didact Gothic", sans-serif; color: #474747; font-size: 12px; width: 100%; border: none; border-bottom: 1px solid #a9a9a9; padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px;}
 #reviewForm textarea, #messageForm textarea {resize: none; padding-bottom: 0;}
 #reviewPhotoInput {border: none !important;}
-#reviewSubmit, #messageSubmit {border: 1px solid #a9a9a9 !important; cursor: pointer; background-color: #fff; color: #474747; transition: .3s; padding-top: 20px !important; padding-bottom: 20px !important;}
+#reviewSubmit, #messageSubmit, #commentSubmit {border: 1px solid #a9a9a9 !important; cursor: pointer; background-color: #fff; color: #474747; transition: .3s; padding-top: 20px !important; padding-bottom: 20px !important;}
 #slogan {font-family: "Playfair Display", serif; font-size: 3em; color: #464553; float: left; display: inline-block; width: 48%; vertical-align: top; text-align: left;}
 #about {float: right; display: inline-block; width: 45%; vertical-align: top; text-align: left;}
 #aboutHeader {width: 100%; text-align: center;}
@@ -46,6 +46,7 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 #about h3 {font-family: "Didact Gothic", sans-serif; font-size: 16px; color: #474747; letter-spacing: 1px;}
 #about a {font-weight: bold; color: #d19166; transition: .3s;}
 #prevIcon, #nextIcon {transition: .3s;}
+#commentsContainer {width: 100%; transition: .3s;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
@@ -121,3 +122,4 @@ footer a {color: #474747; text-decoration: none; transition: .3s;}
 .blogFont {color: #4c4c4c; font-family: "Open Sans", sans-serif; font-size: 16px;}
 .lightFont {color: #c2c2c2;}
 .directionButton {font-family: "Didact Gothic", sans-serif; font-size: 16px; color: #4c4c4c; transition: .3s; text-transform: uppercase; letter-spacing: 1px;}
+.commentBlock {border-bottom: 1px dashed #c2c2c2; width: 100%; padding-top: 10px; padding-bottom: 20px; text-align: justify; margin-bottom: 40px;}

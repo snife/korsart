@@ -104,6 +104,7 @@ if ($linkCheck[0] > 0) {
 	<link rel="stylesheet" type="text/css" href="/plugins/lightview/css/lightview/lightview.css" />
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js?hl=ru'></script>
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
@@ -352,7 +353,7 @@ if ($linkCheck[0] > 0) {
 			}
 
 			echo "
-					<br />
+					<br /><br /><br />
 					<div class='separator'></div>
 					<br /><br />
 					<div class='sectionHeader lightFont'>
@@ -402,6 +403,37 @@ if ($linkCheck[0] > 0) {
 
 			echo "
 					</div>
+					<br />
+					<div class='separator'></div>
+					<br /><br />
+				</section>
+				<section>
+					<div class='sectionHeader' id='commentsContainer'>
+			";
+
+			$commentResult = $mysqli->query("SELECT * FROM comments WHERE post_id = '".$gallery['id']."' ORDER BY date DESC");
+			while($comment = $commentResult->fetch_assoc()) {
+				echo "
+					<div class='commentBlock' xmlns=\"http://www.w3.org/1999/html\">
+						<strong><span class='blogFont'>" .$comment['name']."</strong>, </span><span class='blogFont'>".dateForComment($comment['date'])."</span>
+						<br /><br />
+						<p class='blogFont'>".$comment['text']."</p>	
+					</div>
+				";
+			}
+
+			echo "
+					</div>
+					<br /><br />
+					<form method='post' id='commentForm'>
+						<input id='nameInput' name='name' placeholder='Имя...' />
+						<br /><br />
+						<textarea id='textInput' name='text' placeholder='Текст...'></textarea>
+						<br /><br />
+						<div class='sectionHeader' style='text-align: center;'><div class='g-recaptcha' data-sitekey='6LefJi4UAAAAAIZPE_vNxKwYSrZMDmroAoVxQ4DP' style='display: inline-block;'></div></div>
+						<br /><br />
+						<input type='button' value='Оставить комментарий' id='commentSubmit' onclick='leaveComment(\"".$gallery['id']."\")' />
+					</form>
 				</section>
 			";
 		}

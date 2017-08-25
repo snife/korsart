@@ -29,7 +29,7 @@ function likePost(id) {
 					});
 					break;
 				case "failed":
-					$.notify("Не удалось поставить лайк. Попробуйте снова.", "error")
+					$.notify("Не удалось поставить лайк. Попробуйте снова.", "error");
 					break;
 				default:
 					$.notify(response, "warn");
@@ -54,5 +54,64 @@ function fontColor(icon, text, action) {
 	} else {
 		$('#' + icon).css('color', '#4c4c4c');
 		$('#' + text).css('color', '#4c4c4c');
+	}
+}
+
+function leaveComment(id) {
+	var name = $('#nameInput').val();
+	var text = $('#textInput').val();
+
+	var formData = new FormData($('#commentForm').get(0));
+	formData.append("id", id);
+
+	if(name !== '') {
+		if(text !== '') {
+			$.ajax({
+				type: "POST",
+				data: formData,
+				dataType: "json",
+				processData: false,
+				contentType: false,
+				url: "/scripts/gallery/ajaxComment.php",
+				success: function (response) {
+					switch(response) {
+						case "ok":
+							$.notify("Комментарий успешно добавлен.", "success");
+
+							$.ajax({
+								type: "POST",
+								data: {"id": id},
+								url: "/scripts/gallery/ajaxRebuildCommentsContainer.php",
+								success: function (comments) {
+									location.reload();
+
+									$('#commentsContainer').css("opacity", "0");
+									$('#nameInput').val('');
+									$('#textInput').val('');
+
+									setTimeout(function () {
+										$('#commentsContainer').html(comments);
+										$('#commentsContainer').css("opacity", "1");
+									}, 300);
+								}
+							});
+							break;
+						case "failed":
+							$.notify("Произошла ошибка. Попробуйте снова.", "error");
+							break;
+						case "captcha":
+							$.notify("Вы не прошли проверку на робота.", "error");
+							break;
+						default:
+							$.notify(response, "warn");
+							break;
+					}
+				}
+			});
+		} else {
+			$.notify("Введите текст комментария.", "error");
+		}
+	} else {
+		$.notify("Введите ваше имя.", "error");
 	}
 }
