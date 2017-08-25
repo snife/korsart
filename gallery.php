@@ -409,6 +409,7 @@ if ($linkCheck[0] > 0) {
 				</section>
 				<section>
 					<div class='sectionHeader' id='commentsContainer'>
+					<a name='comments'></a>
 			";
 
 			$commentResult = $mysqli->query("SELECT * FROM comments WHERE post_id = '".$gallery['id']."' ORDER BY date ASC");
