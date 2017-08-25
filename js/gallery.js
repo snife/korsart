@@ -76,12 +76,21 @@ function leaveComment(id) {
 				success: function (response) {
 					switch(response) {
 						case "ok":
+							$.notify("Комментарий успешно добавлен.", "success");
+
 							$.ajax({
 								type: "POST",
 								data: {"id": id},
 								url: "/scripts/gallery/ajaxRebuildCommentsContainer.php",
 								success: function (comments) {
-									location.reload();
+									$('#commentsContainer').css("opacity", "0");
+									$('#nameInput').val('');
+									$('#textInput').val('');
+
+									setTimeout(function () {
+										$('#commentsContainer').html(comments);
+										$('#commentsContainer').css("opacity", "1");
+									}, 300);
 								}
 							});
 							break;

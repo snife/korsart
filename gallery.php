@@ -411,10 +411,10 @@ if ($linkCheck[0] > 0) {
 					<div class='sectionHeader' id='commentsContainer'>
 			";
 
-			$commentResult = $mysqli->query("SELECT * FROM comments WHERE post_id = '".$gallery['id']."' ORDER BY date DESC");
+			$commentResult = $mysqli->query("SELECT * FROM comments WHERE post_id = '".$gallery['id']."' ORDER BY date ASC");
 			while($comment = $commentResult->fetch_assoc()) {
 				echo "
-					<div class='commentBlock' xmlns=\"http://www.w3.org/1999/html\">
+					<div class='commentBlock'>
 						<strong><span class='blogFont'>" .$comment['name']."</strong>, </span><span class='blogFont'>".dateForComment($comment['date'])."</span>
 						<br /><br />
 						<p class='blogFont'>".$comment['text']."</p>	
