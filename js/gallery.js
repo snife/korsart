@@ -46,3 +46,13 @@ function showShareBlock(id, action) {
 		$('#shareBlock' + id).css("opacity", 0);
 	}
 }
+
+function fontColor(icon, text, action) {
+	if(action === 1) {
+		$('#' + icon).css('color', '#e0c1ac');
+		$('#' + text).css('color', '#e0c1ac');
+	} else {
+		$('#' + icon).css('color', '#4c4c4c');
+		$('#' + text).css('color', '#4c4c4c');
+	}
+}

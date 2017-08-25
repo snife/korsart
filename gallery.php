@@ -291,6 +291,18 @@ if ($linkCheck[0] > 0) {
 		if($type == "post") {
 			/* Правило отображеня контента для записи */
 
+			$likesCountResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$gallery['id']."'");
+			$likesCount = $likesCountResult->fetch_array(MYSQLI_NUM);
+
+			if($likesCount[0] == 0) {
+				$likes = "";
+			} else {
+				$likes = $likesCount[0];
+			}
+
+			$likedResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$gallery['id']."' AND ip = '".$_SERVER['REMOTE_ADDR']."'");
+			$liked = $likedResult->fetch_array(MYSQLI_NUM);
+
 			echo "
 				<br /><br />
 				<section style='text-align: center;'>
@@ -340,10 +352,58 @@ if ($linkCheck[0] > 0) {
 			}
 
 			echo "
-				</section>
+					<br />
+					<div class='separator'></div>
+					<br /><br />
+					<div class='sectionHeader lightFont'>
+						<span id='like".$gallery['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$gallery['id']."\")'";} echo "></i> <span id='likesCount".$gallery['id']."' class='likesCount'>".$likes."</span></span>
+						&nbsp;&nbsp; | &nbsp;&nbsp;
+						<a href='https://vk.com/share.php?url=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."&title=".$gallery['name']."&description=".$gallery['description']."&image=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$gallery['photo']."&noparse=true' target='_blank' onclick='return Share.me(this);'><i class='fa fa-vk' aria-hidden='true' title='Поделиться в VK'></i></a>
+						&nbsp;&nbsp; | &nbsp;&nbsp;
+						<a href='https://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=".$gallery['name']."&p%5Bsummary%5D=".$gallery['description']."&p%5Burl%5D=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."&p%5Bimages%5D%5B0%5D=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$gallery['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-facebook' aria-hidden='true' title='Поделиться в Facebook'></i></a>
+						&nbsp;&nbsp; | &nbsp;&nbsp;
+						<a href='https://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=".$gallery['name']."&st._surl=".$_SERVER['HTTP_HOST']."/".$gallery['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-odnoklassniki' aria-hidden='true' title='Поделиться в Одноклассниках'></i></a>
+						&nbsp;&nbsp; | &nbsp;&nbsp;
+						<a href='https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fkorsart.by%2F_display%2F&text=".$gallery['name']."&url=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."' target='_blank' onclick='return Share.me(this)'><i class='fa fa-twitter' aria-hidden='true' title='Поделиться в Twitter'></i></a>
+						&nbsp;&nbsp; | &nbsp;&nbsp;
+						<a href='https://connect.mail.ru/share?url=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."&title=".$gallery['name']."&description=".$gallery['description']."&imageurl=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$gallery['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-at' aria-hidden='true' title='Поделиться в Mail.ru'></i></a>
+					</div>
+					<br /><br />
+					<div class='sectionHeader'>
 			";
 
+			$prevCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE subcategory_id = '".$gallery['subcategory_id']."' AND date < '".$gallery['date']."'");
+			$prevCheck = $prevCheckResult->fetch_array(MYSQLI_NUM);
 
+			if($prevCheck[0] > 0) {
+				$prevResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['subcategory_id']."' AND date < '".$gallery['date']."' ORDER BY date DESC LIMIT 1");
+				$prev = $prevResult->fetch_assoc();
+			}
+
+			$nextCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE subcategory_id = '".$gallery['subcategory_id']."' AND date > '".$gallery['date']."'");
+			$nextCheck = $nextCheckResult->fetch_array(MYSQLI_NUM);
+
+			if($nextCheck[0] > 0) {
+				$nextResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['subcategory_id']."' AND date > '".$gallery['date']."' ORDER BY date ASC LIMIT 1");
+				$next = $nextResult->fetch_assoc();
+			}
+
+			if($prevResult->num_rows > 0) {
+		echo "<a href='/".$prev['sef_link']."' style='color: #4c4c4c;' onmouseover='fontColor(\"prevIcon\", \"prevText\", 1)' onmouseout = 'fontColor(\"prevIcon\", \"prevText\", 0)'><i class='fa fa-angle-double-left' aria-hidden='true' id='prevIcon'></i> <span class='directionButton' id='prevText'>Назад</span></a>";
+
+				if($nextResult->num_rows > 0) {
+					echo "&nbsp;&nbsp; <span class='lightFont'>|</span> &nbsp;&nbsp;";
+				}
+			}
+
+			if($nextResult->num_rows > 0) {
+			echo "<a href='/".$next['sef_link']."' onmouseover='fontColor(\"nextIcon\", \"nextText\", 1)' onmouseout = 'fontColor(\"nextIcon\", \"nextText\", 0)'><span class='directionButton' id='nextText'>Вперед</span> <i class='fa fa-angle-double-right' aria-hidden='true' id='nextIcon'></i></a>";
+			}
+
+			echo "
+					</div>
+				</section>
+			";
 		}
 
 		if($type == "tag") {
