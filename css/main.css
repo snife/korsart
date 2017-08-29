@@ -17,6 +17,7 @@ menu {width: 100%; text-align: center; display: block;}
 section {width: 65%; margin: 50px auto auto auto;}
 footer {width: 100%; text-align: center; margin: 70px auto 40px auto; font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 14px;}
 footer a {color: #474747; text-decoration: none; transition: .3s;}
+i {transition: .3s;}
 
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
 .sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover, .tagFont:hover, .openFont:hover, .blogButton:hover, .postTagFont:hover, .shareLine:hover, .shareLine a:hover, .postHeader a:hover, .lightFont a:hover, .directionButton:hover, .directionButtonFont:hover {color: #e0c1ac;}

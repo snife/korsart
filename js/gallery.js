@@ -113,3 +113,13 @@ function leaveComment(id) {
 		$.notify("Введите ваше имя.", "error");
 	}
 }
+
+function shareButtonColor(id, action) {
+	if(action === 1) {
+		$('#' + id + '-icon').css('color', '#e0c1ac');
+		$('#' + id + '-text').css('color', '#e0c1ac');
+	} else {
+		$('#' + id + '-icon').css('color', '#4c4c4c');
+		$('#' + id + '-text').css('color', '#4c4c4c');
+	}
+}
