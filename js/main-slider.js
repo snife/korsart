@@ -8,7 +8,7 @@ $(window).on("load", function() {
 
 var slides = document.querySelectorAll('#slider .slide');
 var currentSlide = 0;
-var slideInterval = setInterval(nextSlide, 5000);
+var slideInterval = setInterval(nextSlide, 3500);
 
 function nextSlide() {
 	if(slides[currentSlide].firstChild.height < $('#slider').height()) {

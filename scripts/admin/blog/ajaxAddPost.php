@@ -63,7 +63,7 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 							$tag = substr($tag, 1);
 						}
 
-						array_push($tagsList, $tag);
+						array_push($tagsList, strtolower($tag));
 					}
 
 					array_unique($tagsList);
