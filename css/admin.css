@@ -25,6 +25,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 #sliderPhotosContainer {width: 100%; transition: .3s;}
 #reviewEditForm span {font-size: 14px; transition: .3s; font-style: italic; border-bottom: 1px dashed #4c4c4c;}
 #reviews, #galleryPhotos, #galleryTable {width: 100%; transition: .3s;}
+#draftInput {padding: 0; margin: 5px 0 0 0; width: 20px; height: 20px;}
 
 .button {height: 30px; width: auto; border: none; background-color: #dedede; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; cursor: pointer; padding: auto 5px; transition: .3s; margin: 0 auto;}
 .menuPoint {width: 200px; text-align: center; height: 40px; line-height: 40px; transition: .3s; padding: 10px;}

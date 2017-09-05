@@ -48,9 +48,14 @@ if ($linkCheck[0] > 0) {
 
 				$postList = array();
 
-				$postsResult = $mysqli->query("SELECT * FROM posts_tags WHERE tag_id = '".$tag['id']."'");
+				$postsResult = $mysqli->query("SELECT * FROM posts_tags WHERE tag_id = '".$tag['id']."' ORDER BY id DESC");
 				while($posts = $postsResult->fetch_assoc()) {
-					array_push($postList, $posts['post_id']);
+					$postCheckResult = $mysqli->query("SELECT draft FROM posts WHERE id = '".$posts['post_id']."'");
+					$postCheck = $postCheckResult->fetch_array(MYSQLI_NUM);
+
+					if($postCheck[0] == 0) {
+						array_push($postList, $posts['post_id']);
+					}
 				}
 
 				$type = "tag";
@@ -187,13 +192,26 @@ if ($linkCheck[0] > 0) {
 			$i = 1;
 
 			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
-				$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
-				$tag = $tagResult->fetch_assoc();
+				$show = 0;
+				$postIDResult = $mysqli->query("SELECT * FROM posts_tags WHERE tag_id = '".$t[0]."' AND subcategory_id = '".$gallery['id']."'");
+				while($postID = $postIDResult->fetch_assoc()) {
+					$draftResult = $mysqli->query("SELECT draft FROM posts WHERE id = '".$postID['post_id']."'");
+					$draft = $draftResult->fetch_array(MYSQLI_NUM);
 
-				echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+					if($draft[0] == 0) {
+						$show++;
+					}
+				}
 
-				if($i < $tResult->num_rows) {
-					echo "&nbsp;&nbsp;&nbsp;";
+				if($show > 0) {
+					$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
+					$tag = $tagResult->fetch_assoc();
+
+					echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+
+					if($i < $tResult->num_rows) {
+						echo "&nbsp;&nbsp;&nbsp;";
+					}
 				}
 
 				$i++;
@@ -201,7 +219,7 @@ if ($linkCheck[0] > 0) {
 
 			echo "<br /><br /><br /><br />";
 
-			$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['id']."' ORDER BY date DESC");
+			$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['id']."' AND draft = '0' ORDER BY date DESC");
 			while ($post = $postResult->fetch_assoc()) {
 				$likesCountResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$post['id']."'");
 				$likesCount = $likesCountResult->fetch_array(MYSQLI_NUM);
@@ -470,7 +488,7 @@ if ($linkCheck[0] > 0) {
 			echo "<br /><br /><br /><br />";
 
 			foreach ($postList as $p) {
-				$postResult = $mysqli->query("SELECT * FROM posts WHERE id = '".$p."'");
+				$postResult = $mysqli->query("SELECT * FROM posts WHERE id = '".$p."' AND draft = '0'");
 				$post = $postResult->fetch_assoc();
 
 				$likesCountResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$p."'");

@@ -18,6 +18,7 @@ $description = $mysqli->real_escape_string(nl2br($_POST['description']));
 $text = $mysqli->real_escape_string(nl2br($_POST['text']));
 $tags = $mysqli->real_escape_string($_POST['tags']);
 $id = $mysqli->real_escape_string($_POST['id']);
+$draft = $mysqli->real_escape_string($_POST['is_draft']);
 
 $galleryLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE sef_link = '".$link."'");
 $galleryLinkCheck = $galleryLinkCheckResult->fetch_array(MYSQLI_NUM);
@@ -133,7 +134,7 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 		}
 	}
 
-	if($mysqli->query("UPDATE posts SET name='".$name."', sef_link = '".$link."', description = '".$description."', text = '".$text."' WHERE id = '".$id."'")) {
+	if($mysqli->query("UPDATE posts SET name='".$name."', sef_link = '".$link."', description = '".$description."', text = '".$text."', draft = '".$draft."' WHERE id = '".$id."'")) {
 		echo "ok";
 	} else {
 		echo "failed";

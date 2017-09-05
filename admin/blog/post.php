@@ -170,6 +170,10 @@ if(!empty($_REQUEST['id'])) {
 						<br />
 						<input id='tagsInput' name='tags' />
 						<br /><br />
+						<label for='draftInput'>Черновик?</label>
+						<br />
+						<input type='checkbox' id='draftInput' name='draft' />
+						<br /><br />
 						<input type='button' class='button' id='addSubmit' value='Добавить' onmouseover='buttonHover(\"addSubmit\", 1)' onmouseout='buttonHover(\"addSubmit\", 0)' onclick='addPost(\"".$_REQUEST['c']."\")' />
 					</form>
 				";
@@ -257,6 +261,10 @@ if(!empty($_REQUEST['id'])) {
 						<label for='tagsInput'>Теги:</label>
 						<br />
 						<input id='tagsInput' name='tags' value='".$tags."' />
+						<br /><br />
+						<label for='draftInput'>Черновик?</label>
+						<br />
+						<input type='checkbox' id='draftInput' name='draft'"; if($post['draft'] == 1) {echo " checked";} echo " />
 						<br /><br />
 						<input type='button' class='button' id='addSubmit' value='Редактировать' onmouseover='buttonHover(\"addSubmit\", 1)' onmouseout='buttonHover(\"addSubmit\", 0)' onclick='editPost(\"".$_REQUEST['id']."\")' />
 					</form>

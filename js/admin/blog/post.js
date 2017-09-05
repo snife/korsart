@@ -8,10 +8,16 @@ function addPost(id) {
 	var description = $('#descriptionInput').val();
 	var text = document.getElementsByTagName("iframe")[0].contentDocument.getElementsByTagName("body")[0].innerHTML;
 	var tags = $('#tagsInput').val();
-	var formData = new FormData($('#addForm').get(0));
+	var draft = 0;
 
+	if(document.getElementById('draftInput').checked) {
+		draft = 1;
+	}
+
+	var formData = new FormData($('#addForm').get(0));
 	formData.append("subcategory_id", id);
 	formData.append("text", text);
+	formData.append("is_draft", draft);
 
 	if(name !== '') {
 		if(link !== '') {
@@ -125,10 +131,16 @@ function editPost(id) {
 	var description = $('#descriptionInput').val();
 	var text = document.getElementsByTagName("iframe")[0].contentDocument.getElementsByTagName("body")[0].innerHTML;
 	var tags = $('#tagsInput').val();
-	var formData = new FormData($('#editForm').get(0));
+	var draft = 0;
 
+	if(document.getElementById('draftInput').checked) {
+		draft = 1;
+	}
+
+	var formData = new FormData($('#editForm').get(0));
 	formData.append("id", id);
 	formData.append("text", text);
+	formData.append("is_draft", draft);
 
 	if(name !== '') {
 		if(link !== '') {

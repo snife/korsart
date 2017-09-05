@@ -185,7 +185,13 @@ if(!empty($_REQUEST['id'])) {
 					while ($post = $postResult->fetch_assoc()) {
 						echo "
 							<div class='subcategory'>
-								<a href='/" . $post['sef_link'] . "' target='_blank'><div class='subcategoryName'>" . $post['name'] . "</div></a>
+								<a href='/" . $post['sef_link'] . "' target='_blank'><div class='subcategoryName'>" . $post['name'];
+
+						if($post['draft'] == 1) {
+							echo "<br /><span style='color: red;'>(черновик)</span>";
+						}
+
+						echo "</div></a>
 								<div class='subcategoryButtons'>
 									<a href='post.php?c=".$_REQUEST['c']."&id=" . $post['id'] . "'><span><i class='fa fa-pencil-square' aria-hidden='true'></i> Редактировать</span></a>
 									<br />
