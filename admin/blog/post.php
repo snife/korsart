@@ -68,10 +68,13 @@ if(!empty($_REQUEST['id'])) {
 	<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 	<link rel="stylesheet" href="/plugins/font-awesome-4.7.0/css/font-awesome.css" />
 	<link rel="stylesheet" type="text/css" href="/plugins/lightview/css/lightview/lightview.css" />
+	<link rel="stylesheet" href="/plugins/Remodal-1.1.1/dist/remodal.css">
+	<link rel="stylesheet" href="/plugins/Remodal-1.1.1/dist/remodal-default-theme.css">
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
+	<script type="text/javascript" src="/plugins/Remodal-1.1.1/dist/remodal.min.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
 	<script type="text/javascript" src="/js/admin/blog/post.js"></script>
@@ -239,6 +242,8 @@ if(!empty($_REQUEST['id'])) {
 									<a href='/img/photos/blog/content/".$photo['file']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/blog/content/".$photo['file']."' /></a>
 									<br />
 									<span onclick='deleteBlogPhoto(\"".$photo['id']."\", \"".$_REQUEST['id']."\")' class='adminLink'>Удалить</span>
+									<br />
+									<a data-remodal-target='modal'><span class='adminLink' onclick='setModalID(\"".$photo['id']."\")'>Описание</span></a>
 								</div>
 							";
 						}
@@ -286,6 +291,20 @@ if(!empty($_REQUEST['id'])) {
 						<br /><br />
 						<input type='button' class='button' id='addSubmit' value='Редактировать' onmouseover='buttonHover(\"addSubmit\", 1)' onmouseout='buttonHover(\"addSubmit\", 0)' onclick='editPost(\"".$_REQUEST['id']."\")' />
 					</form>
+					
+					<div class='remodal' data-remodal-id='modal' data-remodal-options='closeOnConfirm: false' onload='alert(1)'>
+						<button data-remodal-action='close' class='remodal-close'></button>
+						<div style='width: 80%; margin: 0 auto;'><h1>Добавить описание фотографии</h1></div>
+						<br />
+						<img id='modalPhoto' src='/img/system/spinner.gif' />
+							<form method='post' id='modalForm'>
+								<input id='idInput' name='id' placeholder='ID фотографии' hidden readonly />
+								<br /><br />
+								<textarea id='photoDescriptionInput' name='photoDescription' placeholder='Описание'></textarea>
+							</form>
+						<br />
+						<button data-remodal-action='confirm' class='remodal-confirm' style='width: 150px;' onclick='addPhotoDescription()'>Добавить описание</button>
+					</div>
 				";
 			}
 		?>

@@ -26,6 +26,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 #reviewEditForm span {font-size: 14px; transition: .3s; font-style: italic; border-bottom: 1px dashed #4c4c4c;}
 #reviews, #galleryPhotos, #galleryTable {width: 100%; transition: .3s;}
 #draftInput {padding: 0; margin: 5px 0 0 0; width: 20px; height: 20px;}
+#modalPhoto {max-width: 100px;}
 
 .button {height: 30px; width: auto; border: none; background-color: #dedede; color: #4c4c4c; font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 16px; font-style: normal; cursor: pointer; padding: auto 5px; transition: .3s; margin: 0 auto;}
 .menuPoint {width: 200px; text-align: center; height: 40px; line-height: 40px; transition: .3s; padding: 10px;}
@@ -55,3 +56,7 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .galleryPhoto {display: inline-block; width: 100px; vertical-align: top; margin: 10px auto auto 10px; text-align: center;}
 .galleryPhoto img {width: 100px; transition: .3s;}
 .adminLink {cursor: pointer;}
+.remodal input {width: 80%; padding: 5px 10px; height: 30px; border: 1px solid #a9a9a9; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
+.remodal textarea {width: 80%; padding: 5px 10px; min-height: 150px; resize: none; border: 1px solid #a9a9a9; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
+.remodal h1 {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; letter-spacing: 2px;}
+.remodal {font-family: "Didact Gothic", sans-serif;}

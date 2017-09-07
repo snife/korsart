@@ -212,3 +212,59 @@ function editPost(id) {
 		$.notify("Вы не ввели название.", "error");
 	}
 }
+
+function setModalID(id) {
+	$('#idInput').val(id);
+
+	$.ajax({
+		type: "POST",
+		data: {"id": id},
+		url: "/scripts/admin/blog/ajaxLoadPhoto.php",
+		success: function (response) {
+			$('#modalPhoto').attr('src', '/img/photos/blog/content/' + response);
+
+			$.ajax({
+				type: "POST",
+				data: {"id": id},
+				url: "/scripts/admin/blog/ajaxLoadDescription.php",
+				success: function (text) {
+					$('#photoDescriptionInput').val(text);
+				}
+			});
+		}
+	});
+}
+
+function addPhotoDescription() {
+	var id = $('#idInput').val();
+	var description = $('#photoDescriptionInput').val();
+
+	if(id !== '') {
+		if(description !== '') {
+			$.ajax({
+				type: "POST",
+				data: {
+					"id": id,
+					"description": description
+				},
+				url: "/scripts/admin/blog/ajaxAddPhotoDescription.php",
+				success: function (response) {
+					if(response === "ok") {
+						var inst = $('[data-remodal-id=modal]').remodal();
+						inst.close();
+
+						$('#photoDescriptionInput').val('');
+
+						$.notify("Описание было добавлено.", "success")
+					} else {
+						$.notify(response);
+					}
+				}
+			});
+		} else {
+			$.notify("Вы не ввели описание.", "error");
+		}
+	} else {
+		$.notify("Вы не выбрали фотографию.", "error");
+	}
+}

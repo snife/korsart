@@ -368,6 +368,15 @@ if ($linkCheck[0] > 0) {
 			$photoResult = $mysqli->query("SELECT * FROM blog_photos WHERE post_id = '".$gallery['id']."'");
 			while($photo = $photoResult->fetch_assoc()) {
 				echo "<a href='/img/photos/blog/content/".$photo['file']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='blog'><img src='/img/photos/blog/content/".$photo['file']."' class='blogSmallPhoto".$gallery['style']."' /></a>";
+
+				if($gallery['style'] == 1 and !empty($gallery['description'])) {
+					echo "
+						<div class='photoDescription'>
+							<p>".$photo['description']."</p>
+							<br />
+						</div>
+					";
+				}
 			}
 
 			echo "
