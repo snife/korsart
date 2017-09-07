@@ -19,6 +19,7 @@ $text = $mysqli->real_escape_string(nl2br($_POST['text']));
 $tags = $mysqli->real_escape_string($_POST['tags']);
 $id = $mysqli->real_escape_string($_POST['subcategory_id']);
 $draft = $mysqli->real_escape_string($_POST['is_draft']);
+$style = $mysqli->real_escape_string($_POST['style']);
 
 $galleryLinkCheckResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE sef_link = '".$link."'");
 $galleryLinkCheck = $galleryLinkCheckResult->fetch_array(MYSQLI_NUM);
@@ -69,7 +70,7 @@ if($galleryLinkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] ==
 
 					array_unique($tagsList);
 
-					if($mysqli->query("INSERT INTO posts (subcategory_id, name, sef_link, description, photo, text, date, draft) VALUES ('".$id."', '".$name."', '".$link."', '".$description."', '".$mainPhotoDBName."', '".$text."', '".date('Y-m-d H:i:s')."', '".$draft."')")) {
+					if($mysqli->query("INSERT INTO posts (subcategory_id, name, sef_link, description, photo, text, date, draft, style) VALUES ('".$id."', '".$name."', '".$link."', '".$description."', '".$mainPhotoDBName."', '".$text."', '".date('Y-m-d H:i:s')."', '".$draft."', '".$style."')")) {
 						move_uploaded_file($mainPhotoTmpName, $mainPhotoUpload);
 
 						$newIDResult = $mysqli->query("SELECT id FROM posts ORDER BY id DESC LIMIT 1");

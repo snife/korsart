@@ -35,7 +35,7 @@
     .review p {text-align: left;}
     .review, .reviewPhoto {display: block; margin: 0 auto; width: 95%;}
     .third {display: block; width: 100%; margin-bottom: 30px;}
-    .blogSmallPhoto {width: 100%; margin: auto auto 20px auto;}
+    .blogSmallPhoto2, .blogSmallPhoto3, .blogSmallPhoto4 {width: 100%; margin: auto auto 20px auto;}
 }
 
 /* Extra Small Devices, Phones */

@@ -170,6 +170,15 @@ if(!empty($_REQUEST['id'])) {
 						<br />
 						<input id='tagsInput' name='tags' />
 						<br /><br />
+						<label for='styleSelect'>Стиль размещения фотографий:</label>
+						<br />
+						<select id='styleSelect' name='style'>
+							<option value='1' selected>На всю ширину экрана</option>
+							<option value='2'>2 фотографии в ряд</option>
+							<option value='3'>3 фотографии в ряд</option>
+							<option value='4'>4 фотографии в ряд</option>
+						</select>
+						<br /><br />
 						<label for='draftInput'>Черновик?</label>
 						<br />
 						<input type='checkbox' id='draftInput' name='draft' />
@@ -261,6 +270,15 @@ if(!empty($_REQUEST['id'])) {
 						<label for='tagsInput'>Теги:</label>
 						<br />
 						<input id='tagsInput' name='tags' value='".$tags."' />
+						<br /><br />
+						<label for='styleSelect'>Стиль размещения фотографий:</label>
+						<br />
+						<select id='styleSelect' name='style'>
+							<option value='1'"; if($post['style'] == 1) {echo " selected";} echo ">На всю ширину экрана</option>
+							<option value='2'"; if($post['style'] == 2) {echo " selected";} echo ">2 фотографии в ряд</option>
+							<option value='3'"; if($post['style'] == 3) {echo " selected";} echo ">3 фотографии в ряд</option>
+							<option value='4'"; if($post['style'] == 4) {echo " selected";} echo ">4 фотографии в ряд</option>
+						</select>
 						<br /><br />
 						<label for='draftInput'>Черновик?</label>
 						<br />
