@@ -82,8 +82,6 @@ if($linkCheck[0] == 0 and $blogLinkCheck[0] == 0 and $postLinkCheck[0] == 0) {
 
 						if($mysqli->query("INSERT INTO photos (file, post_id) VALUES ('".$photoDBName."', '".$id."')")) {
 							move_uploaded_file($photoTmpName, $photoUpload);
-
-							$text .= "<br /><br /><div class=\"galleryPhotoContainer\"><a href=\"/img/photos/gallery/content/".$photoDBName."\" class=\"lightview\" data-lightview-options=\"skin: \'light\'\" data-lightview-group=\"gallery\"><img src=\"/img/photos/gallery/content/".$photoDBName."\" class=\"galleryPhoto\" /></a></div>";
 						}
 					}
 

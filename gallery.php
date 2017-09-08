@@ -178,7 +178,16 @@ if ($linkCheck[0] > 0) {
 				</div>
 				<br /><br />
 				".$gallery['text']."
+				<br /><br />
+				<section class='bigSection' style='margin-top: 0;'>
 			";
+
+			$photoResult = $mysqli->query("SELECT * FROM photos WHERE post_id = '".$gallery['id']."'");
+			while($photo = $photoResult->fetch_assoc()) {
+				echo "<div class='blogSmallPhoto1'><img src='/img/photos/gallery/content/".$photo['file']."' class='bigGalleryPhoto' /></div>";
+			}
+
+			echo "</section>";
 		}
 
 		if($type == "blog") {

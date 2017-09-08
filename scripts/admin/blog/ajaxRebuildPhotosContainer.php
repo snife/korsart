@@ -17,6 +17,8 @@ while($photo = $photoResult->fetch_assoc()) {
 			<a href='/img/photos/blog/content/".$photo['file']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='photos'><img src='/img/photos/blog/content/".$photo['file']."' /></a>
 			<br />
 			<span onclick='deleteBlogPhoto(\"".$photo['id']."\", \"".$_REQUEST['id']."\")' class='adminLink'>Удалить</span>
+			<br />
+			<a data-remodal-target='modal'><span class='adminLink' onclick='setModalID(\"".$photo['id']."\")'>Описание</span></a>
 		</div>
 	";
 }

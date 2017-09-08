@@ -99,6 +99,7 @@ i {transition: .3s;}
 .third strong {font-size: 16px;}
 .third a {transition: .3s; color: #474747;}
 .galleryPhoto {width: 90%;}
+.bigGalleryPhoto {width: 100%;}
 .galleryPhotoContainer {width: 100%; text-align: center;}
 .galleryTextContainer {width: 80%; margin: 0 auto;}
 .tagFont{font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif; color: #000; font-size: 14px; transition: .3s;}
