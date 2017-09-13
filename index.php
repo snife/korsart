@@ -104,6 +104,7 @@
 			$sliderResult = $mysqli->query("SELECT * FROM main_slider ORDER BY id ASC");
 			while($slider = $sliderResult->fetch_assoc()) {
 				echo "<div class='slide"; if($i == 0) {echo " showing";} echo "'><img src='/img/photos/main_slider/".$slider['photo']."' /></div>";
+				$i++;
 			}
 		?>
 	</div>
@@ -123,6 +124,7 @@
 			$gallerySliderResult = $mysqli->query("SELECT * FROM gallery_slider ORDER BY id ASC");
 			while($gallerySlider = $gallerySliderResult->fetch_assoc()) {
 				echo "<div class='gallery-slide"; if($i == 0) {echo " showing";} echo "'><img src='/img/photos/gallery_slider/".$gallerySlider['photo']."' /></div>";
+				$i++;
 			}
 		?>
 
