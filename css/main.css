@@ -56,7 +56,7 @@ i {transition: .3s;}
 .menuPoint {display: inline-block;}
 .menuDot {display: inline-block; padding-left: 25px; padding-right: 25px; position: relative; color: #373737; font-size: 4px; vertical-align: middle;}
 .slide, .gallery-slide {position: absolute; left: 0; width: 100%; height: 100%; opacity: 0; z-index: 1; -webkit-transition: opacity 1s; -moz-transition: opacity 1s; -o-transition: opacity 1s; transition: opacity 1s;}
-.slide img, .gallery-slide img {width: 100%; height: auto;}
+.slide img, .gallery-slide img {width: 100%;}
 .showing {opacity: 1; z-index: 2;}.subMenuLine {width: 100%; padding: 5px; margin-top: 1px; background-color: #fff;}
 .menu {margin: 0 auto; padding: 0;}
 .descriptionFont {font-size: 24px; color: #474747; font-family: 'Playfair Display', serif;}
