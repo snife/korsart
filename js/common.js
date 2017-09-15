@@ -3,7 +3,7 @@ $(window).on("load", function () {
 
 	$('#menuHeaderText').width(parseInt($('header').width() - $('#mobileMenu').width() - 100));
 
-	if($('#slider img')) {
+	if($('*').is('#slider img')) {
 		$('#slider img').width($('#slider').width());
 	}
 });

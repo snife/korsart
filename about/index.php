@@ -107,7 +107,7 @@ include("../layouts/footer.php");
 	<?= showMenu_2ndLevel(null, $categories, $settings) ?>
 
 	<div id="slider">
-		<img src="/img/system/about.jpg" />
+		<img src="/img/system/about.jpg" id="mainIMG" />
 	</div>
 
 	<section>
@@ -178,7 +178,6 @@ include("../layouts/footer.php");
 	<?= showFooter() ?>
 
 	<script type="text/javascript" src="/js/main-slider.js"></script>
-	<script type="text/javascript" src="/js/gallery-slider.js"></script>
 
 </body>
 
