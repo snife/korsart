@@ -1,10 +1,15 @@
 $(window).on("load", function () {
 	$('#sideMenu').height($(window).height());
 
-	$('#menuHeaderText').width(parseInt($('header').width() - $('#mobileMenu').width() - 100));
+	$('#menuHeaderText').width(parseInt($('header').width() - $('#mobileMenu').width() - 10));
 
 	if($('*').is('#slider img')) {
 		$('#slider img').width($('#slider').width());
+	}
+
+	if($(document).width() < 768) {
+		$('#left').html('');
+		$('#right').html('');
 	}
 });
 
