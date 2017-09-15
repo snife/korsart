@@ -48,7 +48,7 @@ i {transition: .3s;}
 #about a {font-weight: bold; color: #d19166; transition: .3s;}
 #prevIcon, #nextIcon {transition: .3s;}
 #commentsContainer {width: 100%; transition: .3s;}
-#menuHeaderText, #mobileMenu {display: inline-block;}
+#mobileMenu {display: none;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
