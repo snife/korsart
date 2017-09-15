@@ -44,6 +44,7 @@
     #newReviewButtonContainer {right: auto; left: 50%; margin-left: -150px;}
 
     .quarterBlock {width: 90%; display: inline-block; vertical-align: top; margin-left: 20px;}
+    .sliderLinkFont {font-size: 1.5em;}
 }
 
 /* Custom, iPhone Retina */
