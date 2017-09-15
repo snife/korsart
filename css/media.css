@@ -36,6 +36,8 @@
     .review, .reviewPhoto {display: block; margin: 0 auto; width: 95%;}
     .third {display: block; width: 100%; margin-bottom: 30px;}
     .blogSmallPhoto2, .blogSmallPhoto3, .blogSmallPhoto4 {width: 100%; margin: auto auto 20px auto;}
+    .blogButtons {width: 38%;}
+    .blogTags {width: 59%;}
 }
 
 /* Extra Small Devices, Phones */
@@ -49,11 +51,15 @@
     .sliderLinkFont {font-size: 1.5em;}
     .headerFont {font-size: 1em;}
     .thinFont {font-size: 1em;}
+    .blogButtons {width: 51%;}
+    .blogTags {width: 46%;}
 }
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px) {
     .mainReview > img {width: 80%; margin-left: 0;}
+    .blogButtons {width: 100%;}
+    .blogTags {width: 100%; text-align: left; padding-bottom: 40px; margin-top: -25px;}
 }
 
 
