@@ -10,6 +10,14 @@ $(window).on("load", function() {
 	if($('*').is('#mainIMG')) {
 		if($(document).width() < 768) {
 			$('#slider').height(parseInt($('#mainIMG').height()));
+		} else {
+			if($('#mainIMG').height() > parseInt($(window).height() - $('header').height() - 93)) {
+				$('#slider').height(parseInt($(window).height() - $('header').height() - 93));
+			} else {
+				$('#mainIMG').css("width", "auto");
+				$('#slider').height(parseInt($(window).height() - $('header').height() - 93));
+				$('#mainIMG').css("height", "100%");
+			}
 		}
 	} else {
 		$('#slider').height(parseInt($(window).height() - $('#slider').offset().top));
