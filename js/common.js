@@ -1,6 +1,8 @@
 $(window).on("load", function () {
 	$('#sideMenu').height($(window).height());
 
+	$('#menuHeaderText').width(parseInt($('header').width() - $('#mobileMenu').width() - 100));
+
 	if($('#slider img')) {
 		$('#slider img').width($('#slider').width());
 	}

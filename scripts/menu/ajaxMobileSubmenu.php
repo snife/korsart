@@ -14,7 +14,12 @@ $idCheckResult = $mysqli->query("SELECT COUNT(id) FROM categories WHERE id = '".
 $idCheck = $idCheckResult->fetch_array(MYSQLI_NUM);
 
 if($idCheck[0] > 0) {
-	$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$id."' ORDER BY priority");
+	if($id == BLOG_ID) {
+		$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
+	} else {
+		$subcategoryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$id."' ORDER BY priority");
+	}
+
 	while($subcategory = $subcategoryResult->fetch_assoc()) {
 		echo "<div class='mobileSubmenuPoint'><a href='/".$subcategory['sef_link']."'><span class='submenuFont'>".$subcategory['name']."</span></a></div>";
 	}

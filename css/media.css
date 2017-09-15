@@ -42,9 +42,12 @@
 @media only screen and (max-width : 480px) {
     #allReviewsButton {height: 50px; line-height: 50px; border: none; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; width: 90%; background-color: #457bdf; color: #fff; font-family: 'Lora', serif; font-size: 80%; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: .3s;}
     #newReviewButtonContainer {right: auto; left: 50%; margin-left: -150px;}
+    #menuHeaderText {margin-top: 10px;}
 
     .quarterBlock {width: 90%; display: inline-block; vertical-align: top; margin-left: 20px;}
     .sliderLinkFont {font-size: 1.5em;}
+    .headerFont {font-size: 1em;}
+    .thinFont {font-size: 1em;}
 }
 
 /* Custom, iPhone Retina */
