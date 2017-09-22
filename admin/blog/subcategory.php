@@ -128,6 +128,11 @@ if(!empty($_REQUEST['id'])) {
 				<i class="fa fa-bullhorn" aria-hidden="true"></i><span> Блог</span>
 			</div>
 		</a>
+		<a href="/admin/security/">
+			<div class="menuPoint">
+				<i class="fa fa-shield" aria-hidden="true"></i><span> Безопасность</span>
+			</div>
+		</a>
 	</div>
 
 	<div id="content">

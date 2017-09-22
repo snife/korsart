@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: jeyfost
- * Date: 14.08.2017
- * Time: 11:47
+ * Date: 22.09.2017
+ * Time: 12:11
  */
 
 session_start();
@@ -11,17 +11,6 @@ include("../../scripts/connect.php");
 
 if($_SESSION['userID'] != 1) {
 	header("Location: ../../");
-}
-
-if(!empty($_REQUEST['c'])) {
-	$categoryCheckResult = $mysqli->query("SELECT COUNT(id) FROM categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."' AND for_gallery = '1'");
-	$categoryCheck = $categoryCheckResult->fetch_array(MYSQLI_NUM);
-
-	if($categoryCheck[0] == 0) {
-		header("Location: index.php");
-	}
-} else {
-	header("Location: index.php");
 }
 
 ?>
@@ -39,7 +28,7 @@ if(!empty($_REQUEST['c'])) {
 
 	<meta charset="utf-8" />
 
-	<title>Панель администрирования | Добавление галереи</title>
+	<title>Панель администрирования | Страницы</title>
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -58,14 +47,11 @@ if(!empty($_REQUEST['c'])) {
 	<link rel="stylesheet" type="text/css" href="/css/fonts.css" />
 	<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 	<link rel="stylesheet" href="/plugins/font-awesome-4.7.0/css/font-awesome.css" />
-	<link rel="stylesheet" type="text/css" href="/plugins/lightview/css/lightview/lightview.css" />
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
-	<script type="text/javascript" src="/plugins/ckeditor/ckeditor.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
-	<script type="text/javascript" src="/js/admin/galleries/add.js"></script>
+	<script type="text/javascript" src="/js/admin/security/index.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -73,8 +59,8 @@ if(!empty($_REQUEST['c'])) {
 	</style>
 
     <script type="text/javascript">
-        $(window).on('load', function () {
-            var $preloader = $('#page-preloader'), $spinner = $preloader.find('.spinner');
+	$(window).on('load', function () {
+		var $preloader = $('#page-preloader'), $spinner = $preloader.find('.spinner');
             $spinner.delay(500).fadeOut();
             $preloader.delay(850).fadeOut();
         });
@@ -113,7 +99,7 @@ if(!empty($_REQUEST['c'])) {
 			</div>
 		</a>
 		<a href="/admin/galleries/">
-			<div class="menuPoint active">
+			<div class="menuPoint">
 				<i class="fa fa-camera" aria-hidden="true"></i><span> Галереи</span>
 			</div>
 		</a>
@@ -123,72 +109,35 @@ if(!empty($_REQUEST['c'])) {
 			</div>
 		</a>
 		<a href="/admin/security/">
-			<div class="menuPoint">
+			<div class="menuPoint active">
 				<i class="fa fa-shield" aria-hidden="true"></i><span> Безопасность</span>
 			</div>
 		</a>
 	</div>
 
 	<div id="content">
-		<?php
-			$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$mysqli->real_escape_string($_REQUEST['c'])."'");
-			$category = $categoryResult->fetch_assoc();
-
-			$subcategoriesCountResult = $mysqli->query("SELECT COUNT(id) FROM subcategories WHERE category_id = '".$category['id']."'");
-			$subcategoriesCount = $subcategoriesCountResult->fetch_array(MYSQLI_NUM);
-		?>
-		<span class="headerFont">Добавление галереи в раздел &laquo;<span style="color: #e0c1ac;"><?= $category['name'] ?></span>&raquo;</span>
+		<span class="headerFont">Изменение логина и пароля администратора</span>
 		<br /><br />
-		<form method="post" enctype="multipart/form-data" id="addForm">
-			<label for="nameInput">Название:</label>
+		<form method="post" id="securityForm">
+			<label for="oldLoginInput">Старый логин:</label>
 			<br />
-			<input id="nameInput" name="name" />
+			<input id="oldLoginInput" />
 			<br /><br />
-			<label for="sefLinkInput">Адрес ссылки:</label>
+			<label for="oldPasswordInput">Старый пароль:</label>
 			<br />
-			<input id="sefLinkInput" name="sefLink" />
+			<input type="password" id="oldPasswordInput" />
 			<br /><br />
-			<label for="prioritySelect">Порядок следования:</label>
+			<label for="newLoginInput">Новый логин:</label>
 			<br />
-			<select id="prioritySelect" name="priority">
-				<?php
-					for($i = 0; $i <= $subcategoriesCount[0]; $i++) {
-						echo "<option value='".($i + 1)."'"; if($i == $subcategoriesCount[0]) {echo " selected";} echo ">".($i + 1)."</option>";
-					}
-				?>
-			</select>
+			<input id="newLoginInput" />
 			<br /><br />
-			<label for="titleInput">Заголовок:</label>
+			<label for="newPasswordInput">Новый пароль:</label>
 			<br />
-			<input id="titleInput" name="title" />
+			<input type="password" id="newPasswordInput" />
 			<br /><br />
-			<label for="keywordsInput">Ключевые слова (не обязательно):</label>
-			<br />
-			<input id="keywordsInput" name="keywords" />
-			<br /><br />
-			<label for="descriptionInput">Описание (не обязательно):</label>
-			<br />
-			<textarea id="descriptionInput" name="description" onkeydown="textAreaHeight(this)"></textarea>
-			<br /><br />
-			<label for="photoInput">Заглавное фото:</label>
-			<br />
-			<input type="file" id="photoInput" name="photo" style="padding-top: 10px;" />
-			<br /><br />
-			<label for="textInput">Текст:</label>
-			<br />
-			<textarea id="textInput" name="text"></textarea>
-			<br /><br />
-			<label for="photosInput">Фотографии галереи:</label>
-			<br />
-			<input type="file" id="photoInput" name="photos[]" class="file" multiple />
-			<br /><br />
-			<input type="button" id="gallerySubmit" value="Добавить" onmouseover="buttonHover('gallerySubmit', 1)" onmouseout="buttonHover('gallerySubmit', 0)" class="button" onclick="addGallery('<?= $_REQUEST['c'] ?>')" />
+			<input type='button' class='button' id='securitySubmit' value='Изменить' onmouseover='buttonHover("securitySubmit", 1)' onmouseout='buttonHover("securitySubmit", 0)' onclick='edit()' />
 		</form>
 	</div>
-
-	<script type="text/javascript">
-		CKEDITOR.replace("text");
-	</script>
 
 </body>
 
