@@ -199,6 +199,7 @@ if ($linkCheck[0] > 0) {
 
 			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags WHERE subcategory_id = '".$gallery['id']."'");
 			$i = 1;
+			$tags = array();
 
 			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
 				$show = 0;
@@ -216,11 +217,20 @@ if ($linkCheck[0] > 0) {
 					$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
 					$tag = $tagResult->fetch_assoc();
 
-					echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+					array_push($tags, $tag['name']);
+				}
 
-					if($i < $tResult->num_rows) {
-						echo "&nbsp;&nbsp;&nbsp;";
-					}
+				$i++;
+			}
+
+			sort($tags, SORT_STRING);
+			$i = 0;
+
+			foreach ($tags as $tag) {
+				echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
+
+				if($i < count($tags)) {
+					echo "&nbsp;&nbsp;&nbsp;";
 				}
 
 				$i++;
@@ -290,7 +300,7 @@ if ($linkCheck[0] > 0) {
 						</div>
 						<div class='blogTags'>
 				";
-
+				$tags = array();
 				$i = 0;
 				$tResult = $mysqli->query("SELECT * FROM posts_tags WHERE post_id = '".$post['id']."'");
 				while($t = $tResult->fetch_assoc()) {
@@ -299,11 +309,20 @@ if ($linkCheck[0] > 0) {
 					$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t['tag_id']."'");
 					$tag = $tagResult->fetch_assoc();
 
-					echo "<a href='/tag/".$tag['name']."'><span class='postTagFont'>".$tag['name']."</span></a>";
+					array_push($tags, $tag['name']);
+				}
 
-					if($i < $tResult->num_rows) {
+				sort($tags, SORT_STRING);
+				$i = 0;
+
+				foreach ($tags as $tag) {
+					echo "<a href='/tag/".$tag."'><span class='postTagFont'>".$tag."</span></a>";
+
+					if($i < count($tags)) {
 						echo ",&nbsp;&nbsp;";
 					}
+
+					$i++;
 				}
 
 				echo "
@@ -338,14 +357,24 @@ if ($linkCheck[0] > 0) {
 
 			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags");
 			$i = 1;
+			$tags = array();
 
 			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
 				$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
 				$tag = $tagResult->fetch_assoc();
 
-				echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+				array_push($tags, $tag['name']);
 
-				if($i < $tResult->num_rows) {
+				$i++;
+			}
+
+			sort($tags, SORT_STRING);
+			$i = 0;
+
+			foreach ($tags as $tag) {
+				echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
+
+				if($i < count($tags)) {
 					echo "&nbsp;&nbsp;&nbsp;";
 				}
 
@@ -485,18 +514,28 @@ if ($linkCheck[0] > 0) {
 
 			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags");
 			$i = 1;
+			$tags = array();
 
 			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
 				$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t[0]."'");
 				$tag = $tagResult->fetch_assoc();
 
-				if(urldecode(substr($_SERVER['REQUEST_URI'], 5)) != $tag['name']) {
-					echo "<a href='/tag/".$tag['name']."'><span class='tagFont'>".$tag['name']."</span></a>";
+				array_push($tags, $tag['name']);
+
+				$i++;
+			}
+
+			sort($tags, SORT_STRING);
+			$i = 0;
+
+			foreach ($tags as $tag) {
+				if(urldecode(substr($_SERVER['REQUEST_URI'], 5)) != $tag) {
+					echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
 				} else {
-					echo "<span class='tagFont' style='color: #e0c1ac;'>".$tag['name']."</span>";
+					echo "<span class='tagFont' style='color: #e0c1ac;'>".$tag."</span>";
 				}
 
-				if($i < $tResult->num_rows) {
+				if($i < count($tags)) {
 					echo "&nbsp;&nbsp;&nbsp;";
 				}
 
@@ -570,6 +609,7 @@ if ($linkCheck[0] > 0) {
 						<div class='blogTags'>
 				";
 
+				$tags = array();
 				$i = 0;
 				$tResult = $mysqli->query("SELECT * FROM posts_tags WHERE post_id = '".$post['id']."'");
 				while($t = $tResult->fetch_assoc()) {
@@ -578,15 +618,24 @@ if ($linkCheck[0] > 0) {
 					$tagResult = $mysqli->query("SELECT * FROM tags WHERE id = '".$t['tag_id']."'");
 					$tag = $tagResult->fetch_assoc();
 
-					if(urldecode(substr($_SERVER['REQUEST_URI'], 5)) == $tag['name']) {
-						echo "<span class='postTagFont' style='color: #e0c1ac;'>".$tag['name']."</span>";
+					array_push($tags, $tag['name']);
+				}
+
+				sort($tags, SORT_STRING);
+				$i = 0;
+
+				foreach ($tags as $tag) {
+					if(urldecode(substr($_SERVER['REQUEST_URI'], 5)) == $tag) {
+						echo "<span class='postTagFont' style='color: #e0c1ac;'>".$tag."</span>";
 					} else {
-						echo "<a href='/tag/".$tag['name']."'><span class='postTagFont'>".$tag['name']."</span></a>";
+						echo "<a href='/tag/".$tag."'><span class='postTagFont'>".$tag."</span></a>";
 					}
 
-					if($i < $tResult->num_rows) {
+					if($i < count($tags)) {
 						echo ",&nbsp;&nbsp;";
 					}
+
+					$i++;
 				}
 
 				echo "
