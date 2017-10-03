@@ -400,6 +400,15 @@
 		</div>
 	</section>
 
+	<div class="hiddenText">
+		<?php
+			$textResult = $mysqli->query("SELECT text FROM text WHERE id = 1");
+			$text = $textResult->fetch_array(MYSQLI_NUM);
+
+			echo "<h3>".$text[0]."</h3>";
+		?>
+	</div>
+
 	<br /><br />
 	<section class="bigSection">
 		<div class="sectionHeader">

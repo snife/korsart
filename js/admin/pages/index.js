@@ -7,6 +7,7 @@ function edit() {
 	var title = $('#titleInput').val();
 	var keywords = $('#keywordsInput').val();
 	var description = $('#descriptionInput').val();
+	var text = $('#hiddenTextInput').val();
 
 	if(title !== '') {
 		$.ajax({
@@ -15,7 +16,8 @@ function edit() {
 				"id": id,
 				"title": title,
 				"keywords": keywords,
-				"description": description
+				"description": description,
+				"text": text
 			},
 			url: "/scripts/admin/pages/ajaxEditPage.php",
 			beforeSend: function () {

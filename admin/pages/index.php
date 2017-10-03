@@ -143,6 +143,12 @@ if(!empty($_REQUEST['id'])) {
 					$pageResult = $mysqli->query("SELECT * FROM pages WHERE id = '".$mysqli->real_escape_string($_REQUEST['id'])."'");
 					$page = $pageResult->fetch_assoc();
 
+					if($_REQUEST['id'] == 1) {
+						$textResult = $mysqli->query("SELECT text FROM text WHERE id = 1");
+						$text = $textResult->fetch_array(MYSQLI_NUM);
+						$text = str_replace("<br />", "\n", $text[0]);
+					}
+
 					echo "
 						<br /><br />
 						<label for='titleInput'>Заголовок:</label>
@@ -156,6 +162,18 @@ if(!empty($_REQUEST['id'])) {
 						<label for='descriptionInput'>Описание:</label>
 						<br />
 						<textarea id='descriptionInput' name='description' onkeydown='textAreaHeight(this)'>".$page['description']."</textarea>
+					";
+
+					if($_REQUEST['id'] == 1) {
+						echo "
+							<br /><br />
+							<label for='hiddenTextInput'>Скрытый текст:</label>
+							<br />
+							<textarea id='hiddenTextInput' name='hiddenText' onkeydown='textAreaHeight(this)'>".$text."</textarea>
+						";
+					}
+
+					echo "
 						<br /><br />
 						<input type='button' class='button' id='pageSubmit' value='Редактировать' onmouseover='buttonHover(\"pageSubmit\", 1)' onmouseout='buttonHover(\"pageSubmit\", 0)' onclick='edit()' />
 					";

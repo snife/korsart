@@ -130,3 +130,5 @@ i {transition: .3s;}
 .directionButton {font-family: "Didact Gothic", sans-serif; font-size: 16px; color: #4c4c4c; transition: .3s; text-transform: uppercase; letter-spacing: 1px;}
 .commentBlock {border-bottom: 1px dashed #c2c2c2; width: 100%; padding-top: 10px; padding-bottom: 20px; text-align: justify; margin-bottom: 40px;}
 .photoDescription {text-align: left; width: 100%;}
+.hiddenText {width: 100%; padding: 0; margin: 0; opacity: 0;}
+.hiddenText h3 {font-size: 5px !important; color: #fff;}
