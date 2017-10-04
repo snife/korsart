@@ -318,8 +318,12 @@ if ($linkCheck[0] > 0) {
 				foreach ($tags as $tag) {
 					echo "<a href='/tag/".$tag."'><span class='postTagFont'>".$tag."</span></a>";
 
+					if($i < (count($tags) - 1)) {
+						echo ",";
+					}
+
 					if($i < count($tags)) {
-						echo ",&nbsp;&nbsp;";
+						echo "&nbsp;&nbsp;";
 					}
 
 					$i++;
@@ -631,8 +635,12 @@ if ($linkCheck[0] > 0) {
 						echo "<a href='/tag/".$tag."'><span class='postTagFont'>".$tag."</span></a>";
 					}
 
+					if($i < (count($tags) - 1)) {
+						echo ",";
+					}
+
 					if($i < count($tags)) {
-						echo ",&nbsp;&nbsp;";
+						echo "&nbsp;&nbsp;";
 					}
 
 					$i++;
