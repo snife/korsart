@@ -197,13 +197,13 @@ if ($linkCheck[0] > 0) {
 				<section style='text-align: center;'>
 			";
 
-			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags WHERE subcategory_id = '".$gallery['id']."'");
+			$tResult = $mysqli->query("SELECT DISTINCT(tag_id) FROM posts_tags");
 			$i = 1;
 			$tags = array();
 
 			while($t = $tResult->fetch_array(MYSQLI_NUM)) {
 				$show = 0;
-				$postIDResult = $mysqli->query("SELECT * FROM posts_tags WHERE tag_id = '".$t[0]."' AND subcategory_id = '".$gallery['id']."'");
+				$postIDResult = $mysqli->query("SELECT * FROM posts_tags WHERE tag_id = '".$t[0]."'");
 				while($postID = $postIDResult->fetch_assoc()) {
 					$draftResult = $mysqli->query("SELECT draft FROM posts WHERE id = '".$postID['post_id']."'");
 					$draft = $draftResult->fetch_array(MYSQLI_NUM);
