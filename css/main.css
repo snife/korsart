@@ -19,9 +19,10 @@ section {width: 65%; margin: 50px auto auto auto;}
 footer {width: 100%; text-align: center; margin: 70px auto 40px auto; font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 14px;}
 footer a {color: #474747; text-decoration: none; transition: .3s;}
 i {transition: .3s;}
+p strong a {color: #d19166; transition: .3s;}
 
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
-.sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover, .tagFont:hover, .openFont:hover, .blogButton:hover, .postTagFont:hover, .shareLine:hover, .shareLine a:hover, .postHeader a:hover, .lightFont a:hover, .directionButton:hover, .directionButtonFont:hover {color: #e0c1ac;}
+.sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover, .tagFont:hover, .openFont:hover, .blogButton:hover, .postTagFont:hover, .shareLine:hover, .shareLine a:hover, .postHeader a:hover, .lightFont a:hover, .directionButton:hover, .directionButtonFont:hover, p strong a:hover {color: #e0c1ac;}
 .like:hover, .lightFont .like:hover {color: #b21c1c;}
 #instafeed a img:hover {opacity: .7;}
 #reviewSubmit:hover, #messageSubmit:hover, #commentSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
@@ -65,7 +66,8 @@ i {transition: .3s;}
 .sliderLinkSection {width: 50%; float: left; text-align: center; padding-top: 10%;}
 .sliderLinkFont {font-family: 'Playfair Display', serif; font-size: 46px; text-transform: uppercase; letter-spacing: 0.05em; color: #fff; transition: .3s;}
 .bigSection {width: 95%; margin: 50px auto auto auto;}
-.sectionHeader {width: 100%; text-align: center;}
+.sectionHeader {width: 100%; text-align: center; color: #4c4c4c;}
+.sectionHeader a, .sectionHeader a i {color: #4c4c4c;}
 .line {width: 10%; height: 1px; display: inline-block; vertical-align: middle; background: url(/img/system/blackDot.png) repeat-x;}
 .blogLine {width: 5%; height: 1px; display: inline-block; vertical-align: middle; background: url(/img/system/greyDot.png) repeat-x;}
 .sectionName {padding-left: 10px; padding-right: 10px; text-transform: uppercase; color: #262626; font-family: 'Didact Gothic', sans-serif; font-size: 24px; letter-spacing: 4px; display: inline-block;}

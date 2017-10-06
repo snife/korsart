@@ -16,7 +16,7 @@ if(!empty($category)) {
 	$subcategory = $subcategoryResult->fetch_assoc();
 
 	if(!empty($subcategory)) {
-		header("Location: ../".$subcategory['sef_link']);
+		header("Location: ../wedding/".$subcategory['sef_link']);
 	} else {
 		header("Location: ../");
 	}

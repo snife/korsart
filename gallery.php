@@ -13,7 +13,12 @@ include("layouts/footer.php");
 
 /* SEF-Links Processor */
 
-$address = substr($_SERVER['REQUEST_URI'], 1);
+if(substr($_SERVER['REQUEST_URI'], 1, 5) == "blog/") {
+	$address = substr($_SERVER['REQUEST_URI'], 6);
+} else {
+	$url = explode("/", substr($_SERVER['REQUEST_URI'], 1));
+	$address = $url[1];
+}
 
 $linkCheckResult = $mysqli->query("SELECT * FROM subcategories WHERE sef_link = '" . $address . "'");
 $linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
@@ -162,10 +167,10 @@ if ($linkCheck[0] > 0) {
 	?>
 
 	<?php
-		if($type != "tag") {
-			echo showMenu(null, $categories, $settings);
-		} else {
+		if($type != "post") {
 			echo showMenu_2ndLevel(null, $categories, $settings);
+		} else {
+			echo showMenu_3rdLevel(null, $categories, $settings);
 		}
 	?>
 
@@ -268,18 +273,18 @@ if ($linkCheck[0] > 0) {
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'><a href='/".$post['sef_link']."'>".$post['name']."</a></div>
+					<div class='postHeader'><a href='/blog/".$post['sef_link']."'>".$post['name']."</a></div>
 					<br /><br />
 					<div class='blogDescription'><p>".$post['description']."</p></div>
 					<img src='/img/photos/blog/main/".$post['photo']."' class='blogMainPhoto' />
-					<div class='sectionHeader'><a href='/".$post['sef_link']."'><span class='openFont'>Смотреть далее <i class='fa fa-angle-double-right' aria-hidden='true'></i></span></a></div>
+					<div class='sectionHeader'><a href='/blog/".$post['sef_link']."'><span class='openFont'>Смотреть далее <i class='fa fa-angle-double-right' aria-hidden='true'></i></span></a></div>
 					<br /><br />
 					<div class='separator'></div>
 					<br />
 					<div class='sectionHeader'>
 						<div class='blogButtons'>
 							<div class='shareButtonBlock'><span id='like".$post['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$post['id']."\")'";} echo "></i> <span id='likesCount".$post['id']."' class='likesCount'>".$likes."</span></span></div>
-							<div class='shareButtonBlock'><a href='/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a></div>
+							<div class='shareButtonBlock'><a href='/blog/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a></div>
 							<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'><i class='fa fa-share-square-o' aria-hidden='true'></i></div>
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
@@ -396,7 +401,7 @@ if ($linkCheck[0] > 0) {
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'><a href='/".$gallery['sef_link']."'>".$gallery['name']."</a></div>
+					<div class='postHeader'><a href='/blog/".$gallery['sef_link']."'>".$gallery['name']."</a></div>
 					<br /><br />
 					<div class='blogDescription'><p>".$gallery['description']."</p></div>
 					<img src='/img/photos/blog/main/".$gallery['photo']."' class='blogMainPhoto' />
@@ -459,7 +464,7 @@ if ($linkCheck[0] > 0) {
 			}
 
 			if($prevResult->num_rows > 0) {
-		echo "<a href='/".$prev['sef_link']."' style='color: #4c4c4c;' onmouseover='fontColor(\"prevIcon\", \"prevText\", 1)' onmouseout = 'fontColor(\"prevIcon\", \"prevText\", 0)'><i class='fa fa-angle-double-left' aria-hidden='true' id='prevIcon'></i> <span class='directionButton' id='prevText'>Назад</span></a>";
+		echo "<a href='/blog/".$prev['sef_link']."' style='color: #4c4c4c;' onmouseover='fontColor(\"prevIcon\", \"prevText\", 1)' onmouseout = 'fontColor(\"prevIcon\", \"prevText\", 0)'><i class='fa fa-angle-double-left' aria-hidden='true' id='prevIcon'></i> <span class='directionButton' id='prevText'>Назад</span></a>";
 
 				if($nextResult->num_rows > 0) {
 					echo "&nbsp;&nbsp; <span class='lightFont'>|</span> &nbsp;&nbsp;";
@@ -467,7 +472,7 @@ if ($linkCheck[0] > 0) {
 			}
 
 			if($nextResult->num_rows > 0) {
-			echo "<a href='/".$next['sef_link']."' onmouseover='fontColor(\"nextIcon\", \"nextText\", 1)' onmouseout = 'fontColor(\"nextIcon\", \"nextText\", 0)'><span class='directionButton' id='nextText'>Вперед</span> <i class='fa fa-angle-double-right' aria-hidden='true' id='nextIcon'></i></a>";
+			echo "<a href='/blog/".$next['sef_link']."' onmouseover='fontColor(\"nextIcon\", \"nextText\", 1)' onmouseout = 'fontColor(\"nextIcon\", \"nextText\", 0)'><span class='directionButton' id='nextText'>Вперед</span> <i class='fa fa-angle-double-right' aria-hidden='true' id='nextIcon'></i></a>";
 			}
 
 			echo "
@@ -580,18 +585,18 @@ if ($linkCheck[0] > 0) {
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'><a href='/".$post['sef_link']."'>".$post['name']."</a></div>
+					<div class='postHeader'><a href='/blog/".$post['sef_link']."'>".$post['name']."</a></div>
 					<br /><br />
 					<div class='blogDescription'><p>".$post['description']."</p></div>
 					<img src='/img/photos/blog/main/".$post['photo']."' class='blogMainPhoto' />
-					<div class='sectionHeader'><a href='/".$post['sef_link']."'><span class='openFont'>Смотреть далее <i class='fa fa-angle-double-right' aria-hidden='true'></i></span></a></div>
+					<div class='sectionHeader'><a href='/blog/".$post['sef_link']."'><span class='openFont'>Смотреть далее <i class='fa fa-angle-double-right' aria-hidden='true'></i></span></a></div>
 					<br /><br />
 					<div class='separator'></div>
 					<br />
 					<div class='sectionHeader'>
 						<div class='blogButtons'>
 							<div class='shareButtonBlock'><span id='like".$post['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$post['id']."\")'";} echo "></i> <span id='likesCount".$post['id']."' class='likesCount'>".$likes."</span></span></div>
-							<div class='shareButtonBlock'><a href='/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a></div>
+							<div class='shareButtonBlock'><a href='/blog/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a></div>
 							<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'><i class='fa fa-share-square-o' aria-hidden='true'></i></div>
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>

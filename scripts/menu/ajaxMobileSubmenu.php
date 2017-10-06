@@ -21,7 +21,10 @@ if($idCheck[0] > 0) {
 	}
 
 	while($subcategory = $subcategoryResult->fetch_assoc()) {
-		echo "<div class='mobileSubmenuPoint'><a href='/".$subcategory['sef_link']."'><span class='submenuFont'>".$subcategory['name']."</span></a></div>";
+		$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$subcategory['category_id']."'");
+		$category = $categoryResult->fetch_assoc();
+
+		echo "<div class='mobileSubmenuPoint'><a href='/".$category['sef_link']."/".$subcategory['sef_link']."'><span class='submenuFont'>".$subcategory['name']."</span></a></div>";
 	}
 
 	echo "<div style='margin-top: 20px;'></div>";
