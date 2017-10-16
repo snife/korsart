@@ -2,6 +2,13 @@
  * Created by jeyfost on 23.08.2017.
  */
 
+$(window).on("load", function () {
+	if($('*').is('#shareButtonsContainer')) {
+		$('#shareButtonsContainer').width(parseInt($('.likeContainer').width() + $('.social').width() + 1));
+		$('#shareButtonsContainer').css('margin', '0 auto');
+	}
+});
+
 function likePost(id) {
 	$.ajax({
 		type: "POST",

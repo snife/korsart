@@ -289,15 +289,9 @@ if ($linkCheck[0] > 0) {
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'><i class='fa fa-share-square-o' aria-hidden='true'></i></div>
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
 									<div class='shareBlock' id='shareBlock".$post['id']."'>
-										<div class='shareLine'><div class='shareIcon'><a href='https://vk.com/share.php?url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&title=".$post['name']."&description=".$post['description']."&image=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."&noparse=true' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"vk\", 1)' onmouseout='shareButtonColor(\"vk\", 0)'><i class='fa fa-vk' aria-hidden='true' title='Поделиться в VK' id='vk-icon'></i></div><div class='shareName' id='vk-text'>VK</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=".$post['name']."&p%5Bsummary%5D=".$post['description']."&p%5Burl%5D=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&p%5Bimages%5D%5B0%5D=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"facebook\", 1)' onmouseout='shareButtonColor(\"facebook\", 0)'><i class='fa fa-facebook' aria-hidden='true' title='Поделиться в Facebook' id='facebook-icon'></i></div><div class='shareName' id='facebook-text'>Facebook</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=".$post['name']."&st._surl=".$_SERVER['HTTP_HOST']."/".$post['photo']."' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"odnoklassniki\", 1)' onmouseout='shareButtonColor(\"odnoklassniki\", 0)'><i class='fa fa-odnoklassniki' aria-hidden='true' title='Поделиться в Одноклассниках' id='odnoklassniki-icon'></i></div><div class='shareName' id='odnoklassniki-text'>Odnoklassniki</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fkorsart.by%2F_display%2F&text=".$post['name']."&url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."' target='_blank' onclick='return Share.me(this)' onmouseover='shareButtonColor(\"twitter\", 1)' onmouseout='shareButtonColor(\"twitter\", 0)'><i class='fa fa-twitter' aria-hidden='true' title='Поделиться в Twitter' id='twitter-icon'></i></div><div class='shareName' id='twitter-text'>Twitter</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://connect.mail.ru/share?url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&title=".$post['name']."&description=".$post['description']."&imageurl=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"mail-ru\", 1)' onmouseout='shareButtonColor(\"mail-ru\", 0)'><i class='fa fa-at' aria-hidden='true' title='Поделиться в Mail.ru' id='mail-ru-icon'></i></div><div class='shareName' id='mail-ru-text'>Mail.ru</div></a></div>	
+										<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
+										<script src='//yastatic.net/share2/share.js'></script>
+										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='korsart.by/img/photos/blog/main/".$post['photo']."'></div>
 									</div>
 								</div>
 							</div>
@@ -430,18 +424,19 @@ if ($linkCheck[0] > 0) {
 					<br /><br /><br />
 					<div class='separator'></div>
 					<br /><br />
-					<div class='sectionHeader lightFont'>
-						<span id='like".$gallery['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$gallery['id']."\")'";} echo "></i> <span id='likesCount".$gallery['id']."' class='likesCount'>".$likes."</span></span>
-						&nbsp;&nbsp; | &nbsp;&nbsp;
-						<a href='https://vk.com/share.php?url=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."&title=".$gallery['name']."&description=".$gallery['description']."&image=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$gallery['photo']."&noparse=true' target='_blank' onclick='return Share.me(this);'><i class='fa fa-vk' aria-hidden='true' title='Поделиться в VK'></i></a>
-						&nbsp;&nbsp; | &nbsp;&nbsp;
-						<a href='https://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=".$gallery['name']."&p%5Bsummary%5D=".$gallery['description']."&p%5Burl%5D=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."&p%5Bimages%5D%5B0%5D=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$gallery['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-facebook' aria-hidden='true' title='Поделиться в Facebook'></i></a>
-						&nbsp;&nbsp; | &nbsp;&nbsp;
-						<a href='https://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=".$gallery['name']."&st._surl=".$_SERVER['HTTP_HOST']."/".$gallery['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-odnoklassniki' aria-hidden='true' title='Поделиться в Одноклассниках'></i></a>
-						&nbsp;&nbsp; | &nbsp;&nbsp;
-						<a href='https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fkorsart.by%2F_display%2F&text=".$gallery['name']."&url=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."' target='_blank' onclick='return Share.me(this)'><i class='fa fa-twitter' aria-hidden='true' title='Поделиться в Twitter'></i></a>
-						&nbsp;&nbsp; | &nbsp;&nbsp;
-						<a href='https://connect.mail.ru/share?url=".$_SERVER['HTTP_HOST']."/".$gallery['sef_link']."&title=".$gallery['name']."&description=".$gallery['description']."&imageurl=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$gallery['photo']."' target='_blank' onclick='return Share.me(this);'><i class='fa fa-at' aria-hidden='true' title='Поделиться в Mail.ru'></i></a>
+					<div class='sectionHeader lightFont' style='text-align: center;'>
+						<div id='shareButtonsContainer'>
+							<div class='likeContainer'>
+								<span id='like".$gallery['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$gallery['id']."\")'";} echo "></i> <span id='likesCount".$gallery['id']."' class='likesCount'>".$likes."</span></span>
+								&nbsp;&nbsp; | &nbsp;&nbsp;
+							</div>
+							<div class='social'>
+								<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
+								<script src='//yastatic.net/share2/share.js'></script>
+								<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram' data-size='s' data-title='".$gallery['name']."' data-url='https://korsart.by/blog/".$gallery['sef_link']."' data-image='korsart.by/img/photos/blog/main/".$gallery['photo']."'></div>
+							</div>
+							<div style='clear: both;'></div>
+						</div>
 					</div>
 					<br /><br />
 					<div class='sectionHeader'>
@@ -601,15 +596,9 @@ if ($linkCheck[0] > 0) {
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'><i class='fa fa-share-square-o' aria-hidden='true'></i></div>
 								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
 									<div class='shareBlock' id='shareBlock".$post['id']."'>
-										<div class='shareLine'><div class='shareIcon'><a href='https://vk.com/share.php?url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&title=".$post['name']."&description=".$post['description']."&image=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."&noparse=true' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"vk\", 1)' onmouseout='shareButtonColor(\"vk\", 0)'><i class='fa fa-vk' aria-hidden='true' title='Поделиться в VK' id='vk-icon'></i></div><div class='shareName' id='vk-text'>VK</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://www.facebook.com/sharer/sharer.php?s=100&p%5Btitle%5D=".$post['name']."&p%5Bsummary%5D=".$post['description']."&p%5Burl%5D=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&p%5Bimages%5D%5B0%5D=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"facebook\", 1)' onmouseout='shareButtonColor(\"facebook\", 0)'><i class='fa fa-facebook' aria-hidden='true' title='Поделиться в Facebook' id='facebook-icon'></i></div><div class='shareName' id='facebook-text'>Facebook</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=".$post['name']."&st._surl=".$_SERVER['HTTP_HOST']."/".$post['photo']."' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"odnoklassniki\", 1)' onmouseout='shareButtonColor(\"odnoklassniki\", 0)'><i class='fa fa-odnoklassniki' aria-hidden='true' title='Поделиться в Одноклассниках' id='odnoklassniki-icon'></i></div><div class='shareName' id='odnoklassniki-text'>Odnoklassniki</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fkorsart.by%2F_display%2F&text=".$post['name']."&url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."' target='_blank' onclick='return Share.me(this)' onmouseover='shareButtonColor(\"twitter\", 1)' onmouseout='shareButtonColor(\"twitter\", 0)'><i class='fa fa-twitter' aria-hidden='true' title='Поделиться в Twitter' id='twitter-icon'></i></div><div class='shareName' id='twitter-text'>Twitter</div></a></div>
-										<div style='clear: both;'></div>
-										<div class='shareLine'><div class='shareIcon'><a href='https://connect.mail.ru/share?url=".$_SERVER['HTTP_HOST']."/".$post['sef_link']."&title=".$post['name']."&description=".$post['description']."&imageurl=".$_SERVER['HTTP_HOST']."/img/photos/blog/main/".$post['photo']."' target='_blank' onclick='return Share.me(this);' onmouseover='shareButtonColor(\"mail-ru\", 1)' onmouseout='shareButtonColor(\"mail-ru\", 0)'><i class='fa fa-at' aria-hidden='true' title='Поделиться в Mail.ru' id='mail-ru-icon'></i></div><div class='shareName' id='mail-ru-text'>Mail.ru</div></a></div>	
+										<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
+										<script src='//yastatic.net/share2/share.js'></script>
+										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='korsart.by/img/photos/blog/main/".$post['photo']."'></div>
 									</div>
 								</div>
 							</div>

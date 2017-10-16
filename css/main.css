@@ -135,3 +135,5 @@ p strong a {color: #d19166; transition: .3s;}
 .photoDescription {text-align: left; width: 100%;}
 .hiddenText {width: 100%; padding: 0; margin: 0; opacity: 0;}
 .hiddenText h3 {font-size: 5px !important; color: #fff;}
+.social {float: left;}
+.likeContainer {float: left;}
