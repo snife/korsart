@@ -291,7 +291,7 @@ if ($linkCheck[0] > 0) {
 									<div class='shareBlock' id='shareBlock".$post['id']."'>
 										<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
 										<script src='//yastatic.net/share2/share.js'></script>
-										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$post['photo']."' data-direction='vertical'></div>
+										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,gplus,tumblr' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$post['photo']."' data-direction='vertical'></div>
 									</div>
 								</div>
 							</div>
@@ -433,7 +433,7 @@ if ($linkCheck[0] > 0) {
 							<div class='social'>
 								<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
 								<script src='//yastatic.net/share2/share.js'></script>
-								<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram' data-size='s' data-title='".$gallery['name']."' data-url='https://korsart.by/blog/".$gallery['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$gallery['photo']."'></div>
+								<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,gplus,tumblr' data-size='s' data-title='".$gallery['name']."' data-url='https://korsart.by/blog/".$gallery['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$gallery['photo']."'></div>
 							</div>
 							<div style='clear: both;'></div>
 						</div>
@@ -598,7 +598,7 @@ if ($linkCheck[0] > 0) {
 									<div class='shareBlock' id='shareBlock".$post['id']."'>
 										<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
 										<script src='//yastatic.net/share2/share.js'></script>
-										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,telegram' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$post['photo']."' data-direction='vertical'></div>
+										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,gplus,tumblr' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$post['photo']."' data-direction='vertical'></div>
 									</div>
 								</div>
 							</div>
