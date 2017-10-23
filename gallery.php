@@ -87,10 +87,6 @@ if ($linkCheck[0] > 0) {
 	<?php
 		$settingsResult = $mysqli->query("SELECT * FROM settings WHERE id = '1'");
 		$settings = $settingsResult->fetch_assoc();
-
-		if($type == "post") {
-			$gallery['title'] = $gallery['name'];
-		}
 	?>
 
 	<meta charset="utf-8" />
