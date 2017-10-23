@@ -21,8 +21,16 @@ if($idCheck[0] > 0) {
 	}
 
 	while($subcategory = $subcategoryResult->fetch_assoc()) {
+		if(empty($subcategory['category_id'])) {
+			$subcategory['category_id'] = BLOG_ID;
+		}
+
 		$categoryResult = $mysqli->query("SELECT * FROM categories WHERE id = '".$subcategory['category_id']."'");
 		$category = $categoryResult->fetch_assoc();
+
+		if(empty($category['sef_link'])) {
+			$category['sef_link'] = "blog";
+		}
 
 		echo "<div class='mobileSubmenuPoint'><a href='/".$category['sef_link']."/".$subcategory['sef_link']."'><span class='submenuFont'>".$subcategory['name']."</span></a></div>";
 	}

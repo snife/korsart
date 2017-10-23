@@ -120,6 +120,7 @@ if ($linkCheck[0] > 0) {
 	<script type="text/javascript" src="/js/notify.js"></script>
 	<script type="text/javascript" src="/js/share.js"></script>
 	<script type="text/javascript" src="/js/gallery.js"></script>
+	<script type="text/javascript" src="/js/ya.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
