@@ -421,8 +421,8 @@
 			<script type="text/javascript">
 				var userFeed = new Instafeed({
 					get: 'user',
-					userId: '43983667',
-					accessToken: '43983667.1677ed0.cec95463957d46abb616e422d10b38be'
+					userId: <?= "'".INSTAGRAM_USER_ID."'" ?>,
+					accessToken: <?= "'".INSTAGRAM_ACCESS_TOKEN."'" ?>
 				});
 
 				userFeed.run();
