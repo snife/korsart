@@ -6,7 +6,7 @@
 }
 
 /* For menu */
-@media only screen and (max-width : 1099px) {
+@media only screen and (max-width : 1220px) {
     menu {display: none;}
     header {margin-bottom: 30px;}
 

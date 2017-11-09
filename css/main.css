@@ -30,7 +30,7 @@ p strong a {color: #d19166; transition: .3s;}
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
 #subMenu {background-color: transparent; display: inline-block; position: absolute; transition: .3s; z-index: 3;}
 #sliderLinks {position: absolute; top: 0; left: 0; width: 100%; z-index: 3;}
-#allReviewsButton {height: 50px; line-height: 50px; border: none; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; width: 480px; background-color: #457bdf; color: #fff; font-family: 'Lora', serif; font-size: 22px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: .3s;}
+#allReviewsButton, #servicesButton {height: 50px; line-height: 50px; border: none; -webkit-border-radius: 25px; -moz-border-radius: 25px; border-radius: 25px; width: 480px; background-color: #457bdf; color: #fff; font-family: 'Lora', serif; font-size: 22px; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: .3s;}
 #instafeed a img {transition: .3s; opacity: 1; width: 16%; margin-left: 1%;}
 #scroll {display: none; position: fixed; bottom: 20px; right: 30px; z-index: 99; cursor: pointer; color: #474747; transition: .3s;}
 #sideMenu {background-color: #fff; width: 300px; z-index: 3; position: absolute; right: 0; top: 0; display: none;}
