@@ -45,6 +45,13 @@ if ($linkCheck[0] > 0) {
 			$galleryResult = $mysqli->query("SELECT * FROM posts WHERE sef_link = '" . $address . "'");
 			$gallery = $galleryResult->fetch_assoc();
 
+			if(substr($_SERVER['REQUEST_URI'], 1, 5) == "blog/") {
+				$sefResult = $mysqli->query("SELECT sef_link FROM blog_subcategories WHERE id = '".$gallery['subcategory_id']."'");
+				$sef = $sefResult->fetch_array(MYSQLI_NUM);
+
+				header("Location: ../".$sef[0]."/".substr($_SERVER['REQUEST_URI'], 6));
+			}
+
 			$type = "post";
 		} else {
 			if(substr($_SERVER['REQUEST_URI'], 0, 5) == "/tag/") {
