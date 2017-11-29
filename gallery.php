@@ -49,7 +49,7 @@ if ($linkCheck[0] > 0) {
 				$sefResult = $mysqli->query("SELECT sef_link FROM blog_subcategories WHERE id = '".$gallery['subcategory_id']."'");
 				$sef = $sefResult->fetch_array(MYSQLI_NUM);
 
-				header("Location: ../".$sef[0]."/".substr($_SERVER['REQUEST_URI'], 6));
+				header("Location: ../blog/".$sef[0]."/".substr($_SERVER['REQUEST_URI'], 6));
 			}
 
 			$type = "post";
@@ -72,7 +72,38 @@ if ($linkCheck[0] > 0) {
 
 				$type = "tag";
 			} else {
-				header("Location: /");
+				if(substr($_SERVER['REQUEST_URI'], 1, 5) == "blog/") {
+					$url = explode("/", substr($_SERVER['REQUEST_URI'], 6));
+
+					$subcategoryCheckResult = $mysqli->query("SELECT COUNT(id) FROM blog_subcategories WHERE sef_link = '".$url[0]."'");
+					$subcategoryCheck = $subcategoryCheckResult->fetch_array(MYSQLI_NUM);
+
+					if($subcategoryCheck[0] > 0) {
+						$postCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE sef_link = '".$url[1]."'");
+						$postCheck = $postCheckResult->fetch_array(MYSQLI_NUM);
+
+						if($postCheck[0] > 0) {
+							$galleryResult = $mysqli->query("SELECT * FROM posts WHERE sef_link = '".$url[1]."'");
+							$gallery = $galleryResult->fetch_assoc();
+
+							$type = "post";
+						} else {
+							header("Location: /");
+						}
+					} else {
+						$postCheckResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE sef_link = '".$url[0]."'");
+						$postCheck = $postCheckResult->fetch_array(MYSQLI_NUM);
+
+						if($postCheck[0] > 0) {
+							$sefResult = $mysqli->query("SELECT subcategory_id FROM posts WHERE sef_link = '".$url[0]."'");
+							$sef = $sefResult->fetch_array(MYSQLI_NUM);
+
+							header("Location: ../blog/".$sef[0]."/".$url[0]);
+						}
+					}
+				} else {
+					header("Location: /");
+				}
 			}
 		}
 	}
