@@ -119,75 +119,50 @@ include("../layouts/footer.php");
 		</div>
 		<br />
 		<div class="sectionHeader" style="margin-top: 40px;">
-			<div class="serviceBlock">
-				<div class="servicePhotoBlock">
-					<img src="/img/system/services1.jpg" />
-				</div>
-				<div class="serviceTextBlock">
-					<div class="sectionHeader">
-						<span class="serviceFont">Тариф &laquo;Бюджетный&raquo;</span>
-					</div>
-					<br /><br />
-					<p>Данный тариф подходит для тех, у кого свадьба отличается от классического варианта (сборы - регистрация - прогулка - ресторан). Либо для тех, кто хочет сделать только красивую фотоисторию без официальной части.</p>
-					<div class="sectionHeader">
-						<div class="line"></div>
-					</div>
-					<ul>
-						<li>Фотосъёмка прогулки (до 2 часов);</li>
-						<li>100 фотографий;</li>
-						<li>Авторская обработка всех снимков;</li>
-						<li>Запись всей съёмки на электронный носитель (DVD-диск либо USB-flash);</li>
-						<li>Стоимость от 250 BYN</li>
-					</ul>
-				</div>
-				<div style="clear: both;"></div>
-			</div>
-			<div class="serviceBlock">
-				<div class="servicePhotoBlock">
-					<img src="/img/system/services2.jpg" />
-				</div>
-				<div class="serviceTextBlock">
-					<div class="sectionHeader">
-						<span class="serviceFont">Тариф &laquo;Стандарт&raquo;</span>
-					</div>
-					<br /><br />
-					<p>Годами проверенный тариф для большинства случаев. Он удачно подходит для целого дня съёмки (начиная от сборов невесты и до первого танца на банкете). Я делаю снимки самых важных моментов свадьбы, снимки с гостями и родителями. В то же время, молодожены не устают от внимания в свой праздник.</p>
-					<div class="sectionHeader">
-						<div class="line"></div>
-					</div>
-					<ul>
-						<li>Съёмка от сборов невесты до первого танца (банкет);</li>
-						<li>От 500 фотографий;</li>
-						<li>Авторская обработка всех снимков;</li>
-						<li>Запись всей съёмки на электронный носитель (DVD-диск либо USB-flash);</li>
-						<li>Стоимость от 750 BYN</li>
-					</ul>
-				</div>
-				<div style="clear: both;"></div>
-			</div>
-			<div class="serviceBlock">
-				<div class="servicePhotoBlock">
-					<img src="/img/system/services3.jpg" />
-				</div>
-				<div class="serviceTextBlock">
-					<div class="sectionHeader">
-						<span class="serviceFont">Фотосессия &laquo;Love Story&raquo;</span>
-					</div>
-					<br /><br />
-					<p>Её можно сочетать со свадебной фотографией, либо снимать отдельным сюжетом. Главное для меня - передать на фотографии ваши чувства, эмоции, настроение. Небольшая фотоистория в один день может надолго оставить в памяти приятные впечатления.</p>
-					<div class="sectionHeader">
-						<div class="line"></div>
-					</div>
-					<ul>
-						<li>Фотосъёмка (до 5 часов);</li>
-						<li>От 100 фотографий;</li>
-						<li>Авторская обработка всех снимков;</li>
-						<li>Запись всей съёмки на электронный носитель (DVD-диск либо USB-flash);</li>
-						<li>Стоимость от 350 BYN</li>
-					</ul>
-				</div>
-				<div style="clear: both;"></div>
-			</div>
+			<?php
+				$serviceResult = $mysqli->query("SELECT * FROM services ORDER BY id");
+				while($service = $serviceResult->fetch_assoc()) {
+					echo "
+						<div class='serviceBlock'>
+							<div class='servicePhotoBlock'>
+								<img src='/img/services/".$service['photo']."' />
+							</div>
+							<div class='serviceTextBlock'>
+								<div class='sectionHeader'>
+									<span class='serviceFont'>".$service['name']."</span>
+								</div>
+								<br /><br />
+								<p>".$service['description']."</p>
+								<div class='sectionHeader'>
+									<div class='line'></div>
+								</div>
+								<ul>
+					";
+
+					$serviceCountResult = $mysqli->query("SELECT COUNT(id) FROM services_list WHERE service_id = '".$service['id']."'");
+					$serviceCount = $serviceCountResult->fetch_array(MYSQLI_NUM);
+
+					$i = 0;
+
+					$serviceListResult = $mysqli->query("SELECT * FROM services_list WHERE service_id = '".$service['id']."' ORDER BY id");
+					while($serviceList = $serviceListResult->fetch_assoc()) {
+						$i++;
+
+						if($i != $serviceCount[0]) {
+							echo "<li>".$serviceList['text']."</li>";
+						} else {
+							echo "<li><b>".$serviceList['text']."</b></li>";
+						}
+					}
+
+					echo "
+								</ul>
+							</div>
+							<div style='clear: both;'></div>
+						</div>
+					";
+				}
+			?>
 		</div>
 	</section>
 

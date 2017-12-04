@@ -36,6 +36,16 @@ function buttonHover(id, action) {
 	}
 }
 
+function buttonHoverRed(id, action) {
+	if(action === 1) {
+		document.getElementById(id).style.backgroundColor = "#d33434";
+		document.getElementById(id).style.color = "#fff";
+	} else {
+		document.getElementById(id).style.backgroundColor = "#dedede";
+		document.getElementById(id).style.color = "#4c4c4c";
+	}
+}
+
 function exit() {
 	$.ajax({
 		type: "POST",

@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: jeyfost
- * Date: 11.08.2017
- * Time: 19:40
+ * Date: 10.11.2017
+ * Time: 11:41
  */
 
 session_start();
@@ -11,12 +11,6 @@ include("../../scripts/connect.php");
 
 if($_SESSION['userID'] != 1) {
 	header("Location: ../../");
-}
-
-if(!empty($_REQUEST['id'])) {
-	if($_REQUEST['id'] != 1 and $_REQUEST['id'] != 2) {
-		header("Location: index.php");
-	}
 }
 
 ?>
@@ -34,7 +28,7 @@ if(!empty($_REQUEST['id'])) {
 
 	<meta charset="utf-8" />
 
-	<title>Панель администрирования | Слайдеры</title>
+	<title>Панель администрирования | Добавление услуг</title>
 
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
@@ -59,7 +53,7 @@ if(!empty($_REQUEST['id'])) {
 	<script type="text/javascript" src="/plugins/lightview/js/lightview/lightview.js"></script>
 	<script type="text/javascript" src="/js/admin/common.js"></script>
 	<script type="text/javascript" src="/js/notify.js"></script>
-	<script type="text/javascript" src="/js/admin/sliders/index.js"></script>
+	<script type="text/javascript" src="/js/admin/services/add.js"></script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -97,7 +91,7 @@ if(!empty($_REQUEST['id'])) {
 			</div>
 		</a>
 		<a href="/admin/sliders/">
-			<div class="menuPoint active">
+			<div class="menuPoint">
 				<i class="fa fa-picture-o" aria-hidden="true"></i><span> Слайдеры</span>
 			</div>
 		</a>
@@ -107,7 +101,7 @@ if(!empty($_REQUEST['id'])) {
 			</div>
 		</a>
 		<a href="/admin/services/">
-			<div class="menuPoint">
+			<div class="menuPoint active">
 				<i class="fa fa-list-ul" aria-hidden="true"></i><span> Услуги</span>
 			</div>
 		</a>
@@ -129,58 +123,28 @@ if(!empty($_REQUEST['id'])) {
 	</div>
 
 	<div id="content">
-		<span class="headerFont">Работа с фотографиями в слайдерах</span>
+		<span class="headerFont">Добавление услуг</span>
 		<br /><br />
-		<form method="post" id="sliderForm">
-			<label for="sliderSelect"></label>
-			<select id="sliderSelect" name="page" onchange="window.location = '?id=' + this.options[this.selectedIndex].value">
-				<option value="">- Выберите страницу -</option>
-				<option value="1" <?php if($_REQUEST['id'] == 1) {echo "selected";} ?>>Первый слайдер</option>
-				<option value="2" <?php if($_REQUEST['id'] == 2) {echo "selected";} ?>>Второй слайдер</option>
-			</select>
-			<?php
-				if(!empty($_REQUEST['id'])) {
-					switch ($_REQUEST['id']) {
-						case 1:
-							$tableName = "main_slider";
-							break;
-						case 2:
-							$tableName = "gallery_slider";
-							break;
-						default:
-							break;
-					}
-
-					echo "
-						<br /><br />
-						<div id='sliderPhotosContainer'>
-					";
-
-					$sliderResult = $mysqli->query("SELECT * FROM ".$tableName." ORDER BY id");
-					while($slider = $sliderResult->fetch_assoc()) {
-						echo "
-							<div class='sliderPhotoPreview'>
-								<a href='/img/photos/".$tableName."/".$slider['photo']."' class='lightview' data-lightview-options='skin: \"light\"' data-lightview-group='slider'><img src='/img/photos/".$tableName."/".$slider['photo']."' /></a>
-								<br />
-								<span onclick='deletePhoto(\"".$slider['id']."\", \"".$tableName."\")'>Удалить</span>
-							</div>
-						";
-					}
-
-					echo "
-							</div>
-						</form>
-						<br /><br />
-						<h3>Добавление фотографий</h3>
-						<form method='post' id='addForm' enctype='multipart/form-data'>
-						<label for='photosInput'>Выберите фотграфии:</label>
-						<br />
-						<input type='file' class='file' id='sliderPhotosInput' name='sliderPhotos[]' multiple />
-						<br /><br />
-						<input type='button' class='button' id='sliderPhotosSubmit' value='Добавить' onmouseover='buttonHover(\"sliderPhotosSubmit\", 1)' onmouseout='buttonHover(\"sliderPhotosSubmit\", 0)' onclick='add(\"".$tableName."\")' />
-					";
-				}
-			?>
+		<form method="post" id="serviceForm">
+			<input type='button' id='editServiceSubmit' value='Редактирование услуг' onmouseover='buttonHover("editServiceSubmit", 1)' onmouseout='buttonHover("editServiceSubmit", 0)' onclick='window.location.href = "/admin/services/index.php"' class='button' />
+			<br /><br />
+			<label for='servicePhotoInput'>Фотография (500x500):</label>
+			<br />
+			<input type='file' class='file' id='servicePhotoInput' name='servicePhoto' />
+			<br /><br />
+			<label for='serviceNameInput'>Назване услуги:</label>
+			<br />
+			<input type='text' id='serviceNameInput' name='serviceName' />
+			<br /><br />
+			<label for='serviceDescriptionInput'>Описание:</label>
+			<br />
+			<textarea id='serviceDescriptionInput' name='serviceDescription' onkeydown='textAreaHeight(this)'></textarea>
+			<br /><br />
+			<label for='serviceListInput'>Пункты услуги (через запятую):<br /><span style='font-size: 14px; font-weight: bold;'>Последний пункт будет выделен жирным шрифтом</span></label>
+			<br />
+			<textarea id='serviceListInput' name='serviceList' onkeydown='textAreaHeight(this)'></textarea>
+			<br /><br />
+			<input type='button' id='addServiceSubmit' value='Добавить' onmouseover='buttonHover("addServiceSubmit", 1)' onmouseout='buttonHover("addServiceSubmit", 0)' onclick='addService()' class='button' />
 		</form>
 	</div>
 

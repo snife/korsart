@@ -98,6 +98,11 @@ if($_SESSION['userID'] != 1) {
 				<i class="fa fa-commenting" aria-hidden="true"></i><span> Отзывы</span>
 			</div>
 		</a>
+		<a href="/admin/services/">
+			<div class="menuPoint">
+				<i class="fa fa-list-ul" aria-hidden="true"></i><span> Услуги</span>
+			</div>
+		</a>
 		<a href="/admin/galleries/">
 			<div class="menuPoint">
 				<i class="fa fa-camera" aria-hidden="true"></i><span> Галереи</span>

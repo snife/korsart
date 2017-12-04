@@ -60,3 +60,4 @@ textarea {width: 300px; padding: 10px; min-height: 20px; font-style: italic; bor
 .remodal textarea {width: 80%; padding: 5px 10px; min-height: 150px; resize: none; border: 1px solid #a9a9a9; font-family: "Didact Gothic", sans-serif; font-size: 12px; letter-spacing: 2px;}
 .remodal h1 {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; letter-spacing: 2px;}
 .remodal {font-family: "Didact Gothic", sans-serif;}
+.relative {position: relative; float: left;}
