@@ -58,6 +58,8 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="/js/notify.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/contacts.js"></script>
+	<script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
+	<script type="text/javascript" src="/js/ya.js"></script>
 
 
 	<style>
@@ -131,7 +133,7 @@ include("../layouts/footer.php");
 		<div class="third">
 			<span>Соц. сети</span>
 			<br />
-			<a href="https://www.instagram.com/2korsart/" target="_blank"><strong>instagram</strong></a>
+			<a href="https://www.instagram.com/korsart_wedding/" target="_blank"><strong>instagram</strong></a>
 		</div>
 	</section>
 

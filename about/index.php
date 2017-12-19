@@ -57,6 +57,8 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/instafeed.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
+	<script type="text/javascript" src="/js/ya.js"></script>
 
 
 	<style>
@@ -155,7 +157,7 @@ include("../layouts/footer.php");
 		<div class="sectionHeader">
 			<div class="sectionName">Следите за моими работами в Instagram</div>
 			<br />
-			<a href="https://www.instagram.com/2korsart/"><span class="smallFont">@2korsart</span></a>
+			<a href="https://www.instagram.com/korsart_wedding/"><span class="smallFont">@korsart_wedding</span></a>
 		</div>
 		<br />
 		<div class="sectionHeader" style="margin-top: 40px;">
@@ -177,7 +179,7 @@ include("../layouts/footer.php");
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
+	
 
 </body>
 

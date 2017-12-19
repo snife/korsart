@@ -11,7 +11,7 @@ function showFooter() {
 		<footer>
 			<a href='https://www.facebook.com/korsart' target='_blank'><i class='fa fa-facebook-square' aria-hidden='true'></i></a>
 			&nbsp;&nbsp;&nbsp;
-			<a href='https://www.instagram.com/2korsart/' target='_blank'><i class='fa fa-instagram' aria-hidden='true'></i></a>
+			<a href='https://www.instagram.com/korsart_wedding/' target='_blank'><i class='fa fa-instagram' aria-hidden='true'></i></a>
 			&nbsp;&nbsp;&nbsp;
 			<a href='https://vk.com/korsart' target='_blank'><i class='fa fa-vk' aria-hidden='true'></i></a>
 			<br /><br />
