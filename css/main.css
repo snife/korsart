@@ -92,7 +92,7 @@ p strong a {color: #d19166; transition: .3s;}
 .remodal h1 {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; letter-spacing: 2px;}
 .remodal {font-family: "Didact Gothic", sans-serif;}
 .notifyjs-corner, .notifyjs-wrapper {z-index: 9999999 !important;}
-.reviewContainer {width: 100%; margin-bottom: 120px;}
+.reviewContainer {width: 100%; margin-bottom: 50px;}
 .reviewPhoto {display: inline-block; width: 30%; text-align: center; vertical-align: top;}
 .review {display: inline-block; width: 68%;}
 .reviewPhoto img {width: 100%; max-width: 300px !important;}
