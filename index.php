@@ -111,7 +111,7 @@
 		?>
 	</div>
 
-	<br /><br />
+	<br />
 	<section class="descriptionFont">
 		<div style="width: 50%; position: relative; float: left; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">Свадебный фотограф в Минске</div>
 		<div style="width: 50%; position: relative; float: right; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">ВДОХНОВЕНИЕ ДЛЯ СВАДЬБЫ</div>
@@ -119,7 +119,7 @@
 		<p style="text-align: justify;">Легкость общения во время фотосессии, лаконичные фотографии: я помогу провести свадебный день в комфорте. Для меня главное - это передать атмосферу праздника и показать вашу естественную красоту, ваши чувства и эмоции.</p>
 	</section>
 
-	<br /><br />
+	<br />
 	<div id="gallery-slider">
 		<?php
 			$i = 0;
@@ -155,13 +155,13 @@
 		</div>
 	</div>
 
-	<br /><br />
+	<br />
 	<section class="descriptionFont">
 		<div style="width: 100%; color: #474747; font-size: 16px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 1px; text-align: right;">Давайте сделаем красивую историю о вас!</div>
 		<p style="text-align: justify;">Снимки "с настроением" уникальны. Они не выходят из моды, их всегда интересно смотреть. Спустя годы их не стыдно показать своим детям и внукам. Это творчество и документалистика в чистом виде. Всё это - ваша свадебная фотосессия.</p>
 	</section>
 
-	<br /><br />
+	<br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -202,7 +202,7 @@
 		</div>
 	</section>
 
-	<br /><br />
+	<br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -286,14 +286,14 @@
 		</div>
 	</section>
 
-	<br /><br />
+	<br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<a href="/services"><input type="button" id="servicesButton" value="Услуги и цены" onmouseover="servicesButton(1)" onmouseout="servicesButton(0)" /></a>
 		</div>
 	</section>
 
-	<br /><br /><br />
+	<br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -310,7 +310,7 @@
 					<div class="sectionHeader">
 						<span class="serviceFont">Обо мне</span>
 					</div>
-					<br /><br />
+					<br />
 					<p>Меня зовут Александр, и мне нравится фотографировать. Нравится замечать интересные мгновения, общаться с людьми, путешествовать, делиться своими мыслями на снимках и не только.</p>
 				</div>
 				<br />
@@ -318,7 +318,7 @@
 					<div class="sectionHeader">
 						<span class="serviceFont">Контакты</span>
 					</div>
-					<br /><br />
+					<br />
 					<p>Я всегда открыт новым предложениям и неожиданным путешествиям.</p>
 					<ul>
 						<li>&nbsp;<i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;GSM +375 (29) 606 35 91</li>
@@ -331,16 +331,6 @@
 		</div>
 	</section>
 
-	<div class="hiddenText">
-		<?php
-			$textResult = $mysqli->query("SELECT text FROM text WHERE id = 1");
-			$text = $textResult->fetch_array(MYSQLI_NUM);
-
-			echo "<h3>".$text[0]."</h3>";
-		?>
-	</div>
-
-	<br /><br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="sectionName">Следите за моими работами в Instagram</div>
