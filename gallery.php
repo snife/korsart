@@ -117,7 +117,7 @@ if ($linkCheck[0] > 0) {
 <!--[if IE 7]><html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8]><html lang="ru" class="lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="ru">
+<html lang="ru" prefix="og: http://ogp.me/ns#">
 <!--<![endif]-->
 
 <head>
@@ -130,6 +130,13 @@ if ($linkCheck[0] > 0) {
 	<meta charset="utf-8" />
 
 	<title><?= $gallery['title'] ?></title>
+	<meta property="og:title" content="<?= $gallery['title'] ?>" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://korsart.by/<?=$url[0].'/'.$address?>" />
+	<meta property="og:image" content="https://korsart.by/img/photos/<?php
+	if($type == "gallery") {echo "gallery"; }
+	else {echo "blog";}
+	?>/main/<?=$gallery['photo']?>" />
 
 	<meta name="description" content="<?= $gallery['description'] ?>" />
 	<meta name="keywords" content="<?= $gallery['keywords'] ?>" />
@@ -237,7 +244,7 @@ if ($linkCheck[0] > 0) {
 		if($type == "blog") {
 			/* Правило отображения контента для блога */
 			echo "
-				<br /><br />
+				
 				<section style='text-align: center;'>
 			";
 
@@ -270,7 +277,8 @@ if ($linkCheck[0] > 0) {
 			sort($tags, SORT_STRING);
 			$i = 0;
 
-			foreach ($tags as $tag) {
+//Отображение облока тегов в категориях блога
+		/*	foreach ($tags as $tag) {
 				echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
 
 				if($i < count($tags)) {
@@ -280,7 +288,7 @@ if ($linkCheck[0] > 0) {
 				$i++;
 			}
 
-			echo "<br /><br /><br /><br />";
+			echo "<br /><br /><br /><br />"; */
 
 			$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['id']."' AND draft = '0' ORDER BY date DESC");
 			while ($post = $postResult->fetch_assoc()) {
@@ -393,7 +401,7 @@ if ($linkCheck[0] > 0) {
 			$liked = $likedResult->fetch_array(MYSQLI_NUM);
 
 			echo "
-				<br /><br />
+				
 				<section style='text-align: center;'>
 			";
 
@@ -412,8 +420,8 @@ if ($linkCheck[0] > 0) {
 
 			sort($tags, SORT_STRING);
 			$i = 0;
-
-			foreach ($tags as $tag) {
+//Отображение облака тегов в записи блога
+		/*	foreach ($tags as $tag) {
 				echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
 
 				if($i < count($tags)) {
@@ -422,9 +430,9 @@ if ($linkCheck[0] > 0) {
 
 				$i++;
 			}
-
+*/
 			echo "
-					<br /><br /><br /><br />
+				
 				</section>
 				
 				<section class='bigSection'>
@@ -692,8 +700,8 @@ if ($linkCheck[0] > 0) {
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
-	<script type="text/javascript" src="/js/gallery-slider.js"></script>
+<!--	<script type="text/javascript" src="/js/main-slider.js"></script>
+	<script type="text/javascript" src="/js/gallery-slider.js"></script> -->
 
 </body>
 
