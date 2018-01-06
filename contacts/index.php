@@ -166,7 +166,7 @@ include("../layouts/footer.php");
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
+	<!--<script type="text/javascript" src="/js/main-slider.js"></script>-->
 
 </body>
 
