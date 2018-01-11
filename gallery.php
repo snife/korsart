@@ -166,7 +166,7 @@ if ($linkCheck[0] > 0) {
 	<title><?= $gallery['title'] ?></title>
 	<meta property="og:title" content="<?= $gallery['title'] ?>" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="https://korsart.by/<?=$url[0].'/'.$address?>" />
+	<meta property="og:url" content="<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" />
 	<meta property="og:image" content="https://korsart.by/img/photos/<?php
 	echo ($type == "gallery") ? "gallery" : "blog"; 
 	?>/main/<?=$gallery['photo']?>" />
