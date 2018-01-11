@@ -130,3 +130,13 @@ function shareButtonColor(id, action) {
 		$('#' + id + '-text').css('color', '#4c4c4c');
 	}
 }
+
+function pageBlock(action, block, text) {
+    if (action === 1) {
+        document.getElementById(block).style.backgroundColor = "#e0c1ac";
+        document.getElementById(text).style.color = "#fff";
+    } else {
+        document.getElementById(block).style.backgroundColor = "transparent";
+        document.getElementById(text).style.color = "#da9d73";
+    }
+}

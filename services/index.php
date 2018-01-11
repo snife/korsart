@@ -57,6 +57,7 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/instafeed.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
+	<script type="text/javascript" src="/js/ya.js"></script>
 
 
 	<style>
@@ -106,11 +107,15 @@ include("../layouts/footer.php");
 
 	<?= showMenu_2ndLevel(null, $categories, $settings) ?>
 
+    <!-- slider -->
++	<!--
 	<div id="slider">
 		<img src="/img/system/services.jpg" id="mainIMG" />
 	</div>
 
 	<br /><br />
+	-->
+
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -123,16 +128,16 @@ include("../layouts/footer.php");
 				$serviceResult = $mysqli->query("SELECT * FROM services ORDER BY id");
 				while($service = $serviceResult->fetch_assoc()) {
 					echo "
-						<div class='serviceBlock'>
+						<div class='serviceBlock' itemscope itemtype='http://schema.org/Product'>
 							<div class='servicePhotoBlock'>
-								<img src='/img/services/".$service['photo']."' />
+								<img itemprop='image' src='/img/services/".$service['photo']."' />
 							</div>
 							<div class='serviceTextBlock'>
 								<div class='sectionHeader'>
-									<span class='serviceFont'>".$service['name']."</span>
+									<span itemprop='name' class='serviceFont'>".$service['name']."</span>
 								</div>
 								<br /><br />
-								<p>".$service['description']."</p>
+								<p itemprop='description'>".$service['description']."</p>
 								<div class='sectionHeader'>
 									<div class='line'></div>
 								</div>

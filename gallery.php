@@ -15,6 +15,14 @@ include("layouts/footer.php");
 
 if(substr($_SERVER['REQUEST_URI'], 1, 5) == "blog/") {
 	$address = substr($_SERVER['REQUEST_URI'], 6);
+
+	$url = explode("/", $address);
+
+	if(is_numeric($url[1])) {
+	    $pageNumberInURL = 1;
+	    $page = $url[1];
+	    $address = $url[0];
+    }
 } else {
 	$url = explode("/", substr($_SERVER['REQUEST_URI'], 1));
 	$address = $url[1];
@@ -33,6 +41,32 @@ if ($linkCheck[0] > 0) {
 	$linkCheck = $linkCheckResult->fetch_array(MYSQLI_NUM);
 
 	if($linkCheck[0] > 0) {
+	    $subcategoryIDResult = $mysqli->query("SELECT id FROM blog_subcategories WHERE sef_link = '".$address."'");
+	    $subcategoryID = $subcategoryIDResult->fetch_array(MYSQLI_NUM);
+
+	    $postsCountResult = $mysqli->query("SELECT COUNT(id) FROM posts WHERE subcategory_id = '".$subcategoryID[0]."'");
+	    $postsCount = $postsCountResult->fetch_array(MYSQLI_NUM);
+
+        if ($postsCount[0] > POSTS_ON_PAGE) {
+            if ($postsCount[0] % POSTS_ON_PAGE != 0) {
+                $numbers = intval(($postsCount[0] / POSTS_ON_PAGE) + 1);
+            } else {
+                $numbers = intval($postsCount[0] / POSTS_ON_PAGE);
+            }
+        } else {
+            $numbers = 1;
+        }
+
+        if(!empty($url[1]) and ($page <= 0 or $page > $numbers)) {
+            header("Location: /blog/".$address);
+        }
+
+        if (empty($page)) {
+            $page = 1;
+        }
+
+        $start = $page * POSTS_ON_PAGE - POSTS_ON_PAGE;
+
 		$galleryResult = $mysqli->query("SELECT * FROM blog_subcategories WHERE sef_link = '" . $address . "'");
 		$gallery = $galleryResult->fetch_assoc();
 
@@ -117,7 +151,7 @@ if ($linkCheck[0] > 0) {
 <!--[if IE 7]><html lang="ru" class="lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8]><html lang="ru" class="lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!-->
-<html lang="ru">
+<html lang="ru" prefix="og: http://ogp.me/ns#">
 <!--<![endif]-->
 
 <head>
@@ -130,6 +164,12 @@ if ($linkCheck[0] > 0) {
 	<meta charset="utf-8" />
 
 	<title><?= $gallery['title'] ?></title>
+	<meta property="og:title" content="<?= $gallery['title'] ?>" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="https://korsart.by/<?=$url[0].'/'.$address?>" />
+	<meta property="og:image" content="https://korsart.by/img/photos/<?php
+	echo ($type == "gallery") ? "gallery" : "blog"; 
+	?>/main/<?=$gallery['photo']?>" />
 
 	<meta name="description" content="<?= $gallery['description'] ?>" />
 	<meta name="keywords" content="<?= $gallery['keywords'] ?>" />
@@ -207,7 +247,11 @@ if ($linkCheck[0] > 0) {
 
 	<?php
 		if($type != "post") {
-			echo showMenu_2ndLevel(null, $categories, $settings);
+		    if($pageNumberInURL == 1) {
+		        echo showMenu_3rdLevel(null, $categories, $settings);
+            } else {
+		        echo showMenu_2ndLevel(null, $categories, $settings);
+            }
 		} else {
 			echo showMenu_3rdLevel(null, $categories, $settings);
 		}
@@ -236,8 +280,7 @@ if ($linkCheck[0] > 0) {
 
 		if($type == "blog") {
 			/* Правило отображения контента для блога */
-			echo "
-				<br /><br />
+			echo "		
 				<section style='text-align: center;'>
 			";
 
@@ -270,7 +313,9 @@ if ($linkCheck[0] > 0) {
 			sort($tags, SORT_STRING);
 			$i = 0;
 
-			foreach ($tags as $tag) {
+            //Отображение облока тегов в категориях блога
+		    /*
+		    foreach ($tags as $tag) {
 				echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
 
 				if($i < count($tags)) {
@@ -281,8 +326,9 @@ if ($linkCheck[0] > 0) {
 			}
 
 			echo "<br /><br /><br /><br />";
+		*/
 
-			$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['id']."' AND draft = '0' ORDER BY date DESC");
+			$postResult = $mysqli->query("SELECT * FROM posts WHERE subcategory_id = '".$gallery['id']."' AND draft = '0' ORDER BY date DESC LIMIT ".$start.", ".POSTS_ON_PAGE);
 			while ($post = $postResult->fetch_assoc()) {
 				$likesCountResult = $mysqli->query("SELECT COUNT(id) FROM likes WHERE post_id = '".$post['id']."'");
 				$likesCount = $likesCountResult->fetch_array(MYSQLI_NUM);
@@ -374,6 +420,159 @@ if ($linkCheck[0] > 0) {
 				";
 			}
 
+			/* Блок с постраничной навигацией */
+            echo "<div id='pageNumbers'>";
+
+            if ($numbers > 1) {
+                $uri = $page;
+                $link = "/blog/".$address."/";
+                if ($numbers <= 7) {
+                    echo "<br /><br />";
+
+                    if ($uri == 1) {
+                        echo "<div class='pageNumberBlockSide' id='pbPrev' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>Предыдущая</span></div>";
+                    } else {
+                        echo "<a href='" . $link . ($uri - 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>";
+                    }
+
+                    for ($i = 1; $i <= $numbers; $i++) {
+                        if ($uri != $i) {
+                            echo "<a href='" . $link . $i . "' class='noBorder'>";
+                        }
+
+                        echo "<div id='pb" . $i . "' ";
+                        if ($i == $uri) {
+                            echo "class='pageNumberBlockActive'";
+                        } else {
+                            echo "class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . $i . "\", \"pbt" . $i . "\")' onmouseout='pageBlock(0, \"pb" . $i . "\", \"pbt" . $i . "\")'";
+                        }
+                        echo "><span ";
+                        if ($i == $uri) {
+                            echo "class='paginationActive'";
+                        } else {
+                            echo "class='paginationLink' id='pbt" . $i . "'";
+                        }
+                        echo ">" . $i . "</span></div>";
+
+                        if ($uri != $i) {
+                            echo "</a>";
+                        }
+                    }
+
+                    if ($uri == $numbers) {
+                        echo "<div class='pageNumberBlockSide' id='pbNext' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>Следующая</span></div>";
+                    } else {
+                        echo "<a href='" . $link . ($uri + 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>";
+                    }
+
+                    echo "</div>";
+
+                } else {
+                    if ($uri < 5) {
+                        if ($uri == 1) {
+                            echo "<div class='pageNumberBlockSide' id='pbPrev' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>Предыдущая</span></div>";
+                        } else {
+                            echo "<a href='" . $link . ($uri - 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>";
+                        }
+
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($uri != $i) {
+                                echo "<a href='" . $link . $i . "' class='noBorder'>";
+                            }
+
+                            echo "<div id='pb" . $i . "' ";
+                            if ($i == $uri) {
+                                echo "class='pageNumberBlockActive'";
+                            } else {
+                                echo "class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . $i . "\", \"pbt" . $i . "\")' onmouseout='pageBlock(0, \"pb" . $i . "\", \"pbt" . $i . "\")'";
+                            }
+                            echo "><span ";
+                            if ($i == $uri) {
+                                echo "class='paginationActive'";
+                            } else {
+                                echo "class='paginationLink' id='pbt" . $i . "'";
+                            }
+                            echo ">" . $i . "</span></div>";
+
+                            if ($uri != $i) {
+                                echo "</a>";
+                            }
+                        }
+
+                        echo "<div class='pageNumberBlock' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>...</span></div>";
+                        echo "<a href='" . $link . $numbers . "' class='noBorder'><div id='pb" . $numbers . "' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . $numbers . "\", \"pbt" . $numbers . "\")' onmouseout='pageBlock(0, \"pb" . $numbers . "\", \"pbt" . $numbers . "\")'><span class='paginationLink' id='pbt" . $numbers . "'>" . $numbers . "</span></div></a>";
+
+                        if ($uri == $numbers) {
+                            echo "<div class='pageNumberBlockSide' id='pbNext' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>Следующая</span></div>";
+                        } else {
+                            echo "<a href='" . $link . ($uri + 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>";
+                        }
+
+                        echo "</div>";
+                    } else {
+                        $check = $numbers - 3;
+
+                        if ($uri >= 5 and $uri < $check) {
+                            echo "
+                                                    <br /><br />
+                                                    <div id='pageNumbers'>
+                                                        <a href='" . $link . ($uri - 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>
+                                                        <a href='" . $link . "1' class='noBorder'><div id='pb1' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb1\", \"pbt1\")' onmouseout='pageBlock(0, \"pb1\", \"pbt1\")'><span class='paginationLink' id='pbt1'>1</span></div></a>
+                                                        <div class='pageNumberBlock' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>...</span></div>
+                                                        <a href='" . $link . ($uri - 1) . "' class='noBorder'><div id='pb" . ($uri - 1) . "' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . ($uri - 1) . "\", \"pbt" . ($uri - 1) . "\")' onmouseout='pageBlock(0, \"pb" . ($uri - 1) . "\", \"pbt" . ($uri - 1) . "\")'><span class='paginationLink' id='pbt" . ($uri - 1) . "'>" . ($uri - 1) . "</span></div></a>
+                                                        <div class='pageNumberBlockActive'><span class='paginationActive'>" . $uri . "</span></div>
+                                                        <a href='" . $link . ($uri + 1) . "' class='noBorder'><div id='pb" . ($uri + 1) . "' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . ($uri + 1) . "\", \"pbt" . ($uri + 1) . "\")' onmouseout='pageBlock(0, \"pb" . ($uri + 1) . "\", \"pbt" . ($uri + 1) . "\")'><span class='paginationLink' id='pbt" . ($uri + 1) . "'>" . ($uri + 1) . "</span></div></a>
+                                                        <div class='pageNumberBlock' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>...</span></div>
+                                                        <a href='" . $link . $numbers . "' class='noBorder'><div id='pb" . $numbers . "' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . $numbers . "\", \"pbt" . $numbers . "\")' onmouseout='pageBlock(0, \"pb" . $numbers . "\", \"pbt" . $numbers . "\")'><span class='paginationLink' id='pbt" . $numbers . "'>" . $numbers . "</span></div></a>
+                                                        <a href='" . $link . ($uri + 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>
+                                                    </div>
+                                                ";
+                        } else {
+                            echo "
+                                                    <br /><br />
+                                                    <div id='pageNumbers'>
+                                                        <a href='" . $link . ($uri - 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbPrev' onmouseover='pageBlock(1, \"pbPrev\", \"pbtPrev\")' onmouseout='pageBlock(0, \"pbPrev\", \"pbtPrev\")'><span class='paginationLink' id='pbtPrev'>Предыдущая</span></div></a>
+                                                        <a href='" . $link . "1' class='noBorder'><div id='pb1' class='pageNumberBlock' onmouseover='pageBlock(1, \"pb1\", \"pbt1\")' onmouseout='pageBlock(0, \"pb1\", \"pbt1\")'><span class='paginationLink' id='pbt1'>1</span></div></a>
+                                                        <div class='pageNumberBlock' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>...</span></div>
+                                                ";
+
+                            for ($i = ($numbers - 4); $i <= $numbers; $i++) {
+                                if ($uri != $i) {
+                                    echo "<a href='" . $link . $i . "' class='noBorder'>";
+                                }
+
+                                echo "<div id='pb" . $i . "' ";
+                                if ($i == $uri) {
+                                    echo "class='pageNumberBlockActive'";
+                                } else {
+                                    echo "class='pageNumberBlock' onmouseover='pageBlock(1, \"pb" . $i . "\", \"pbt" . $i . "\")' onmouseout='pageBlock(0, \"pb" . $i . "\", \"pbt" . $i . "\")'";
+                                }
+                                echo "><span ";
+                                if ($i == $uri) {
+                                    echo "class='paginationActive'";
+                                } else {
+                                    echo "class='paginationLink' id='pbt" . $i . "'";
+                                }
+                                echo ">" . $i . "</span></div>";
+
+                                if ($uri != $i) {
+                                    echo "</a>";
+                                }
+                            }
+
+                            if ($uri == $numbers) {
+                                echo "<div class='pageNumberBlockSide' id='pbNext' style='cursor: url(\"/img/cursor/no.cur\"), auto;'><span class='paginationInactive'>Следующая</span></div>";
+                            } else {
+                                echo "<a href='" . $link . ($uri + 1) . "' class='noBorder'><div class='pageNumberBlockSide' id='pbNext' onmouseover='pageBlock(1, \"pbNext\", \"pbtNext\")' onmouseout='pageBlock(0, \"pbNext\", \"pbtNext\")'><span class='paginationLink' id='pbtNext'>Следующая</span></div></a>";
+                            }
+                        }
+                    }
+                }
+            }
+
+            echo "</div><div class='clear'></div><br /><br />";
+            /* Конец блока постраничной навигации */
+
 			echo "</section>";
 		}
 
@@ -393,7 +592,7 @@ if ($linkCheck[0] > 0) {
 			$liked = $likedResult->fetch_array(MYSQLI_NUM);
 
 			echo "
-				<br /><br />
+				
 				<section style='text-align: center;'>
 			";
 
@@ -413,7 +612,9 @@ if ($linkCheck[0] > 0) {
 			sort($tags, SORT_STRING);
 			$i = 0;
 
-			foreach ($tags as $tag) {
+			//Отображение облака тегов в записи блога
+		    /*
+		    foreach ($tags as $tag) {
 				echo "<a href='/tag/".$tag."'><span class='tagFont'>".$tag."</span></a>";
 
 				if($i < count($tags)) {
@@ -422,9 +623,10 @@ if ($linkCheck[0] > 0) {
 
 				$i++;
 			}
+            */
 
 			echo "
-					<br /><br /><br /><br />
+				
 				</section>
 				
 				<section class='bigSection'>
@@ -692,8 +894,10 @@ if ($linkCheck[0] > 0) {
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
+    <!--
+    <script type="text/javascript" src="/js/main-slider.js"></script>
 	<script type="text/javascript" src="/js/gallery-slider.js"></script>
+	-->
 
 </body>
 

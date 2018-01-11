@@ -51,6 +51,7 @@ p strong a {color: #d19166; transition: .3s;}
 #prevIcon, #nextIcon {transition: .3s;}
 #commentsContainer {width: 100%; transition: .3s;}
 #mobileMenu {display: none;}
+#pageNumbers {display: inline-block; text-align: center; font-family: "Didact Gothic", sans-serif; color: #4c4c4c;}
 
 .headerFont {font-family: 'Lora', serif; font-size: 28px; color: #474747; letter-spacing: 1px; transition: .3s;}
 .thinFont {font-family: 'Poiret One', cursive; font-size: 32px; color: #474747; transition: .3s;}
@@ -92,7 +93,7 @@ p strong a {color: #d19166; transition: .3s;}
 .remodal h1 {font-family: "Didact Gothic", sans-serif; text-transform: uppercase; color: #474747; font-size: 16px; letter-spacing: 2px;}
 .remodal {font-family: "Didact Gothic", sans-serif;}
 .notifyjs-corner, .notifyjs-wrapper {z-index: 9999999 !important;}
-.reviewContainer {width: 100%; margin-bottom: 120px;}
+.reviewContainer {width: 100%; margin-bottom: 50px;}
 .reviewPhoto {display: inline-block; width: 30%; text-align: center; vertical-align: top;}
 .review {display: inline-block; width: 68%;}
 .reviewPhoto img {width: 100%; max-width: 300px !important;}
@@ -137,3 +138,9 @@ p strong a {color: #d19166; transition: .3s;}
 .hiddenText h3 {font-size: 5px !important; color: #fff;}
 .social {float: left;}
 .likeContainer {float: left;}
+.pageNumberBlockSide {position: relative; float: left; height: 30px; line-height: 30px; padding-left: 10px; padding-right: 10px; text-align: center; border-radius: 3px; margin-left: 2px; transition: .3s;}
+.pageNumberBlock {position: relative; float: left; width: 40px; height: 30px; line-height: 30px; text-align: center; border-radius: 3px; margin-left: 2px; transition: .3s;}
+.pageNumberBlockActive {position: relative; float: left; background-color: #e0c1ac; width: 40px; height: 30px; line-height: 30px; text-align: center; border-radius: 3px; margin-left: 2px;}
+.paginationInactive {color: #4c4c4c;}
+.paginationActive {color: #fff;}
+.paginationLink {color: #da9d73;}
