@@ -647,7 +647,7 @@ if ($linkCheck[0] > 0) {
 					<span class='blogFont'>".$gallery['text']."</span>
 					<br /><br />
 				</section>
-				<section class='bigSection' style='text-align: center;'>
+				<section class='bigSection gallerySection' style='text-align: center;'>
 					";
 
 			$photoResult = $mysqli->query("SELECT * FROM blog_photos WHERE post_id = '".$gallery['id']."'");

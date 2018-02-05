@@ -24,7 +24,8 @@ p strong a {color: #d19166; transition: .3s;}
 .menuFont:hover, .sideMenuPoint:hover, .submenuFont:hover {color: #787878;}
 .sliderLinkFont:hover, footer a:hover, .smallFont:hover, #scroll:hover, #mobileMenu:hover, #about a:hover, .third a:hover, .tagFont:hover, .openFont:hover, .blogButton:hover, .postTagFont:hover, .shareLine:hover, .shareLine a:hover, .postHeader a:hover, .lightFont a:hover, .directionButton:hover, .directionButtonFont:hover, p strong a:hover {color: #e0c1ac;}
 .like:hover, .lightFont .like:hover {color: #b21c1c;}
-#instafeed a img:hover {opacity: .7;}
+
+#instafeed a img:hover, .galleryPreview:hover {opacity: .7;}
 #reviewSubmit:hover, #messageSubmit:hover, #commentSubmit:hover {border: 1px solid #e0c1ac !important; background-color: #e0c1ac;}
 
 #slider, #gallery-slider {width: 100%; overflow: hidden; position: relative;}
@@ -145,3 +146,8 @@ p strong a {color: #d19166; transition: .3s;}
 .paginationActive {color: #fff;}
 .paginationLink {color: #da9d73;}
 .gallerySection {width: 75%;}
+.galleryPreview {width: 300px; display: inline-block; vertical-align: middle; margin-top: 20px; margin-left: 20px; transition: .3s;}
+.galleryPreview img {z-index: 1; width: 100%; transition: .3s;}
+.galleryName {z-index: 2; height: 50px; line-height: 50px; background-color: #f9e4d6; text-align: center; width: 300px; opacity: .9; transition: .3s; display: inline-block; vertical-align: middle; margin-top: -4px;}
+.galleryName span {opacity: 1 !important; font-family: "Open Sans", sans-serif; font-size: 14px; color: #262626;}
+.text-center {text-align: center;}
