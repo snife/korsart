@@ -129,7 +129,7 @@ while($category = $categoryResult->fetch_assoc()) {
     $galleryResult = $mysqli->query("SELECT * FROM subcategories WHERE category_id = '".$category['id']."' ORDER BY priority");
     while($gallery = $galleryResult->fetch_assoc()) {
         echo "
-                    <a href='/wedding/".$gallery['sef_link']."'>                         
+                    <a href='/love-story/".$gallery['sef_link']."'>                         
                         <div class='galleryPreview'>
                             <img src='/img/photos/gallery/main/".$gallery['photo']."' />
                             <div class='galleryName'>
