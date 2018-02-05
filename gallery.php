@@ -168,7 +168,7 @@ if ($linkCheck[0] > 0) {
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" />
 	<meta property="og:image" content="https://korsart.by/img/photos/<?php
-	echo ($type == "gallery") ? "gallery" : "blog"; 
+	echo ($type == "gallery") ? "gallery" : "blog";
 	?>/main/<?=$gallery['photo']?>" />
 
 	<meta name="description" content="<?= $gallery['description'] ?>" />
@@ -267,7 +267,7 @@ if ($linkCheck[0] > 0) {
 				<br /><br />
 				".$gallery['text']."
 				<br /><br />
-				<section class='bigSection' style='margin-top: 0;'>
+				<section class='bigSection gallerySection' style='margin-top: 0;'>
 			";
 
 			$photoResult = $mysqli->query("SELECT * FROM photos WHERE post_id = '".$gallery['id']."'");
@@ -351,6 +351,9 @@ if ($linkCheck[0] > 0) {
 					$comments = $commentsCount[0];
 				}
 
+                $lollol = $_SERVER['REQUEST_URI'];
+                $lollol1 = explode("/", $lollol);
+
 				echo "
 					<div class='sectionHeader'>
 						<div class='blogLine'></div>
@@ -358,7 +361,7 @@ if ($linkCheck[0] > 0) {
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'><a href='/blog/".$post['sef_link']."'>".$post['name']."</a></div>
+					<div class='postHeader'><a href='/blog/".$lollol1[2]."/".$post['sef_link']."'>".$post['name']."</a></div>
 					<br /><br />
 					<div class='blogDescription'><p>".$post['description']."</p></div>
 					<img src='/img/photos/blog/main/".$post['photo']."' class='blogMainPhoto' />
@@ -629,14 +632,14 @@ if ($linkCheck[0] > 0) {
 				
 				</section>
 				
-				<section class='bigSection'>
+				<section class='bigSection gallerySection'>
 					<div class='sectionHeader'>
 						<div class='blogLine'></div>
 						<div class='blogDate'>".formatDate($gallery['date'])."</div>
 						<div class='blogLine'></div>
 					</div>
 					<br />
-					<div class='postHeader'><a href='/blog/".$gallery['sef_link']."'>".$gallery['name']."</a></div>
+					<div class='postHeader'>".$gallery['name']."</div>
 					<br /><br />
 					<div class='blogDescription'><p>".$gallery['description']."</p></div>
 					<img src='/img/photos/blog/main/".$gallery['photo']."' class='blogMainPhoto' />
