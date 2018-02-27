@@ -60,7 +60,15 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="/js/contacts.js"></script>
 	<script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
 	<script type="text/javascript" src="/js/ya.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108937733-1"></script>
 
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108937733-1');
+    </script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -128,16 +136,17 @@ include("../layouts/footer.php");
 		<div class="third">
 			<span>Телефон</span>
 			<br />
-			<strong>+375 (29) 606 35 91</strong>
+			<strong><a href="tel:+375296063591">+375 (29) 606 35 91</a></strong>
 		</div>
 		<div class="third">
 			<span>Соц. сети</span>
 			<br />
 			<a href="https://www.instagram.com/korsart_wedding/" target="_blank"><strong>instagram</strong></a>
 		</div>
+		<br /><br /><br />
+        <a href="/about/"><input type="button" id="allReviewsButton" value="Об авторе" onmouseover="reviewsButton(1)" onmouseout="reviewsButton(0)" /></a>
 	</section>
 
-	<br /><br />
 	<section>
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -166,7 +175,7 @@ include("../layouts/footer.php");
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
+	<!--<script type="text/javascript" src="/js/main-slider.js"></script>-->
 
 </body>
 

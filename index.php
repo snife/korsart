@@ -52,6 +52,15 @@
 	<script type="text/javascript" src="/js/index.js"></script>
 	<script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
 	<script type="text/javascript" src="/js/ya.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108937733-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108937733-1');
+    </script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -112,7 +121,6 @@
 	</div>
 
 	<br />
-    <br />
 	<section class="descriptionFont">
 		<div style="width: 50%; position: relative; float: left; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">Свадебный фотограф в Минске</div>
 		<div style="width: 50%; position: relative; float: right; color: #bfbfbf; font-size: 14px; font-family: 'Didact Gothic', sans-serif; font-weight: bold; letter-spacing: 2px;">ВДОХНОВЕНИЕ ДЛЯ СВАДЬБЫ</div>
@@ -121,7 +129,6 @@
 	</section>
 
 	<br />
-    <br />
 	<div id="gallery-slider">
 		<?php
 			$i = 0;
@@ -142,14 +149,16 @@
 
 		<div id="sliderLinks">
 			<div class="sliderLinkSection">
-				<a href='/<?= $wedding['sef_link'] ?>'><span class="sliderLinkFont">Свадьба</span></a>
+				<a href=/wedding/><span class="sliderLinkFont">Свадьба</span></a>
 				<br /><br />
 				<span style="font-size: 12px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;">Фотогалерея</span>
 				<div style="width: 1px; background-color: #fff; height: 100%; position: absolute; top: 25%; left: 50%; z-index: 3; opacity: .8;"></div>
 				<div style="clear: both;"></div>
 			</div>
 			<div class="sliderLinkSection">
-				<a href="/<?= $story['sef_link'] ?>"><span class="sliderLinkFont">Love Story</span></a>
+				<!--<a href="/<?= $story['sef_link'] ?>">-->
+				<a href="/love-story/">
+				<span class="sliderLinkFont">Love Story</span></a>
 				<br /><br />
 				<span style="font-size: 12px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 2px; text-transform: uppercase; color: #fff;">Фотогалерея</span>
 			</div>
@@ -158,14 +167,12 @@
 	</div>
 
 	<br />
-    <br />
 	<section class="descriptionFont">
 		<div style="width: 100%; color: #474747; font-size: 16px; font-family: 'Didact Gothic', sans-serif; letter-spacing: 1px; text-align: right;">Давайте сделаем красивую историю о вас!</div>
 		<p style="text-align: justify;">Снимки "с настроением" уникальны. Они не выходят из моды, их всегда интересно смотреть. Спустя годы их не стыдно показать своим детям и внукам. Это творчество и документалистика в чистом виде. Всё это - ваша свадебная фотосессия.</p>
 	</section>
 
 	<br />
-    <br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -207,7 +214,6 @@
 	</section>
 
 	<br />
-    <br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -292,7 +298,6 @@
 	</section>
 
 	<br />
-    <br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<a href="/services"><input type="button" id="servicesButton" value="Услуги и цены" onmouseover="servicesButton(1)" onmouseout="servicesButton(0)" /></a>
@@ -300,7 +305,6 @@
 	</section>
 
 	<br />
-    <br />
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -318,7 +322,6 @@
 						<span class="serviceFont">Обо мне</span>
 					</div>
 					<br />
-                    <br />
 					<p>Меня зовут Александр, и мне нравится фотографировать. Нравится замечать интересные мгновения, общаться с людьми, путешествовать, делиться своими мыслями на снимках и не только.</p>
 				</div>
 				<br />
@@ -327,7 +330,6 @@
 						<span class="serviceFont">Контакты</span>
 					</div>
 					<br />
-                    <br />
 					<p>Я всегда открыт новым предложениям и неожиданным путешествиям.</p>
 					<ul>
 						<li>&nbsp;<i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;GSM +375 (29) 606 35 91</li>
@@ -337,6 +339,7 @@
 				</div>
 				<div style="clear: both;"></div>
 			</div>
+			<a href="/about/"><input type="button" id="allReviewsButton" value="Об авторе" onmouseover="reviewsButton(1)" onmouseout="reviewsButton(0)" /></a>
 		</div>
 	</section>
 
