@@ -58,7 +58,16 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="/js/instafeed.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/ya.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108937733-1"></script>
 
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108937733-1');
+    </script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -83,7 +92,7 @@ include("../layouts/footer.php");
 	<?php
 		$categories = array();
 
-		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
+		$categoryResult = $mysqli->query("SELECT * FROM categories WHERE sef_link <> 'about' ORDER BY priority");
 		while($category = $categoryResult->fetch_assoc()) {
 			if($category['id'] == BLOG_ID) {
 				$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
@@ -107,15 +116,14 @@ include("../layouts/footer.php");
 
 	<?= showMenu_2ndLevel(null, $categories, $settings) ?>
 
-    <!-- slider -->
-+	<!--
+	<!-- slider -->
+	<!--
 	<div id="slider">
 		<img src="/img/system/services.jpg" id="mainIMG" />
 	</div>
 
 	<br /><br />
 	-->
-
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
@@ -175,7 +183,7 @@ include("../layouts/footer.php");
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
+<!--	<script type="text/javascript" src="/js/main-slider.js"></script>-->
 
 </body>
 

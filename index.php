@@ -85,7 +85,7 @@
 	<?php
 		$categories = array();
 
-		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
+		$categoryResult = $mysqli->query("SELECT * FROM categories WHERE sef_link <> 'about' ORDER BY priority");
 		while($category = $categoryResult->fetch_assoc()) {
 			if($category['id'] == BLOG_ID) {
 				$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");

@@ -13,7 +13,7 @@
 		";
 
 		foreach ($categories as $category) {
-			if($category['subcategories']) {
+			if($category['subcategories'] and $category['sef_link'] != 'wedding' and $category['sef_link'] != 'love-story') {
 				$menu .= "
 					<div class='sideMenuPoint' onclick='showMobileSubmenu(\"".$category['id']."\")'>".mb_strtolower($category['name'])."<div class='sideSubmenu' id='sideSubmenu".$category['id']."'></div></div>
 				";
@@ -85,7 +85,7 @@
 		";
 
 		foreach ($categories as $category) {
-			if($category['subcategories']) {
+			if($category['subcategories'] and $category['sef_link'] != 'wedding' and $category['sef_link'] != 'love-story') {
 				$menu .= "
 					<div class='sideMenuPoint' onclick='showMobileSubmenu(\"".$category['id']."\")'>".mb_strtolower($category['name'])."<div class='sideSubmenu' id='sideSubmenu".$category['id']."'></div></div>
 				";
@@ -157,7 +157,7 @@
 		";
 
 		foreach ($categories as $category) {
-			if($category['subcategories']) {
+			if($category['subcategories'] and $category['sef_link'] != 'wedding' and $category['sef_link'] != 'love-story') {
 				$menu .= "
 					<div class='sideMenuPoint' onclick='showMobileSubmenu(\"".$category['id']."\")'>".mb_strtolower($category['name'])."<div class='sideSubmenu' id='sideSubmenu".$category['id']."'></div></div>
 				";

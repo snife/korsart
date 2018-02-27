@@ -61,7 +61,17 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="/plugins/Remodal-1.1.1/dist/remodal.min.js"></script>
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" src="/js/reviews.js"></script>
+	<script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
+	<script type="text/javascript" src="/js/ya.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108937733-1"></script>
 
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108937733-1');
+    </script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -125,28 +135,30 @@ include("../layouts/footer.php");
 			$reviewResult = $mysqli->query("SELECT * FROM reviews WHERE showing = '1' ORDER BY id DESC");
 			while($review = $reviewResult->fetch_assoc()) {
 				echo "
-					<div class='reviewContainer'>
+				<div itemscope itemtype='http://schema.org/Service'> 
+					<div class='reviewContainer' itemprop='review' itemscope itemtype='https://schema.org/Review'> <meta itemprop='itemReviewed' content='Свадебный фотограф'>
 				";
 
 				if($i % 2 == 0) {
 					echo "
-						<div class='reviewPhoto'>"; if(!empty($review['photo'])) {echo "<img src='/img/photos/reviews/".$review['photo']."' />";} echo "</div>
+						<div class='reviewPhoto'>"; if(!empty($review['photo'])) {echo "<img itemprop='image'  src='/img/photos/reviews/".$review['photo']."' />";} echo "</div>
 						<div class='review'>
-							<div class='reviewHeader'><h1>".$review['name']."</h1></div>
-							<p>".$review['text']."</p>
+							<div class='reviewHeader'><h1 itemprop='author'>".$review['name']."</h1></div>
+							<p itemprop='description'>".$review['text']."</p>
 						</div>
 					";
 				} else {
 					echo "
 						<div class='review'>
-							<div class='reviewHeader'><h1>".$review['name']."</h1></div>
-							<p>".$review['text']."</p>
+							<div class='reviewHeader'><h1 itemprop='author'>".$review['name']."</h1></div>
+							<p itemprop='description'>".$review['text']."</p>
 						</div>
-						<div class='reviewPhoto'>"; if(!empty($review['photo'])) {echo "<img src='/img/photos/reviews/".$review['photo']."' />";} echo "</div>
+						<div class='reviewPhoto'>"; if(!empty($review['photo'])) {echo "<img itemprop='image' src='/img/photos/reviews/".$review['photo']."' />";} echo "</div>
 					";
 				}
 
 				echo "
+					    </div>
 					</div>
 				";
 
@@ -198,7 +210,6 @@ include("../layouts/footer.php");
 
 	<?= showFooter() ?>
 
-	<script type="text/javascript" src="/js/main-slider.js"></script>
 </body>
 
 </html>

@@ -59,7 +59,15 @@ include("../layouts/footer.php");
 	<script type="text/javascript" src="/js/common.js"></script>
 	<script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
 	<script type="text/javascript" src="/js/ya.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108937733-1"></script>
 
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108937733-1');
+    </script>
 
 	<style>
 		#page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -84,7 +92,7 @@ include("../layouts/footer.php");
 	<?php
 		$categories = array();
 
-		$categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
+		$categoryResult = $mysqli->query("SELECT * FROM categories WHERE sef_link <> 'about' ORDER BY priority");
 		while($category = $categoryResult->fetch_assoc()) {
 			if($category['id'] == BLOG_ID) {
 				$subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
@@ -178,8 +186,6 @@ include("../layouts/footer.php");
 	<div onclick="scrollToTop()" id="scroll"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 
 	<?= showFooter() ?>
-
-	
 
 </body>
 

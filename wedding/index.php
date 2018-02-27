@@ -34,14 +34,14 @@ include("../layouts/footer.php");
 
     <meta charset="utf-8" />
 
-    <title><?= $page['title'] ?></title>
+    <title>Портфолио свадебных фотосесиий. Фотограф для свадьбы в Минске</title>
 
-    <meta property="og:title" content="<?= $page['description'] ?>" />
+    <meta property="og:title" content="Портфолио свадебных фотосесиий. Фотограф для свадьбы в Минске" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="<?= $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'] ?>" />
 
-    <meta name="description" content="<?= $page['description'] ?>" />
-    <meta name="keywords" content="<?= $page['keywords'] ?>" />
+    <meta name="description" content="Для того что бы узнать хорошего ли фотографа вы себе берёте на свадьбу, вам необходимо посмотреть его портфолио. Портфолио фотографа Александа как раз на этой страничке" />
+    <meta name="keywords" content="Свабедное портфолио" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -67,6 +67,15 @@ include("../layouts/footer.php");
     <script type="text/javascript" src="/js/notify.js"></script>
     <script type="text/javascript" src="/js/share.js"></script>
     <script type="text/javascript" src="/js/ya.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108937733-1"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-108937733-1');
+    </script>
 
     <style>
         #page-preloader {position: fixed; left: 0; top: 0; right: 0; bottom: 0; background: #fff; z-index: 100500;}
@@ -92,7 +101,7 @@ include("../layouts/footer.php");
     <?php
         $categories = array();
 
-        $categoryResult = $mysqli->query("SELECT * FROM categories ORDER BY priority");
+        $categoryResult = $mysqli->query("SELECT * FROM categories WHERE sef_link <> 'about' ORDER BY priority");
         while($category = $categoryResult->fetch_assoc()) {
             if($category['id'] == BLOG_ID) {
                 $subcategoryResult = $mysqli->query("SELECT * FROM blog_subcategories ORDER BY priority");
