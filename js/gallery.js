@@ -46,14 +46,6 @@ function likePost(id) {
 	});
 }
 
-function showShareBlock(id, action) {
-	if(action === 1) {
-		$('#shareBlock' + id).css("opacity", 1);
-	} else {
-		$('#shareBlock' + id).css("opacity", 0);
-	}
-}
-
 function fontColor(icon, text, action) {
 	if(action === 1) {
 		$('#' + icon).css('color', '#e0c1ac');

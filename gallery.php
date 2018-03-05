@@ -382,15 +382,21 @@ if ($linkCheck[0] > 0) {
 						<div class='blogButtons'>
 							<div class='shareButtonBlock'><span id='like".$post['id']."' class='like'"; if($liked[0] > 0) {echo "style='cursor: default; color: #b21c1c;'";} echo "><i class='fa fa-heart-o' aria-hidden='true' "; if($liked[0] == 0) {echo "onclick='likePost(\"".$post['id']."\")'";} echo "></i> <span id='likesCount".$post['id']."' class='likesCount'>".$likes."</span></span></div>
 							<div class='shareButtonBlock'><a href='/blog/".$post['sef_link']."#comments'><span class='blogButton'><i class='fa fa-comment-o' aria-hidden='true'></i> ".$comments."</span></a></div>
-							<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
-								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'><i class='fa fa-share-square-o' aria-hidden='true'></i></div>
-								<div class='shareButtonBlock' onmouseover='showShareBlock(\"".$post['id']."\", 1)' onmouseout='showShareBlock(\"".$post['id']."\", 0)'>
-									<div class='shareBlock' id='shareBlock".$post['id']."'>
-										<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
-										<script src='//yastatic.net/share2/share.js'></script>
-										<div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,gplus,tumblr' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$post['photo']."' data-direction='vertical'></div>
-									</div>
-								</div>
+							<div class='shareButtonBlock'>
+							    <ul class='shareButtonList'>
+							        <li>
+							            <i class='fa fa-share-square-o' aria-hidden='true'></i>
+							            <ul class='shareList'>
+							                <li>
+							                    <div class='shareBlock'>
+                                                    <script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script>
+                                                    <script src='//yastatic.net/share2/share.js'></script>
+                                                    <div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,twitter,gplus,tumblr' data-size='s' data-title='".$post['name']."' data-url='https://korsart.by/blog/".$post['sef_link']."' data-image='https://korsart.by/img/photos/blog/main/".$post['photo']."' data-direction='vertical'></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
 							</div>
 							<div style='clear: both;'></div>
 						</div>
@@ -647,13 +653,13 @@ if ($linkCheck[0] > 0) {
 						<div class='blogDate'>".formatDate($gallery['date'])."</div>
 						<div class='blogLine'></div>
 					</div>
-					<br />
-					<div class='postHeader'>".$gallery['name']."</div>
-					<br /><br />
-					<div class='blogDescription'><p>".$gallery['description']."</p></div>
+					
+					<div class='postHeader'><h1>".$gallery['name']."</h1></div>
+					
+					<div class='blogDescription'><p style='margin: 0 5%;'>".$gallery['description']."</p></div>
 					<img src='/img/photos/blog/main/".$gallery['photo']."' class='blogMainPhoto' />
 					<br />
-					<span class='blogFont'>".$gallery['text']."</span>
+					<span class='blogFont'><div style='margin: 0 5%;'>".$gallery['text']."</div></span>
 					<br /><br />
 				</section>
 				<section class='bigSection gallerySection' style='text-align: center;'>
