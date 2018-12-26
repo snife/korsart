@@ -127,7 +127,7 @@ include("../layouts/footer.php");
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
-			<div class="sectionName">Услуги свадебного фотографа</div>
+			<div class="sectionName">Услуги фотографа</div>
 			<div class="line"></div>
 		</div>
 		<br />
