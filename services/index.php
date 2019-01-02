@@ -127,7 +127,7 @@ include("../layouts/footer.php");
 	<section class="bigSection">
 		<div class="sectionHeader">
 			<div class="line"></div>
-			<div class="sectionName">Услуги фотографа</div>
+			<div class="sectionName"><h1>Цены и услуги фотографа</h1></div>
 			<div class="line"></div>
 		</div>
 		<br />
@@ -142,7 +142,7 @@ include("../layouts/footer.php");
 							</div>
 							<div class='serviceTextBlock'>
 								<div class='sectionHeader'>
-									<span itemprop='name' class='serviceFont'>".$service['name']."</span>
+									<h2 itemprop='name' class='serviceFont'>".$service['name']."</h2>
 								</div>
 								<br /><br />
 								<p itemprop='description'>".$service['description']."</p>
