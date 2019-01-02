@@ -121,12 +121,14 @@ include("../layouts/footer.php");
 		<img src="/img/system/contacts.jpg" id="mainIMG" />
 	</div>
 
-	<br /><br />
-	<section style="border-left: 1px solid #ddd; border-right: 1px solid #ddd; text-align: justify; padding: 10px;">
-		<p style="font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 18px; letter-spacing: 2px;">Я всегда открыт новым предложениям и неожиданным путешествиям. Если у вас есть идея по фотосъемке — свадебной, love story, портретной — пишите мне. Я буду рад воплотить самую сумасшедшую фотоидею.</p>
-	</section>
 
-	<br /><br />
+	<br /><div class="sectionHeader">
+			<div class="line"></div>
+			<div class="sectionName"><h1>Контакты фотографа</h1></div>
+			<div class="line"></div>
+		</div>
+
+	<br />
 	<section class="bigSection" style="text-align: center;">
 		<div class="third">
 			<span>Email</span>
@@ -143,14 +145,15 @@ include("../layouts/footer.php");
 			<br />
 			<a href="https://www.instagram.com/korsart_wedding/" target="_blank"><strong>instagram</strong></a>
 		</div>
-		<br /><br /><br />
-        <a href="/about/"><input type="button" id="allReviewsButton" value="Об авторе" onmouseover="reviewsButton(1)" onmouseout="reviewsButton(0)" /></a>
+<section style="border-left: 1px solid #ddd; border-right: 1px solid #ddd; text-align: justify; padding: 10px;">
+		<p style="font-family: 'Didact Gothic', sans-serif; color: #474747; font-size: 18px; letter-spacing: 2px;">Я всегда открыт новым предложениям и неожиданным путешествиям. Если у вас есть идея по фотосъемке — свадебной, love story, портретной — пишите мне. Я буду рад воплотить самую сумасшедшую фотоидею.</p>
+	</section>
 	</section>
 
 	<section>
 		<div class="sectionHeader">
 			<div class="line"></div>
-			<div class="sectionName">Напишите мне</div>
+			<div class="sectionName"><a name="write">Напишите мне</a></div>
 			<div class="line"></div>
 		</div>
 		<br />
@@ -170,6 +173,7 @@ include("../layouts/footer.php");
 			</form>
 		</div>
 	</section>
+<section style="text-align: center;"> <a href="/about/"><input type="button" id="allReviewsButton" value="Об авторе" onmouseover="reviewsButton(1)" onmouseout="reviewsButton(0)"></a></section>
 
 	<div onclick="scrollToTop()" id="scroll"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
 
